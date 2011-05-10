@@ -1,0 +1,3 @@
+[[^[[http://detail.zol.com.cn/subcategory.html[[$[[ [[	{"id('catelist')/div/dl/dd/a":[{"text()":"cc"},{"attribute::href":"ccurl=durl=2"}]}	cc	1	finish
+[[^[[http://detail.zol.com.cn/tablepc_index[[.*[[html[[$[[ [[	{"/html/body/div/div/div/div/div/form/div/div/div/div[2][child::dl]":[{"a[1]/text()":"name"},{"a[1]/attribute::href":"producturl=aurl=3"},{"div":"price"},{"ul/li[1]":"size"}],"/html/body/div/div/div/div/div/form/div/div[5]/div/div":[{"a[6]/attribute::href":"nexturl=durl=2"}]}	durl	2	finish
+X	{"/html/body":[{"div/div/div/div/div/div/div[1]/div/b":"star"}]}	aurl	3	finish
