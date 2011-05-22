@@ -1,0 +1,27 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+         <table id="sample_q" width="1000">
+                <tbody>
+               
+                    <tr class="samp_q_line">
+                        <td colspan="5">
+                            {recentsearch}用户最近查询的商品：
+                        </td>
+                    </tr>
+                    <tr>
+               
+               <!--{foreach from=$okw item=ikw}-->
+               		{acalc $count = $count plus 1}
+               		
+               <!-- {if $count gt 10} -->
+               		{acalc $count = 0 }
+        			</tr><tr class="samp_q_line">
+        		<!-- {/if} -->
+                        <td width="10%">
+                            <a href="{$ikw.link}">
+                                {$ikw.keyword}
+                            </a>
+                        </td>
+               <!--{/foreach}-->
+                    </tr>
+                </tbody>
+            </table>

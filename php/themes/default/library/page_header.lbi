@@ -1,0 +1,51 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <div id="gbar">
+            <nobr>
+                <!--{foreach from=$ohead item=ihead}-->
+                <a id="gb_1" href="{$ihead.modellink}"  class="gb1">
+                    {$ihead.model}
+                </a>
+				<!--{/foreach}-->
+
+            </nobr>
+        </div>
+        <div id="body-center">
+            <div id="srch-block">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <a href="{$home}">
+                                    <img id="srch-logo" src="{$themes}/images/product_search_logo.gif" alt="Google Product Search">
+                                </a>
+                            </td>
+                            <td>
+                                <form name="f" action="/products">
+                                    <table id="search-input" cellspacing="0">
+                                        <tbody>
+                                            <tr>
+                                                <td class="srchBoxCont" nowrap="nowrap">
+                                                    <input class="srch_box" maxlength="2048" name="q" size="41" title="{searchbox}">
+                                                </td>
+                                                <td nowrap="nowrap">
+                                                    <div class="srchButtonRightShadow">
+                                                        <div class="srchButtonBorder">
+                                                            <input class="srch_button" value="{searchtitle}" id="srchButton"
+                                                            type="submit">
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <input name="hl" value="zh-cn" type="hidden">
+                                        </tbody>
+                                    </table>
+                                    <input disabled="disabled" value="" name="oq" type="hidden">
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            
+            

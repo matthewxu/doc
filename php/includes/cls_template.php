@@ -104,7 +104,6 @@ class cls_template
         error_reporting(E_ALL ^ E_NOTICE);
 
         $this->_checkfile = false;
-		global $matttest;
         $out = $this->fetch($filename, $cache_id);
         if (strpos($out, $this->_echash) !== false)
         {
@@ -136,8 +135,6 @@ class cls_template
      */
     function fetch($filename, $cache_id = '')
     {
-    	global $matttest;
-    	$matttest++;
         if (!$this->_seterror)
         {
             error_reporting(E_ALL ^ E_NOTICE);
@@ -447,7 +444,14 @@ class cls_template
                     }
                     return $this->_compile_foreach_start(substr($tag, 8));
                     break;
+                case 'calc': 
 
+                    return $this->_compile_calc_tag(substr($tag, 5)); 
+                    break;
+                case 'acalc': 
+
+                    return $this->_compile_calc_tag(substr($tag, 6),true); 
+                    break;
                 case 'assign':
                     $t = $this->get_para(substr($tag, 7),0);
 
@@ -818,7 +822,6 @@ class cls_template
                 case 'mod':
                     $token = '%';
                     break;
-
                 default:
                     if ($token[0] == '$')
                     {
@@ -837,7 +840,70 @@ class cls_template
             return '<?php if (' . implode(' ', $tokens) . '): ?>';
         }
     }
+    /**
+     * 处理calc标签
+     *
+     * @access  public
+     * @param   string     $tag_args
+     * @param   bool       $elseif
+     *
+     * @return  string
+     */
+    function _compile_calc_tag($tag_args, $assign = false)
+    {
+        preg_match_all('/\-?\d+[\.\d]+|\'[^\'|\s]*\'|"[^"|\s]*"|[\$\w\.]+|!==|===|==|!=|<>|<<|>>|<=|>=|&&|\|\||\(|\)|,|\!|\^|=|&|<|>|~|\||\%|\+|\-|\/|\*|\@|\S/', $tag_args, $match);
 
+        $tokens = $match[0];
+        // make sure we have balanced parenthesis
+        $token_count = array_count_values($tokens);
+        if (!empty($token_count['(']) && $token_count['('] != $token_count[')'])
+        {
+            // $this->_syntax_error('unbalanced parenthesis in if statement', E_USER_ERROR, __FILE__, __LINE__);
+        }
+
+        for ($i = 0, $count = count($tokens); $i < $count; $i++)
+        {
+            $token = &$tokens[$i];
+            switch (strtolower($token))
+            {
+                case 'plus':
+                    $token = '+';
+                    break;
+
+                case 'mult':
+                    $token = '*';
+                    break;
+
+                case 'minus':
+                    $token = '-';
+                    break;
+
+                case 'divide':
+                    $token = '/';
+                    break;
+
+
+                case 'mod':
+                    $token = '%';
+                    break;
+                default:
+                    if ($token[0] == '$')
+                    {
+                        $token = $this->get_val(substr($token, 1));
+                    }
+                    break;
+            }
+        }
+
+        if ($assign)
+        {
+            return '<?php  ' . implode(' ', $tokens) . ';?>';
+        }
+        else
+        {
+            return '<?php  echo ' . implode(' ', $tokens) . '; ?>';
+        }
+    }
     /**
      * 处理foreach标签
      *
