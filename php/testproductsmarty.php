@@ -45,7 +45,7 @@
      $smarty->assign('sekw', '望远镜');
      $smarty->assign('fromprice', '元到');
      $smarty->assign('toprice', '元');
-     $smarty->assign('searchbutton','搜');
+     $smarty->assign('t_searchbutton','搜');
     #####recent view object
 	$ocat = array();
 	while($i++<3){
@@ -68,13 +68,57 @@
 		$obrand[$i][brandlink]='a.htm';
 	}
 	
+	$osort=array();
+	$osort['t_sortstyle']='排序方式';
+	$osort['t_sortr']='相关性';
+	$osort['t_sortp']='价格：从低到高';
+	$osort['t_sortpd']='价格：从高到低';
+	$osort['t_sorts']='显示列表视图';
 	
+	
+	##### search result product list
+	$oproduct = array();
+	$i=0;
+	while($i++<8){
+		$oproduct[$i]['sellercount']='共 8 个卖家有售';
+		$oproduct[$i]['pricerange']='￥150到 ￥280';
+		$oproduct[$i]['imglink']='images/rhbWInmpZi00Q1jF8Ucty-vlX1qHLdDZzQGlDvJWDGx-gUOuZkem_wYDZYOm.jpg';
+		$oproduct[$i]['imgalt']='博冠 1050ZCY 保罗';
+		$oproduct[$i]['imgtitle']='博冠 1050ZCY 保罗';
+		$oproduct[$i]['title']='博冠 1050ZCY 保罗';
+		$oproduct[$i]['desc']='工作原理:折射式 放大倍率:10 变焦类型:定焦 调焦方式:中央调焦 物镜口径:50mm';
+		$oproduct[$i]['reviewsum']='98';
+		
+	}
+	
+	$orelatekw = array();
+	$i=0;
+	while($i++<18){
+		$orelatekw[$i]['keyword']='天文望远镜';
+		$orelatekw[$i]['link']='a.html';
+	}	
+	$onew = array();
+	$i=0;
+	while($i++<5){
+		$onew[$i]['title']='望远镜选购指南（如何辨别劣质望远镜） 行色天下KDS宽带山宽带山社区 ...';
+		$onew[$i]['link']='a.html';
+		$onew[$i]['desc']='驴行天下，没有一个好的的望远镜怎么行呢，以下是一些望远镜知识，希望能对大家选购';
+	}
+	
+	$smarty->assign('osort',$osort);
+	$smarty->assign('orelatekw',$orelatekw);
 	$smarty->assign('oprice', $oprice);
 	$smarty->assign('ocat', $ocat);
 	$smarty->assign('obrand', $obrand);
+	$smarty->assign('oproduct', $oproduct);
+	$smarty->assign('onew', $onew);
 	$smarty->assign('allcat','所有类别');
 	$smarty->assign('allprice', '所有价格');
 	$smarty->assign('allbrand','所有品牌');
+	$smarty->assign('t_moreinfo','	查看更多导购信息 »');
+	$smarty->assign('t_relate','的相关搜索');
+	$smarty->assign('t_cmpprice','比较价格');
+	$smarty->assign('t_review','条评论');
 	#####foot object
 	
 		$ofoot = array();

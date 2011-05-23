@@ -10,8 +10,6 @@
                     <tr>
                
                <!--{foreach from=$okw item=ikw}-->
-               		{acalc $count = $count plus 1}
-               		
                <!-- {if $count gt 10} -->
                		{acalc $count = 0 }
         			</tr><tr class="samp_q_line">
@@ -21,6 +19,7 @@
                                 {$ikw.keyword}
                             </a>
                         </td>
+               {acalc $count = $count plus 1}
                <!--{/foreach}-->
                     </tr>
                 </tbody>
