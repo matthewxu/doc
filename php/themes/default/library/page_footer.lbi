@@ -1,6 +1,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <div id="footer">
- <div class="text">
+	 <div class="text">
  			
                  <p class="bottom-links">
             <!--{foreach from=$ofoot item=ifoot}-->
@@ -15,5 +15,5 @@
                 </p>
 				<br />
 
- </div>
+ 	</div>
 </div>

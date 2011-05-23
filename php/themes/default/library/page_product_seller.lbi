@@ -1,0 +1,88 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div id="ps-sellers-txt" class="section">
+                    <h2>比较价格</h2>
+                    <table class="ps-sellers-table ">
+                        <tbody>
+                            <tr id="ps-sellers-header">
+                                <th class="seller-col">
+                                    <b>相关性</b>
+                                    <span class="ps-sprite ps-sprite-sortdw" title=""></span>
+                                </th>
+                                <th>
+                                    &nbsp;
+                                </th>
+                                <th class="desc-col">
+                                    &nbsp;
+                                </th>
+                                <th class="price-col">
+                                    <a href="javascript:void(0);" onclick="reloadSection('#scoring=p', 'ps-sellers');" onmousedown="return logClick('\x2Fproducts\x2Fcatalog?q=e6400\x26hl=zh-cn\x26output=nojs\x26cid=3560057678096273770\x26scoring=p', 'electronics', 'Overview', 'tabless', '3560057678096273770', '价格')" class="">价格</a>
+                                </th>
+                            </tr>
+                            <tr class="sellers-alt" id="seller0">
+                                <td class="seller-col">
+                                    <span class="seller-name"><a href="http://www.google.cn/url?q=http://youa.baidu.com/item/c86e2dcf9329aad377bcdd83&amp;usg=AFQjCNEtHe0LOd9YsALwMbUuU8NV1edaKg">百度有啊</a></span>
+                                </td>
+                                <td class="rating-col">
+                                    <nobr class="f">
+                                    </nobr>
+                                </td>
+                                <td class="desc-col">
+                                    <span class="f">DELL 戴尔 Latitude <b>E6400</b> P8700/2G/250G [笔记本电脑专卖]_ibm</span>
+                                </td>
+                                <td class="price-col">
+                                    <nobr>
+                                        <span class="base-price">￥7,500.00</span>
+                                    </nobr>
+                                </td>
+                            </tr>
+                            <tr class="sellers-alt" id="seller0-hidden" style="display: none;">
+                                <td colspan="4" id="seller0-hiddenTd" class="plusbox">
+                                </td>
+                            </tr>
+                            <tr id="seller1">
+                                <td class="seller-col">
+                                    <span class="seller-name"><a href="http://www.google.cn/url?q=http://www.itp8.com/goods-3750.html&amp;usg=AFQjCNH2SaASoFbPb6KnSX-xmPRRxSztDA">中关村IT批发</a></span>
+                                </td>
+                                <td class="rating-col">
+                                    <nobr class="f">
+                                        北京
+                                    </nobr>
+                                </td>
+                                <td class="desc-col">
+                                    <span class="f">戴尔 Latitude <b>E6400</b>(R813121CN)</span>
+                                </td>
+                                <td class="price-col">
+                                    <nobr>
+                                        <span class="base-price">￥12,077</span>
+                                    </nobr>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="pagination">
+                        <nobr>
+                            卖家 
+                            第 <b id="pg_from">1</b>
+                            - <b id="pg_to">2</b>
+                            个，共 <b id="pg_total">2</b>
+                            个
+                        </nobr>
+                    </p>
+                </div>
+                <div id="ads-prices">
+                    <p class="spon_txt">
+                        广告
+                    </p>
+                    <ol>
+                        <li class="first">
+                            <h3><a id="aw0" href="http://www.google.com.hk/aclk?sa=L&amp;ai=CuZW52xt6Tf7EO8adcZKjtMsM7IzmfMyq6b8Wi5GieBABIIS0uAsoBVDX8oqm_P____8BYJ3R1IGwBcgBAakClbWlRF9qhD6qBB5P0GU2luWlQY6HnbcooiG1kyMd-QqR5JtbW1gA7VA&amp;num=1&amp;sig=AGiWqtxHonHQynExDl1C5IPuYL8jhvHOTw&amp;adurl=http://na.link.decdna.net/n/43801/68422/altfarm.mediaplex.com/164vkca%3B11%3B4%3B%3B8%3B7lgx%3Bcknj6e%3B13a0nj%3B%3B9ab9r%3B%3B1%3B/i/c%3F0%26pq%3D%252fad%252fck%252f10592%252d63165%252d23414%252d0%253fDURL%253dhttp%25253a%25252f%25252faltfarm%25252emediaplex%25252ecom%25252fad%25252fck%25252f13669%25252d90677%25252d3840%25252d0%2526ST%253d%2525e6%252588%2525b4%2525e5%2525b0%252594%26247cr%3D5942966300"><b>戴尔</b>电脑中国官方网站</a></h3>
+                            <p>
+                                <cite>
+                                    www.dell.com/China
+                                </cite>
+                                欢迎访问 www.Dell.com.cn 官方网址 采用英特尔®酷睿™ 访问官网
+                            </p>
+                        </li>
+                    </ol>
+                </div>
+              
