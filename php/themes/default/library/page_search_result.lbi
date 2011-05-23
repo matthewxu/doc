@@ -28,7 +28,7 @@
                 <li class="result" id="res0">
                     <div class="result-cont">
                         <p class="result-image">
-                            <a href=""><img src="{$themes}/{$iproduct.imglink}" alt="{$iproduct.imgalt}" title="{$iproduct.imgtitle}"></a>
+                            <a href="{$iproduct.link}"><img src="{$themes}/{$iproduct.imglink}" alt="{$iproduct.imgalt}" title="{$iproduct.imgtitle}"></a>
                         </p>
                         <div class="result-price-seller">
                             <div class="result-price">
@@ -44,7 +44,7 @@
                             </div>
                         </div>
                         <div class="result-title-description">
-                            <h3 class="result-title"><a href="">{$iproduct.title}</a></h3>
+                            <h3 class="result-title"><a href="{$iproduct.link}">{$iproduct.title}</a></h3>
                             <p class="result-attributes">
                             </p>
                             <p class="result-pop">
@@ -118,14 +118,22 @@
             <div id="visual_tools">
                 <div class="v-ref-sixpack">
                     <div class="v-ref-hdr">
-                        {listbybrand}按品牌选购
+                        {$t_brandbuy}
                     </div>
+                    {acalc $count = 0 }
+                    <!--{foreach from=$obrand item=ibrand}-->
+                    	<!-- {if $count gt 5} -->
+               			{acalc $count = 0 }
+        				</div> <p class="clear">
+        				<!-- {/if} -->
                     <div class="v-ref">
                         <div class="v-ref-img">
-                            <a href=""><img src="{$themes}/images/X8w8iiflB5F6tuipVsG4H6YJP0UMIilnQP236Ssic3AF8B_U2ps4tgyUXocT.jpg" alt="{brandname}施华洛世奇" title="{brandname}施华洛世奇"></a>
-                        </div><a href="">{brandname}施华洛世奇</a>
+                            <a href="{$ibrand.brandlink}"><img src="{$themes}/{$ibrand.brandimglink}" alt="{$ibrand.brand}" title="{$ibrand.brand}"></a>
+                        </div><a href="{$ibrand.brandlink}">{$ibrand.brand}</a>
                     </div>
-                    <p class="clear">
+                     {acalc $count = $count plus 1}
+                    <!--{/foreach}-->
+                     <p class="clear">
                     </p>
                 </div>
             </div>
@@ -140,22 +148,19 @@
                             <div id="nf">
                             </div>
                         </td>
+                    	<!--{foreach from=$opage item=ipage}-->
                         <td nowrap="nowrap">
-                            <div id="nc">
-                            </div>
-                            <span class="i">1</span>
-                        </td>
-                        <td nowrap="nowrap">
-                            <a href="" data-num="2">
+                            <a href="{$ipage.link}" data-num="2">
                                 <div class="nr">
                                 </div>
-                                <span>2</span></a>
+                                <span>{$ipage.num}</span></a>
                         </td>
+                    	<!--{/foreach}-->
                         <td nowrap="nowrap" valign="bottom">
-                            <a href="" data-num="2">
+                            <a href="{$onpage.link}" data-num="{$onpage.num}">
                                 <div id="nn">
                                 </div>
-                                <span class="b">{nextpage}下一页</span></a>
+                                <span class="b">{$onpage.next}</span></a>
                         </td>
                     </tr>
                 </tbody>

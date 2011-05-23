@@ -20,8 +20,8 @@
     $smarty->template_dir   = ROOT_PATH . 'themes/'.$_CFG['template'];
     $smarty->cache_dir      = ROOT_PATH . 'temp/caches';
     $smarty->compile_dir    = ROOT_PATH . 'temp/compiled';
-    
     ####config####
+    
   	$smarty->assign('themes', 'themes/'.$_CFG['template']);
 	#####head object
 		$ohead = array();
@@ -63,10 +63,21 @@
 	}
 	$obrand=array();
 	$i=0;
-	while($i++<5){
+	while($i++<8){
 		$obrand[$i][brand]='品牌'.$i;
 		$obrand[$i][brandlink]='a.htm';
+		$obrand[$i][brandimglink]='a.jpg';
 	}
+	$opage=array();
+	$i=0;
+	while($i++<8){
+		$opage[$i][num]=$i;
+		$opage[$i][link]=$i.'a.htm';
+	}
+	$i++;
+	$onpage[num]='2';
+	$onpage[next]='下一页';
+	$onpage[link]='2'.'a.htm';
 	
 	$osort=array();
 	$osort['t_sortstyle']='排序方式';
@@ -83,6 +94,7 @@
 		$oproduct[$i]['sellercount']='共 8 个卖家有售';
 		$oproduct[$i]['pricerange']='￥150到 ￥280';
 		$oproduct[$i]['imglink']='images/rhbWInmpZi00Q1jF8Ucty-vlX1qHLdDZzQGlDvJWDGx-gUOuZkem_wYDZYOm.jpg';
+		$oproduct[$i]['link']='images/rhbWInmpZi00Q1jF8Ucty-vlX1qHLdDZzQGlDvJWDGx-gUOuZkem_wYDZYOm.jpg';
 		$oproduct[$i]['imgalt']='博冠 1050ZCY 保罗';
 		$oproduct[$i]['imgtitle']='博冠 1050ZCY 保罗';
 		$oproduct[$i]['title']='博冠 1050ZCY 保罗';
@@ -104,7 +116,8 @@
 		$onew[$i]['link']='a.html';
 		$onew[$i]['desc']='驴行天下，没有一个好的的望远镜怎么行呢，以下是一些望远镜知识，希望能对大家选购';
 	}
-	
+	$smarty->assign('opage',$opage);
+	$smarty->assign('onpage',$onpage);
 	$smarty->assign('osort',$osort);
 	$smarty->assign('orelatekw',$orelatekw);
 	$smarty->assign('oprice', $oprice);
@@ -119,17 +132,18 @@
 	$smarty->assign('t_relate','的相关搜索');
 	$smarty->assign('t_cmpprice','比较价格');
 	$smarty->assign('t_review','条评论');
+	$smarty->assign('t_brandbuy','按品牌选购');
 	#####foot object
 	
 		$ofoot = array();
         $ofoot[0]['model']      = '首页';
-        $ofoot[0]['modellink']       = 'a.html';
+        $ofoot[0]['link']       = 'a.html';
         
         $ofoot[1]['model']      = '隐私权';
-        $ofoot[1]['modellink']       = 'a.html';
+        $ofoot[1]['link']       = 'a.html';
         
         $ofoot[2]['model']      = '帮助';
-        $ofoot[2]['modellink']       = 'a.html';
+        $ofoot[2]['link']       = 'a.html';
         
 	$smarty->assign('ofoot', $ofoot);
 	#####SEO object
