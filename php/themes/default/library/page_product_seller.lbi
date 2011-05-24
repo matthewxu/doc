@@ -1,11 +1,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <div id="ps-sellers-txt" class="section">
-                    <h2>比较价格</h2>
+
                     <table class="ps-sellers-table ">
                         <tbody>
                             <tr id="ps-sellers-header">
                                 <th class="seller-col">
-                                    <b>相关性</b>
+                                    <b>{$lang.sortr}</b>
                                     <span class="ps-sprite ps-sprite-sortdw" title=""></span>
                                 </th>
                                 <th>
@@ -15,7 +15,7 @@
                                     &nbsp;
                                 </th>
                                 <th class="price-col">
-                                    <a href="javascript:void(0);" onclick="reloadSection('#scoring=p', 'ps-sellers');" onmousedown="return logClick('\x2Fproducts\x2Fcatalog?q=e6400\x26hl=zh-cn\x26output=nojs\x26cid=3560057678096273770\x26scoring=p', 'electronics', 'Overview', 'tabless', '3560057678096273770', '价格')" class="">价格</a>
+                                    <a href="javascript:void(0);" onclick="reloadSection('#scoring=p', 'ps-sellers');" onmousedown="" class="">{$lang.price}</a>
                                 </th>
                             </tr>
                             <tr class="sellers-alt" id="seller0">
@@ -61,11 +61,9 @@
                     </table>
                     <p class="pagination">
                         <nobr>
-                            卖家 
-                            第 <b id="pg_from">1</b>
-                            - <b id="pg_to">2</b>
-                            个，共 <b id="pg_total">2</b>
-                            个
+                            {$lang.seller}{$lang.from} <b id="pg_from">1</b>
+                            {$lang.to} <b id="pg_to">2</b>
+                            {$lang.count}，{$lang.total} <b id="pg_total">2</b>{$lang.count}
                         </nobr>
                     </p>
                 </div>

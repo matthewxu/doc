@@ -30,7 +30,7 @@
                                                 <td nowrap="nowrap">
                                                     <div class="srchButtonRightShadow">
                                                         <div class="srchButtonBorder">
-                                                            <input class="srch_button" value="{searchtitle}" id="srchButton"
+                                                            <input class="srch_button" value="{$lang.searchtitle}" id="srchButton"
                                                             type="submit">
                                                         </div>
                                                     </div>

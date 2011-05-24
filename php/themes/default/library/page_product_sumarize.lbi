@@ -1,10 +1,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-		<h1 id="product-name"><span class="main-title">戴尔 Latitude <b>E6400</b></span><span class="sec-title"></span></h1>
+		<h1 id="product-name"><span class="main-title">{$osumarize.name}</span><span class="sec-title"></span></h1>
                 <p id="all-sections-links">
-                    <b id="all-sections">概述</b>
-                    - <a href="http://www.google.cn/products/catalog?q=e6400&amp;hl=zh-cn&amp;output=nojs&amp;cid=3560057678096273770&amp;os=sellers" id="sellers-max">比较价格</a>
-                    - <a href="http://www.google.cn/products/catalog?q=e6400&amp;hl=zh-cn&amp;output=nojs&amp;cid=3560057678096273770&amp;os=reviews" id="reviews-max">评论</a>
-                    - <a href="http://www.google.cn/products/catalog?q=e6400&amp;hl=zh-cn&amp;output=nojs&amp;cid=3560057678096273770&amp;os=tech-specs" id="tech-specs-max">技术规范</a>
+                    <b id="all-sections">{$lang.overview}</b>
+                    - <a href="{$osumarize.cmppricelink}" id="sellers-max">{$lang.cmpprice}</a>
+                    - <a href="{$osumarize.reviewlink}" id="reviews-max">{$lang.review}</a>
+                    - <a href="{$osumarize.tecklink}" id="tech-specs-max">{$lang.tech}</a>
                 </p>
                 <div id="product-basic-info">
                     <table>
@@ -12,21 +12,21 @@
                             <tr>
                                 <td>
                                     <div id="product-image-cont">
-                                        <img src="images/0qgqyhj0fLRqPRw7e_GVQCtrsXUuMYRHYhapfwLst4rX7WPb6yH-x9pljeEk.jpg" alt="戴尔 Latitude E6400" title="戴尔 Latitude E6400">
+                                        <img src="{$osumarize.imglink}" alt="{$osumarize.imgalt}" title="{$osumarize.imgalt}">
                                     </div>
                                 </td>
                                 <td id="product-price-rating-desc">
                                     <p class="product-price-cont">
-                                        <span class="product-price">￥7,500到 ￥12,077</span>
-                                        共 <a href="http://www.google.cn/products/catalog?q=e6400&amp;hl=zh-cn&amp;output=nojs&amp;cid=3560057678096273770&amp;os=sellers#p" id="link-to-ps-sellers" onmousedown='logTabClick("3560057678096273770","ps-sellers");'>2 个卖家有售</a>
+                                        <span class="product-price">{$osumarize.pricerange}</span>
+                                        <a href="{$osumarize.link}">{$osumarize.sellercount} {$lang.sellercount}</a>
                                     </p>
                                     <div class="product-rating">
-                                        <a href="http://www.google.cn/products/catalog?q=e6400&amp;hl=zh-cn&amp;output=nojs&amp;cid=3560057678096273770&amp;os=reviews" id="link-to-ps-reviews" style="text-decoration: none;"><span class="ps-sprite ps-sprite-mon" title="4.5 星"></span><span class="ps-sprite ps-sprite-mon" title="4.5 星"></span><span class="ps-sprite ps-sprite-mon" title="4.5 星"></span><span class="ps-sprite ps-sprite-mon" title="4.5 星"></span><span class="ps-sprite ps-sprite-mhalf" title="4.5 星"></span></a>
-                                        &nbsp;<a href="http://www.google.cn/products/catalog?q=e6400&amp;hl=zh-cn&amp;output=nojs&amp;cid=3560057678096273770&amp;os=reviews" id="link-to-ps-reviews">16 条评论</a>
+                                        <a href="{$osumarize.reviewlink}" id="link-to-ps-reviews" style="text-decoration: none;"><span class="ps-sprite ps-sprite-mon" title="4.5 星"></span><span class="ps-sprite ps-sprite-mon" title="4.5 星"></span><span class="ps-sprite ps-sprite-mon" title="4.5 星"></span><span class="ps-sprite ps-sprite-mon" title="4.5 星"></span><span class="ps-sprite ps-sprite-mhalf" title="4.5 星"></span></a>
+                                        &nbsp;<a href="{$osumarize.reviewlink}" id="link-to-ps-reviews">{$osumarize.reviewcount} {$lang.reviewcount}</a>
                                     </div>
                                     <div class="product-desc-cont">
                                         <div class="product-desc">
-                                            屏幕尺寸:14.1英寸 处理器型号:Intel 酷睿2双核 P8400 标称主频:2260MHz 显卡芯片:NVIDIA Quadro NVS 160M 标配内存容量:2GB 硬盘容量:200GB 光驱类型:DVD刻录机 笔记本重量:1950g
+                                           {$osumarize.desc}
                                         </div>
                                     </div>
                                 </td>

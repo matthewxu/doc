@@ -1,13 +1,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <div id="reviews" class="section">
                     <div id="ps-reviews-txt">
-                        <h2>评论</h2>
+                        <h2>{$lang.review}</h2>
                         <div class="section-inner">
                             <div class="section-sidebar">
                             </div>
                             <div class="section-withside">
-                                <b>摘要</b>
-                                - 共有 16 条评论
+                                <b>{$lang.overall}</b>
+                                - {$lang.total}16 {$lang.reviewcount}
                                 <table id="review_histo">
                                     <tbody>
                                         <tr>
@@ -63,50 +63,26 @@
                                     </tbody>
                                 </table>
                                 <ol class="section-results">
+                                <!--{foreach from=$oreview item=ireview}-->
                                     <li class="review">
-                                        <p class="review-title">
-                                            性价比非常高，非常喜欢。
-                                        </p>
+                                        <p class="review-title">{$ireview.title}</p>
                                         <div class="review-rating">
                                             <span class="ps-sprite ps-sprite-son" title="5 星"></span>
                                             <span class="ps-sprite ps-sprite-son" title="5 星"></span>
                                             <span class="ps-sprite ps-sprite-son" title="5 星"></span>
                                             <span class="ps-sprite ps-sprite-son" title="5 星"></span>
                                             <span class="ps-sprite ps-sprite-son" title="5 星"></span>&nbsp;
-                                            审核者：adidasboy520@tom.com
-                                            - 2011-1-29
-                                            -
-                                            京东商城
+                                            {$ireview.author}
+                                            - {$ireview.date}
+                                            -{$ireview.sitename}
                                         </div>
-                                        <div class="review-content">
-                                            优点： 性价比非常高，非常喜欢。...不足： 暂时还没发现缺点哦！ 性价比非常高，非常喜欢。
+                                        <div class="review-content">{$ireview.content}
                                             <nobr>
-                                                <a href="http://www.google.com.hk/url?q=http://club.360buy.com/repay/341999_0a0f1710-a57b-4f31-95f0-da09dee4e062_1.html&amp;usg=AFQjCNHRB7Kt6nxWBn657-CIUWSW5zpIvg&amp;ei=2xt6TZuAN8irkgW5kvTcBg&amp;sa=title&amp;ved=0CBUQow0" class="fl" target="_top">查看全部评论内容</a>
+                                                <a href="{$ireview.link}" class="fl" target="_top">{$lang.allreview}</a>
                                             </nobr>
                                         </div>
                                     </li>
-                                    <li class="review">
-                                        <p class="review-title">
-                                            本本还不错，就是咨询服务人员太差
-                                        </p>
-                                        <div class="review-rating">
-                                            <span class="ps-sprite ps-sprite-son" title="4 星"></span>
-                                            <span class="ps-sprite ps-sprite-son" title="4 星"></span>
-                                            <span class="ps-sprite ps-sprite-son" title="4 星"></span>
-                                            <span class="ps-sprite ps-sprite-son" title="4 星"></span>
-                                            <span class="ps-sprite ps-sprite-soff" title="4 星"></span>&nbsp;
-                                            审核者：torcy0
-                                            - 2011-1-27
-                                            -
-                                            京东商城
-                                        </div>
-                                        <div class="review-content">
-                                            优点： 做工好，布局不错...不足： linux系统，不好操作。 所有咨询的回答都不正确，刚买的本，带包，带小鼠标，有…
-                                            <nobr>
-                                                <a href="http://www.google.com.hk/url?q=http://club.360buy.com/repay/341999_3e8414eb-7b90-4b46-9ba3-1845ddedae40_1.html&amp;usg=AFQjCNFq542UfTYC_ud3zrOB2UNDLXedPw&amp;ei=2xt6TZuAN8irkgW5kvTcBg&amp;sa=title&amp;ved=0CBcQow0" class="fl" target="_top">查看全部评论内容</a>
-                                            </nobr>
-                                        </div>
-                                    </li>
+                                    <!--{/foreach}-->
                                 </ol>
                             </div>
                         </div>
@@ -114,6 +90,6 @@
                         </p>
                     </div>
                     <p class="link-to-max">
-                        <a onmousedown="return logClick('', 'electronics', 'Overview', 'tabless', '3560057678096273770', 'reviews_view_all_bot_link')" href="http://www.google.cn/products/catalog?q=e6400&amp;hl=zh-cn&amp;output=nojs&amp;cid=3560057678096273770&amp;os=reviews">查看所有 16 条评论 »</a>
+                        <a onmousedown="" href="{$review.link}">{$lang.allreview}</a>
                     </p>
                 </div>

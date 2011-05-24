@@ -1,57 +1,24 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <div id="tech-specs" class="section">
-                    <h2>详情</h2>
+                    <h2>{$lang.detail}</h2>
                     <div class="section-inner">
                         <table class="table-style ">
                             <tbody>
+                            <!--{foreach from=$oattribute item=iattribute}-->
                                 <tr class="table-alt">
                                     <td class="table-label">
-                                        品牌
+                                        {$iattribute.name}
                                     </td>
                                     <td>
-                                        DELL(戴尔) 
+                                        {$iattribute.value} 
                                     </td>
                                 </tr>
-                                <tr class="table-alt">
-                                    <td class="table-label">
-                                        上市时间
-                                    </td>
-                                    <td>
-                                        2008年11月 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="table-label">
-                                        产品类型
-                                    </td>
-                                    <td>
-                                        商用 
-                                    </td>
-                                </tr>
-                                <tr class="table-alt">
-                                    <td class="table-label">
-                                        操作系统
-                                    </td>
-                                    <td>
-                                        DOS 
-                                    </td>
-                                </tr>
-                                <tr class="table-alt">
-                                    <td class="table-label">
-                                        处理器系列
-                                    </td>
-                                    <td>
-                                        英特尔 低功耗版系列 
-                                    </td>
-                                </tr>
+                             <!--{/foreach}-->   
                             </tbody>
                         </table>
-                        <p>
-                            <i>相关产品信息由中关村在线提供</i>
-                        </p>
                     </div>
                     <p class="link-to-max">
-                        <a onmousedown="return logClick('', 'electronics', 'Overview', 'tabless', '3560057678096273770', 'tech-specs_view_all_bot_link')" href="http://www.google.cn/products/catalog?q=e6400&amp;hl=zh-cn&amp;output=nojs&amp;cid=3560057678096273770&amp;os=tech-specs">查看所有详情 »</a>
+                        <a onmousedown="" href="{$osumarize.tecklink}">{$lang.alldetail}</a>
                     </p>
                 </div>
                 <div id="ads-bot">
