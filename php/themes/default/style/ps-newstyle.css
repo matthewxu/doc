@@ -120,7 +120,7 @@ a .ps-sprite {
 .ps-sprite-cart,
 .ps-sprite-sortup,
 .ps-sprite-sortdw {
-  background-image: url(/products/images/ps3.png);
+  background-image: url(../images/ps3.png);
 }
 
 .ps-sprite-mon {
