@@ -16,7 +16,7 @@
                         <tr>
                             <td>
                                 <a href="{$home}">
-                                    <img id="srch-logo" src="{$themes}/images/product_search_logo.gif" alt="Google Product Search">
+                                    <img id="srch-logo" src="{$themes}/images/diandiantao-logo.png" alt="Google Product Search">
                                 </a>
                             </td>
                             <td>

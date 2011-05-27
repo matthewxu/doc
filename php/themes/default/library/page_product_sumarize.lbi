@@ -21,7 +21,13 @@
                                         <a href="{$osumarize.link}">{$osumarize.sellercount} {$lang.sellercount}</a>
                                     </p>
                                     <div class="product-rating">
-                                        <a href="{$osumarize.reviewlink}" id="link-to-ps-reviews" style="text-decoration: none;"><span class="ps-sprite ps-sprite-mon" title="4.5 星"></span><span class="ps-sprite ps-sprite-mon" title="4.5 星"></span><span class="ps-sprite ps-sprite-mon" title="4.5 星"></span><span class="ps-sprite ps-sprite-mon" title="4.5 星"></span><span class="ps-sprite ps-sprite-mhalf" title="4.5 星"></span></a>
+                                        <a href="{$osumarize.reviewlink}" id="link-to-ps-reviews" style="text-decoration: none;">
+                                        <span class="ps-sprite ps-sprite-mon" title="4.5 星"></span>
+                                        <span class="ps-sprite ps-sprite-mon" title="4.5 星"></span>
+                                        <span class="ps-sprite ps-sprite-mon" title="4.5 星"></span>
+                                        <span class="ps-sprite ps-sprite-mon" title="4.5 星"></span>
+                                        <span class="ps-sprite ps-sprite-mhalf" title="4.5 星"></span>
+                                        </a>
                                         &nbsp;<a href="{$osumarize.reviewlink}" id="link-to-ps-reviews">{$osumarize.reviewcount} {$lang.reviewcount}</a>
                                     </div>
                                     <div class="product-desc-cont">

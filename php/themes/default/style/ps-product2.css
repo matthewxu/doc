@@ -1,37 +1,16 @@
-.GAB0G-HBDB {
-    color: #f00;
+/*GAB0G-HBCC GAB0G-HBEC  GAB0G-HBAD GAB0G-HBNC GAB0G-HBLC GAB0G-HBBD GAB0G-HBOC gwt-HTML*/
+
+.GAB0G-HBBD {
+    color: #11c;
+    text-decoration: none;
 }
 
-.GAB0G-HBHB {
-    font-weight: bold;
-    margin-bottom: -5px !important;
-}
-
-.GAB0G-HBGB {
-    background: #ffe;
-    border: 1px solid #999;
-    border-width: 1px 2px 2px 1px;
-    font-size: 13px;
-    padding: 6px;
-    width: 260px;
-}
-
-.GAB0G-HBGB div {
-    margin: 10px;
-}
-
-.GAB0G-HBCB {
-    font-size: 18px;
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    margin: 10px auto;
-    padding: 5px;
-    background: #fdd;
-    text-align: center;
-}
-
-.GAB0G-HBDC {
-    margin: auto;
+.GAB0G-HBKB .GAB0G-HBBD {
+    color: #11c;
+    display: block;
+    font-family: arial;
+    font-size: 14px;
+    margin: 10px 10px 3px 10px;
 }
 
 .GAB0G-HBCC {
@@ -55,10 +34,6 @@
     text-align: left;
 }
 
-.GAB0G-HBCC .GAB0G-HBEC img {
-    margin-top: 5px;
-    margin-left: 5px;
-}
 
 .GAB0G-HBCC .GAB0G-HBOC {
     font-size: 64px;
@@ -97,9 +72,43 @@
     margin: auto;
 }
 
-.GAB0G-HBBD {
-    color: #11c;
-    text-decoration: none;
+/*
+ * **********************************************************
+ 
+.GAB0G-HBDB {
+    color: #f00;
+}
+
+.GAB0G-HBHB {
+    font-weight: bold;
+    margin-bottom: -5px !important;
+}
+
+.GAB0G-HBGB {
+    background: #ffe;
+    border: 1px solid #999;
+    border-width: 1px 2px 2px 1px;
+    font-size: 13px;
+    padding: 6px;
+    width: 260px;
+}
+
+.GAB0G-HBGB div {
+    margin: 10px;
+}
+
+.GAB0G-HBCB {
+    font-size: 18px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    margin: 10px auto;
+    padding: 5px;
+    background: #fdd;
+    text-align: center;
+}
+
+.GAB0G-HBDC {
+    margin: auto;
 }
 
 .GAB0G-HBED {
@@ -158,14 +167,6 @@
 .GAB0G-HBKB .GAB0G-HBIB {
     font-family: arial;
     margin: 4px 10px 10px 10px;
-}
-
-.GAB0G-HBKB .GAB0G-HBBD {
-    color: #11c;
-    display: block;
-    font-family: arial;
-    font-size: 14px;
-    margin: 10px 10px 3px 10px;
 }
 
 .GAB0G-HBO, .GAB0G-HBM {
@@ -330,3 +331,4 @@
 .GAB0G-HBBB {
     background: rgba(0, 255, 0, 0.5);
 }
+*/

@@ -8,11 +8,16 @@
 	/* 取得当前ecshop所在的根目录 */
 	//str_replace(find,replace,string,count)
 	define('ROOT_PATH', str_replace('testproductsmarty.php', '', str_replace('\\', '/', __FILE__)));
+	$_CFG = array();
+    $_CFG['template']='default';
+    $_CFG['language']='zh_cn';
+	
+	
 	/* 创建 Smarty 对象。*/
 	//cls_template.php 模版类 
     require(ROOT_PATH . 'includes/cls_template.php');
-    $_CFG = array();
-    $_CFG['template']='default';
+    require(ROOT_PATH . 'languages/'.$_CFG['language'].'/common.php');
+
     $smarty = new cls_template;
     
 	$smarty->direct_output = false;
@@ -133,6 +138,7 @@
 	$smarty->assign('t_cmpprice','比较价格');
 	$smarty->assign('t_review','条评论');
 	$smarty->assign('t_brandbuy','按品牌选购');
+	$smarty->assign('lang',$_LANG);
 	#####foot object
 	
 		$ofoot = array();

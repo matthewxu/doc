@@ -24,9 +24,11 @@
 }
 
 #result-count {
+  position: absolute;
   margin-top: -20px;
   left: auto;
-  margin-left: 290px;
+  margin-left: 330px;
+  font-size: 85%;
 }
 
 .srch_box {

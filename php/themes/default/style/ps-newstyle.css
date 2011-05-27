@@ -239,14 +239,14 @@ a .ps-sprite {
   color: #4272db;
   text-decoration: none;
 }
-
+/*
 #result-count {
   position: absolute;
   margin-top: -29px;
-  left: 176px;
+  left: 200px;
   font-size: 85%;
 }
-
+*/
 #search-input, #footer table {
   border-collapse: separate;
 }
