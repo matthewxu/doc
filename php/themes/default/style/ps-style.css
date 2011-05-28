@@ -812,12 +812,12 @@ a {
     background-position: -44px 0;
     width: 16px
 }
-
+/*
 .n .nr {
     background-position: -60px 0;
     width: 16px
 }
-
+*/
 #nn, #nl {
     background-position: -76px 0
 }
@@ -876,7 +876,7 @@ a {
     width: 20px;
     background-position: -89px -22px
 }
-
+/*
 .popup-cont {
     position: absolute;
     border: 1px solid #ccc;
@@ -961,7 +961,7 @@ a {
 .popup-map img {
     border: 1px solid #00c
 }
-
+*/
 .loc-list-cont {
     margin-left: 200px
 }
@@ -974,7 +974,7 @@ body .locations-table td {
     padding: 3px;
     background-color: white
 }
-
+/*
 .map-pin {
     background: transparent url(../images/red_icons_A_J.png) no-repeat 0 0;
     height: 38px;
@@ -1051,7 +1051,8 @@ a.tiny-pin:hover span {
     overflow: hidden;
     width: 9px
 }
-
+*/
+/*
 .local-map-pin {
     vertical-align: middle;
     position: relative;
@@ -1120,7 +1121,8 @@ a.tiny-pin:hover span {
     width: 100%;
     margin-bottom: 4px
 }
-
+*/
+/*
 .grid a b, .list b, #ads-rhs b, #ads-top b, #ads-bot b {
     color: #c03;
     font-weight: normal
@@ -1129,7 +1131,7 @@ a.tiny-pin:hover span {
 .grid a b, .list a b, #ads-rhs a b, #ads-top a b, #ads-bot a b {
     text-decoration: underline
 }
-
+*/
 #breadcrumbs b {
     color: #000;
     font-weight: bold

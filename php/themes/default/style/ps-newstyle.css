@@ -457,22 +457,32 @@ a .ps-sprite {
 .n div {
   height: 40px;
 }
-
+/*
 #nf {
   background-position: -24px 0;
   width: 28px;
 }
-
+*/
 #nc {
   background-position: -53px 0;
   width: 20px;
 }
-
+/*
 .n .nr {
   background-position: -74px 0;
   width: 20px;
 }
+*/
+.n .nr {
+  background-position: -58px 0;
+  width: 18px;
+}
 
+#nf {
+  background-position: -20px 0;
+  width: 24px;
+}
+/*
 #nn {
   margin-right: 70px;
   width: 71px;
@@ -481,6 +491,16 @@ a .ps-sprite {
 #nn, #nl {
   background-position: -96px 0;
 }
+*/
+#nn {
+  margin-right: 70px;
+  width: 78px;
+}
+
+#nn, #nl {
+  background-position: -88px 0;
+}
+
 
 #np {
   width: 53px;

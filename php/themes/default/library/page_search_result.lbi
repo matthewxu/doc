@@ -17,7 +17,8 @@
                         </select>
                         <input value="{$t_searchbutton}" type="submit">
                     </form>
-                    <span class="display_options_icons"><span class="ps-sprite ps-sprite-list-view" title="{$osort.t_sorts}"></span>&nbsp;<a href="" title="{showlist}显示图库视图" id="toggletogrid"><span class="ps-sprite ps-sprite-show-grid-view" title="{showpic}显示图库视图"></span></a></span>
+                    <!--span class="display_options_icons"><span class="ps-sprite ps-sprite-list-view" title="{$osort.t_sorts}"></span>&nbsp;
+                    <a href="" title="{showlist}显示图库视图" id="toggletogrid"><span class="ps-sprite ps-sprite-show-grid-view" title="{showpic}显示图库视图"></span></a></span-->
                 </div>
                 <p class="clear_right">
                 </p>
@@ -144,17 +145,20 @@
             <table width="1%">
                 <tbody>
                     <tr>
+
                         <td nowrap="nowrap" align="right">
                             <div id="nf">
                             </div>
                         </td>
                     	<!--{foreach from=$opage item=ipage}-->
+
                         <td nowrap="nowrap">
                             <a href="{$ipage.link}" data-num="2">
                                 <div class="nr">
                                 </div>
                                 <span>{$ipage.num}</span></a>
                         </td>
+                       
                     	<!--{/foreach}-->
                         <td nowrap="nowrap" valign="bottom">
                             <a href="{$onpage.link}" data-num="{$onpage.num}">

@@ -75,7 +75,7 @@
 	}
 	$opage=array();
 	$i=0;
-	while($i++<8){
+	while($i++<6){
 		$opage[$i][num]=$i;
 		$opage[$i][link]=$i.'a.htm';
 	}
