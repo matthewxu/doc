@@ -50,27 +50,37 @@
 	XProductcategory,
 	Merchant,
 	ProductReview,
-	User(Step 2),
 	searchkeyword,		
-	
+	User(Step 2),	
+	tracking
+	article
+	articlecat
 	表结构
-user
+Brand
 
-	Field            Type              Collation        Null    Key     Default              Extra           Privileges  Comment
-	---------------  ----------------  ---------------  ------  ------  -------------------  --------------  ----------  -------
-★	UserID           int(11)           (NULL)           NO      PRI     (NULL)               auto_increment  select             
-★	UserName         varchar(32)       latin1_bin       YES     MUL     (NULL)                               select             
-★	password         varchar(32)       latin1_bin       NO                                                   select             
-★	Email            varchar(64)       utf8_general_ci  NO      UNI     (NULL)                               select             
-	Birthday         date              (NULL)           NO              0000-00-00                           select             
-	Question         text              utf8_general_ci  YES             (NULL)                               select             
-	Answer           text              utf8_general_ci  YES             (NULL)                               select             
-★	Validate         enum('YES','NO')  utf8_general_ci  YES             NO                                   select             
-★	VisitTime        datetime          (NULL)           YES             0000-00-00 00:00:00                  select             
-	Country          char(2)           utf8_general_ci  NO              (NULL)                               select             
-	PostalCode       varchar(8)        utf8_general_ci  NO              (NULL)                               select             
-	UserPaidAccount  varchar(64)       utf8_general_ci  NO              (NULL)                               select             
-★	AccountType      smallint(4)       (NULL)           NO              0                                    select             
+
+	Field                 Type                                    Collation        Null    Key     Default              Extra                        Privileges  Comment        
+	--------------------  --------------------------------------  ---------------  ------  ------  -------------------  ---------------------------  ----------  ---------------
+★	ID                    int(11) unsigned                        (NULL)           NO      PRI     (NULL)               auto_increment               select                     
+★	Name                  varchar(255)                            utf8_general_ci  NO                                                                select                     
+★	EngName               varchar(255)                            utf8_general_ci  NO                                                                select      English Name   
+★	SiteURL               varchar(255)                            utf8_general_ci  NO                                                                select                     
+★	DefaultVisuality      enum('LOGO','NORMAL TEXT','BOLD TEXT')  utf8_general_ci  NO              NORMAL TEXT                                       select                     
+★	DefaultTextUnderLogo  varchar(255)                            utf8_general_ci  NO                                                                select                     
+★	DefaultSalesMessage   text                                    utf8_general_ci  YES             (NULL)                                            select                     
+★	LogoFile              varchar(255)                            utf8_general_ci  NO                                                                select                     
+★	LogoWidth             smallint(5) unsigned                    (NULL)           NO              0                                                 select                     
+★	LogoHeight            smallint(5) unsigned                    (NULL)           NO              0                                                 select                     
+★	Type                  enum('Brand','Manufacturer')            utf8_general_ci  NO              Manufacturer                                      select                     
+★	r_OnlineProductCount  int(11) unsigned                        (NULL)           NO              0                                                 select                     
+★	r_TotalProductCount   int(11) unsigned                        (NULL)           NO              0                                                 select                     
+★	r_Popularity          int(11) unsigned                        (NULL)           NO              0                                                 select                     
+★	AddDate               timestamp                               (NULL)           NO              2000-01-01 08:00:00                               select                     
+★	IsApproved            enum('YES','NO')                        utf8_general_ci  NO              NO                                                select                     
+★	ApprovedBy            varchar(50)                             utf8_general_ci  NO                                                                select                     
+★	Status              enum('DELETE','ACTIVE')                        utf8_general_ci  NO              NO                                                select                     
+★	LastChangeDate        timestamp                               (NULL)           NO              0000-00-00 00:00:00  on update CURRENT_TIMESTAMP  select                     
+★	Description           varchar(255)                            utf8_general_ci  NO                                                                select
 	
 channel
 		
@@ -91,19 +101,13 @@ channel
 ★		ProductSKUTable               varchar(64)              utf8_general_ci  NO                                                              select             
 ★		ProductSkipTable              varchar(64)              utf8_general_ci  NO              (NULL)                                          select             
 ★		ProductImageTable             varchar(64)              utf8_general_ci  NO                                                              select             
-★		ProductPriceTable             varchar(64)              utf8_general_ci  NO                                                              select             
-		ProductExtendInfoTable        varchar(64)              utf8_general_ci  NO                                                              select             
+★		ProductExtendInfoTable        varchar(64)              utf8_general_ci  NO                                                              select             
 ★		CategoryTable                 varchar(64)              utf8_general_ci  NO                                                              select             
 ★		CatProdTable                  varchar(64)              utf8_general_ci  NO                                                              select             
-		MerBidProdTable               varchar(64)              utf8_general_ci  NO                                                              select             
-		CategoryAttributeFilterTable  varchar(64)              utf8_general_ci  NO                                                              select             
-		CategoryAttributeSpecTable    varchar(64)              utf8_general_ci  NO                                                              select             
-		ProductAttributeFilterTable   varchar(64)              utf8_general_ci  NO                                                              select             
-		ProductAttributeSpecTable     varchar(64)              utf8_general_ci  NO                                                              select             
+★		MerBidProdTable               varchar(64)              utf8_general_ci  NO                                                              select             
 ★		Type                          varchar(10)              utf8_general_ci  NO                                                              select             
 ★		IsValid                       enum('YES','TEST','NO')  utf8_general_ci  NO              NO                                              select             
 ★		ChannelGroup                  enum('BMV','CE','SG')    utf8_general_ci  NO              SG                                              select             
-		DatafeedChnID                 tinyint(3)               (NULL)           NO              0                                               select             
 ★		SEODisplayName                varchar(32)              utf8_general_ci  YES             (NULL)                                          select             
 ★		URLName                       varchar(32)              utf8_general_ci  YES             (NULL)                                          select             
 ★		LastChangeDate                timestamp                (NULL)           NO              CURRENT_TIMESTAMP  on update CURRENT_TIMESTAMP  select             
@@ -120,15 +124,11 @@ category
 	Field                    Type                                                    Collation        Null    Key     Default            Extra                        Privileges  Comment                  
 	-----------------------  ------------------------------------------------------  ---------------  ------  ------  -----------------  ---------------------------  ----------  -------------------------
 ★	CategoryID               int(11) unsigned                                        (NULL)           NO      PRI     (NULL)                                          select      CategoryID               
-?	SMCategoryID             int(11) unsigned                                        (NULL)           NO              0                                               select                               
 ★	Name                     varchar(128)                                            utf8_general_ci  NO                                                              select      Category Name            
 ★	EngName                  varchar(128)                                            utf8_general_ci  YES                                                             select      Category English Name    
-	Alias                    varchar(128)                                            utf8_general_ci  NO                                                              select                               
-	SEAlias                  text                                                    utf8_general_ci  YES             (NULL)                                          select      Search alias             
+★	SEAlias                  text                                                    utf8_general_ci  YES             (NULL)                                          select      Search alias             
 ★	Type                     enum('Normal','BMV','FreeText','Structured','Special')  utf8_general_ci  NO              Normal                                          select                               
 ★	Description              text                                                    utf8_general_ci  YES             (NULL)                                          select      Category description     
-	MinBid                   decimal(5,2)                                            (NULL)           NO              0.00                                            select      Minimum Bid value        
-	IsPublic                 enum('YES','NO')                                        utf8_general_ci  NO              YES                                             select      If the category is public
 ★	IsActive                 enum('YES','NO')                                        utf8_general_ci  NO              YES                                             select      If the category is avtive
 ★	IsValid                  enum('YES','NO')                                        utf8_general_ci  NO              YES                                             select      If the category is valid 
 ★	externalURL              varchar(512)                                            utf8_general_ci  NO                                                              select                               
@@ -140,49 +140,12 @@ category
 ★	AddDate                  timestamp                                               (NULL)           YES             (NULL)                                          select      Add date                 
 ★	LastChangeDate           timestamp                                               (NULL)           NO              CURRENT_TIMESTAMP  on update CURRENT_TIMESTAMP  select                               
 ★	URLName                  varchar(255)                                            utf8_general_ci  NO                                                              select                               
-	LeftNavName              varchar(255)                                            utf8_general_ci  NO                                                              select                               
 ★	SearchName               varchar(255)                                            utf8_general_ci  NO                                                              select                               
 ★	SingularName             varchar(128)                                            utf8_general_ci  NO                                                              select                               
 ★	PluralName               varchar(255)                                            utf8_general_ci  NO                                                              select                               
-	SingularSynonym1         varchar(255)                                            utf8_general_ci  NO                                                              select                               
-	PluralSynonym1           varchar(255)                                            utf8_general_ci  NO                                                              select                               
 	CategorySEOtext          varchar(255)                                            utf8_general_ci  NO                                                              select                               
-	SingularSynonym2         varchar(255)                                            utf8_general_ci  NO                                                              select                               
-	SingularSynonym3         varchar(255)                                            utf8_general_ci  NO                                                              select                               
-	PluralSynonym2           varchar(255)                                            utf8_general_ci  NO                                                              select                               
-	PluralSynonym3           varchar(255)                                            utf8_general_ci  NO                                                              select                               
 	IsSEOModify              enum('YES','NO')                                        utf8_general_ci  NO              NO                                              select                               
-	r_KeywordRevenue         decimal(10,4)                                           (NULL)           NO              0.0000                                          select                               
 
-Brand
-
-
-	Field                 Type                                    Collation        Null    Key     Default              Extra                        Privileges  Comment        
-	--------------------  --------------------------------------  ---------------  ------  ------  -------------------  ---------------------------  ----------  ---------------
-★	ID                    int(11) unsigned                        (NULL)           NO      PRI     (NULL)               auto_increment               select                     
-★	Name                  varchar(255)                            utf8_general_ci  NO                                                                select                     
-★	EngName               varchar(255)                            utf8_general_ci  NO                                                                select      English Name   
-★	SiteURL               varchar(255)                            utf8_general_ci  NO                                                                select                     
-	Alias                 varchar(255)                            utf8_general_ci  NO                                                                select      separated by ||
-	DefaultVisuality      enum('LOGO','NORMAL TEXT','BOLD TEXT')  utf8_general_ci  NO              NORMAL TEXT                                       select                     
-	DefaultTextUnderLogo  varchar(255)                            utf8_general_ci  NO                                                                select                     
-	DefaultSalesMessage   text                                    utf8_general_ci  YES             (NULL)                                            select                     
-★	LogoFile              varchar(255)                            utf8_general_ci  NO                                                                select                     
-★	LogoWidth             smallint(5) unsigned                    (NULL)           NO              0                                                 select                     
-★	LogoHeight            smallint(5) unsigned                    (NULL)           NO              0                                                 select                     
-★	Type                  enum('Brand','Manufacturer')            utf8_general_ci  NO              Manufacturer                                      select                     
-	Description           varchar(255)                            utf8_general_ci  NO                                                                select                     
-★	r_OnlineProductCount  int(11) unsigned                        (NULL)           NO              0                                                 select                     
-★	r_TotalProductCount   int(11) unsigned                        (NULL)           NO              0                                                 select                     
-★	r_Popularity          int(11) unsigned                        (NULL)           NO              0                                                 select                     
-★	AddDate               timestamp                               (NULL)           NO              2000-01-01 08:00:00                               select                     
-	IsApproved            enum('YES','NO')                        utf8_general_ci  NO              NO                                                select                     
-	ApprovedBy            varchar(50)                             utf8_general_ci  NO                                                                select                     
-★	IsDelete              enum('YES','NO')                        utf8_general_ci  NO              NO                                                select                     
-	DeletedBy             varchar(50)                             utf8_general_ci  NO                                                                select                     
-	LastEditor            varchar(50)                             utf8_general_ci  NO                                                                select                     
-	isBMV                 enum('YES','NO')                        utf8_general_ci  NO              NO                                                select                     
-★	LastChangeDate        timestamp                               (NULL)           NO              0000-00-00 00:00:00  on update CURRENT_TIMESTAMP  select                     
 
 
 	
@@ -207,6 +170,24 @@ product
 ★	r_ImageCount    smallint(5)       (NULL)           NO              0                                               select                             
 ★	LastChangeDate  timestamp         (NULL)           NO              CURRENT_TIMESTAMP  on update CURRENT_TIMESTAMP  select                             
 
+productimage
+-----------------------------------------------
+
+Field           Type                  Collation        Null    Key     Default            Extra           Privileges                       Comment                                 
+--------------  --------------------  ---------------  ------  ------  -----------------  --------------  -------------------------------  ----------------------------------------
+ID              int(11) unsigned      (NULL)           NO      PRI     (NULL)             auto_increment  select,insert,update,references                                          
+ImageID         int(11) unsigned      (NULL)           NO              0                                  select,insert,update,references  Product ImageID                         
+ProductID       int(11) unsigned      (NULL)           NO      MUL     0                                  select,insert,update,references  ProductID                               
+ImageWidth      smallint(5) unsigned  (NULL)           NO              0                                  select,insert,update,references                                          
+ImageHeight     smallint(5) unsigned  (NULL)           NO              0                                  select,insert,update,references                                          
+Sequence        smallint(5) unsigned  (NULL)           NO              0                                  select,insert,update,references  Product Image Sequence                  
+ImageFileSize   int(11) unsigned      (NULL)           NO              0                                  select,insert,update,references  Product Image File size                 
+ImageFileMD5    char(32)              utf8_general_ci  NO                                                 select,insert,update,references  MD5 value for this images               
+IsMain          enum('YES','NO')      utf8_general_ci  NO              NO                                 select,insert,update,references  If the picture is treated as the main it
+AddDate         timestamp             (NULL)           YES             (NULL)                             select,insert,update,references                                          
+LastChangeDate  timestamp             (NULL)           NO              CURRENT_TIMESTAMP                  select,insert,update,references                                          
+
+
 productcategory
 
 	Field           Type              Collation  Null    Key     Default            Extra                        Privileges  Comment
@@ -216,9 +197,22 @@ productcategory
 ★	CategoryID      int(11) unsigned  (NULL)     NO      MUL     0                                               select             
 ★	AddDate         timestamp         (NULL)     YES             (NULL)                                          select             
 ★	LastChangeDate  timestamp         (NULL)     NO              CURRENT_TIMESTAMP  on update CURRENT_TIMESTAMP  select             
+
+
+productskus
+
+Field           Type                                                                                            Collation        Null    Key     Default            Extra           Privileges                       Comment
+--------------  ----------------------------------------------------------------------------------------------  ---------------  ------  ------  -----------------  --------------  -------------------------------  -------
+ID              int(11) unsigned                                                                                (NULL)           NO      PRI     (NULL)             auto_increment  select,insert,update,references         
+ProductID       int(11) unsigned                                                                                (NULL)           NO      MUL     0                                  select,insert,update,references         
+ProductNO       varchar(255)                                                                                    utf8_general_ci  NO                                                 select,insert,update,references         
+Type            enum('EAN','ISBN','UPC','SKU','MfPN','CatalogNo','MerchantUniqueCode','ASIN','SDCN','Unknown')  utf8_general_ci  NO              Unknown                            select,insert,update,references         
+IsMain          enum('YES','NO')                                                                                utf8_general_ci  NO              NO                                 select,insert,update,references         
+Comments        varchar(255)                                                                                    utf8_general_ci  NO                                                 select,insert,update,references         
+AddDate         timestamp                                                                                       (NULL)           YES             (NULL)                             select,insert,update,references         
+LastChangeDate  timestamp   	
 	
-	
-comment
+PRODUCTREVIEW
 	
 	Field               Type              Collation        Null    Key     Default              Extra                        Privileges  Comment                     
 	------------------  ----------------  ---------------  ------  ------  -------------------  ---------------------------  ----------  ----------------------------
@@ -241,20 +235,13 @@ comment
 ★	ReportedAbuseCount  int(11)           (NULL)           NO              0                                                 select                                  
 ★	ExpertID            int(11)           (NULL)           NO      MUL     0                                                 select                                  
 ★	URL                 text              utf8_general_ci  NO              (NULL)                                            select                                  
-	CDSID               int(11)           (NULL)           NO      MUL     0                                                 select                                  
-	UserID              int(11)           (NULL)           NO      MUL     0                                                 select                                  
-	r_CommentCount      int(11)           (NULL)           YES             0                                                 select                                  
-	r_UserBlogCount     int(11)           (NULL)           YES             0                                                 select                                  
 	r_ProductName       varchar(255)      utf8_general_ci  YES             (NULL)                                            select                                  
 	Location            varchar(200)      utf8_general_ci  YES                                                               select                                  
 ★	ThirdPartReviewID   varchar(200)      utf8_general_ci  YES                                                               select                                  
-	Pros                varchar(255)      utf8_general_ci  YES                                                               select                                  
-	Cons                varchar(255)      utf8_general_ci  YES                                                               select                                  
 	OwnedTime           varchar(30)       utf8_general_ci  YES                                                               select                                  
 ★	LastChangeDate      timestamp         (NULL)           YES             (NULL)               on update CURRENT_TIMESTAMP  select      log the last update datetime
 
 Manufacturer
-	(Step 2)			
 	Field                 Type                          Collation        Null    Key     Default            Extra                        Privileges  Comment
 	--------------------  ----------------------------  ---------------  ------  ------  -----------------  ---------------------------  ----------  -------
 ★	Manufacturer_         int(11) unsigned              (NULL)           NO      PRI     0                                               select             
@@ -264,54 +251,12 @@ Manufacturer
 ★	r_Popularity          decimal(9,2)                  (NULL)           NO              0.00                                            select             
 ★	IsActive              enum('YES','NO')              utf8_general_ci  NO              YES                                             select             
 ★	Type                  enum('BRAND','Manufacturer')  utf8_general_ci  NO              BRAND                                           select             
-	IsSEOModify           enum('YES','NO')              utf8_general_ci  NO              NO                                              select             
-	SEAlias               text                          utf8_general_ci  YES             (NULL)                                          select             
+★	IsSEOModify           enum('YES','NO')              utf8_general_ci  NO              NO                                              select             
+★	SEAlias               text                          utf8_general_ci  YES             (NULL)                                          select             
 ★	URLName               varchar(255)                  utf8_general_ci  NO                                                              select             
 ★	SearchName            varchar(255)                  utf8_general_ci  NO                                                              select             
 ★	ManufacturerSEOText   varchar(255)                  utf8_general_ci  NO                                                              select             
 ★	LastChangeDate        timestamp                     (NULL)           NO              CURRENT_TIMESTAMP  on update CURRENT_TIMESTAMP  select             
-merchant	
-	Field                      Type                                                      Collation        Null    Key     Default              Extra                        Privileges  Comment                                                                                                                                                   
-	-------------------------  --------------------------------------------------------  ---------------  ------  ------  -------------------  ---------------------------  ----------  ----------------------------------------------------------------------------------------------------------------------------------------------------------
-	MerchantID                 int(11) unsigned                                          (NULL)           NO      PRI     0                                                 select                                                                                                                                                                
-	MerchantName               varchar(100)                                              utf8_general_ci  NO                                                                select                                                                                                                                                                
-	NameAlias                  varchar(500)                                              utf8_general_ci  NO                                                                select      Separated by ||                                                                                                                                           
-	Country                    char(3)                                                   utf8_general_ci  NO                                                                select                                                                                                                                                                
-	SiteURL                    varchar(255)                                              utf8_general_ci  NO                                                                select                                                                                                                                                                
-	SiteLink                   enum('YES','NO','PARTIAL')                                utf8_general_ci  NO              NO                                                select                                                                                                                                                                
-	PartnerSource              varchar(255)                                              utf8_general_ci  NO                                                                select      used for group merchant, some merchant in Smarter is registed from 3rd partner source, use this field to mark the parnter name                            
-	StoreLocType               enum('ECS','OSS','BOTH')                                  utf8_general_ci  NO              BOTH                                              select      ECS: E-Commerce Store, OSS: On-Street Store, Both- have both store                                                                                        
-	RegisterDate               datetime                                                  (NULL)           NO              2000-01-01 00:00:00                               select                                                                                                                                                                
-	SalesMessage               varchar(2000)                                             utf8_general_ci  NO                                                                select                                                                                                                                                                
-	Authorized                 enum('YES','NO')                                          utf8_general_ci  NO              NO                                                select                                                                                                                                                                
-	MerSource                  enum('OWN','PARNTER','BOTH')                              utf8_general_ci  NO              OWN                                               select                                                                                                                                                                
-	ROIService                 enum('Advance','Basic','NO')                              utf8_general_ci  NO              NO                                                select                                                                                                                                                                
-	CCReviewService            enum('YES','NO')                                          utf8_general_ci  NO              NO                                                select                                                                                                                                                                
-	ShowCCReview               enum('YES','NO')                                          utf8_general_ci  NO              NO                                                select                                                                                                                                                                
-	IsTrusted                  enum('YES','NO')                                          utf8_general_ci  NO              NO                                                select                                                                                                                                                                
-	PriceStatus                enum('WLINK','WOLINK','OFFLINE')                          utf8_general_ci  NO              WOLINK                                            select      W-with, WO-without                                                                                                                                        
-	PriceShare                 enum('LOCAL','INTERNATIONALWLINK','INTERNATIONALWOLINK')  utf8_general_ci  NO              LOCAL                                             select      LOCAL means only local country can display offer, International means accross country can display offers, WLink means with Link, WOLink means without Link
-	MerTier                    enum('Platinum','Gold','Silver','Lead')                   utf8_general_ci  NO              Silver                                            select                                                                                                                                                                
-	Featured                   enum('YES','NO')                                          utf8_general_ci  NO              NO                                                select                                                                                                                                                                
-	FeaturedCPC                decimal(5,2)                                              (NULL)           NO              0.00                                              select                                                                                                                                                                
-	FEBlockSwitch              enum('OFF','ON')                                          utf8_general_ci  NO              OFF                                               select                                                                                                                                                                
-	DatafeedSwitch             enum('OFF','ON')                                          utf8_general_ci  NO              ON                                                select                                                                                                                                                                
-	BusinessType               enum('CPC','CPA','FREE','CPC-H')                          utf8_general_ci  NO              CPC                                               select      check MerDeal table                                                                                                                                       
-	MerLogoDisplay             enum('YES','NO')                                          utf8_general_ci  NO              NO                                                select                                                                                                                                                                
-	DefaultCPC                 decimal(5,2)                                              (NULL)           NO              0.00                                              select                                                                                                                                                                
-	AffiliateName              varchar(20)                                               utf8_general_ci  NO                                                                select                                                                                                                                                                
-	AffiliateKey               varchar(10)                                               utf8_general_ci  NO                                                                select                                                                                                                                                                
-	LastChangeDate             timestamp                                                 (NULL)           NO              CURRENT_TIMESTAMP    on update CURRENT_TIMESTAMP  select                                                                                                                                                                
-	r_ReviewCount              int(11)                                                   (NULL)           NO              0                                                 select                                                                                                                                                                
-	r_AvgRating                decimal(5,2)                                              (NULL)           NO              0.00                                              select                                                                                                                                                                
-	r_OwnTotalOfferCount       int(11) unsigned                                          (NULL)           NO              0                                                 select                                                                                                                                                                
-	r_OwnOnlineOfferCount      int(11) unsigned                                          (NULL)           NO              0                                                 select                                                                                                                                                                
-	r_PartnerTotalOfferCount   int(11) unsigned                                          (NULL)           NO              0                                                 select                                                                                                                                                                
-	r_PartnerOnlineOfferCount  int(11) unsigned                                          (NULL)           NO              0                                                 select                                                                                                                                                                
-	r_Popularity               int(11) unsigned                                          (NULL)           NO              0                                                 select                                                                                                                                                                
-	r_ProductCount             int(11) unsigned                                          (NULL)           NO              0                                                 select                                                                                                                                                                
-	r_ImpressionCount          int(11) unsigned                                          (NULL)           NO              0                                                 select                                                                                                                                                                
-	r_ClickCount               int(11) unsigned                                          (NULL)           NO              0                                                 select                                                                                                                                                                
 
 searchkeyword
 ★	ID
@@ -320,4 +265,100 @@ searchkeyword
 ★	CategoryID	
 ★	AddDate
 	
+
+user
+
+	Field            Type              Collation        Null    Key     Default              Extra           Privileges  Comment
+	---------------  ----------------  ---------------  ------  ------  -------------------  --------------  ----------  -------
+★	UserID           int(11)           (NULL)           NO      PRI     (NULL)               auto_increment  select             
+★	UserName         varchar(32)       latin1_bin       YES     MUL     (NULL)                               select             
+★	password         varchar(32)       latin1_bin       NO                                                   select             
+★	Email            varchar(64)       utf8_general_ci  NO      UNI     (NULL)                               select             
+	Birthday         date              (NULL)           NO              0000-00-00                           select             
+	Question         text              utf8_general_ci  YES             (NULL)                               select             
+	Answer           text              utf8_general_ci  YES             (NULL)                               select             
+★	Validate         enum('YES','NO')  utf8_general_ci  YES             NO                                   select             
+★	VisitTime        datetime          (NULL)           YES             0000-00-00 00:00:00                  select             
+	Country          char(2)           utf8_general_ci  NO              (NULL)                               select             
+	PostalCode       varchar(8)        utf8_general_ci  NO              (NULL)                               select             
+	UserPaidAccount  varchar(64)       utf8_general_ci  NO              (NULL)                               select             
+★	AccountType      smallint(4)       (NULL)           NO              0                                    select             
+
+
+
+
+merchantbidproduct
+-----------------------------------------------------
+
+Field               Type                                                                   Collation        Null    Key     Default                            Extra   Privileges                       Comment                   
+------------------  ---------------------------------------------------------------------  ---------------  ------  ------  ---------------------------------  ------  -------------------------------  --------------------------
+OfferID             int(11) unsigned                                                       (NULL)           NO      PRI     0                                          select,insert,update,references                            
+MerchantID          int(11) unsigned                                                       (NULL)           NO      MUL     0                                          select,insert,update,references                            
+ProductID           int(11) unsigned                                                       (NULL)           NO      MUL     0                                          select,insert,update,references                            
+UniquePID           int(11) unsigned                                                       (NULL)           NO              0                                          select,insert,update,references                            
+ProductName         varchar(255)                                                           utf8_general_ci  NO                                                         select,insert,update,references                            
+ProductSKU          varchar(255)                                                           utf8_general_ci  NO                                                         select,insert,update,references                            
+BrandName           varchar(255)                                                           utf8_general_ci  NO                                                         select,insert,update,references                            
+ProductDescription  text                                                                   utf8_general_ci  YES             (NULL)                                     select,insert,update,references                            
+CategoryName        text                                                                   utf8_general_ci  YES             (NULL)                                     select,insert,update,references                            
+ShippingCostFix     decimal(11,2)                                                          (NULL)           NO              0.00                                       select,insert,update,references                            
+Price               decimal(11,2)                                                          (NULL)           NO              0.00                                       select,insert,update,references                            
+ListPrice           decimal(11,2)                                                          (NULL)           NO              0.00                                       select,insert,update,references                            
+CurrencySymbol      char(3)                                                                utf8_general_ci  NO                                                         select,insert,update,references  Abbr of currency.         
+URL                 text                                                                   utf8_general_ci  YES             (NULL)                                     select,insert,update,references                            
+ImageURL            text                                                                   utf8_general_ci  YES             (NULL)                                     select,insert,update,references                            
+DisplayLogo         enum('YES','NO','FREE')                                                utf8_general_ci  NO              NO                                         select,insert,update,references  corresponding to r_LogoCPC
+StockStatus         enum('In Stock','Out Of Stock','Special Order','Pre Order','Unknown')  utf8_general_ci  NO              Unknown                                    select,insert,update,references                            
+PriceStatus         enum('WLINK','WOLINK')                                                 utf8_general_ci  NO              WLINK                                      select,insert,update,references                            
+SpecialOffer        varchar(1000)                                                          utf8_general_ci  NO                                                         select,insert,update,references                            
+ProductCondition    varchar(255)                                                           utf8_general_ci  NO                                                         select,insert,update,references                            
+MerRank             char(33)                                                               utf8_general_ci  NO              000000000000000000000000000000000          select,insert,update,references                            
+r_Coupon            smallint(5)                                                            (NULL)           NO              0                                          select,insert,update,references                            
+r_CPC               decimal(5,2)                                                           (NULL)           NO              0.00                                       select,insert,update,references                            
+r_CPCCurrency       char(3)                                                                utf8_general_ci  NO                                                         select,insert,update,references  Abbr of currency.         
+r_ExtraCPC          decimal(5,2)                                                           (NULL)           NO              0.00                                       select,insert,update,references                            
+r_LogoCPC           decimal(5,2)                                                           (NULL)           NO              0.00                                       select,insert,update,references                            
+r_BusinessType      enum('CPC','CPA','CPC-H','FREE')                                       utf8_general_ci  NO              CPC                                        select,insert,update,references                            
+AddDate             timestamp                                                              (NULL)           YES             (NULL)                                     select,insert,update,references                            
+MerchantSKU         varchar(255)                                                           utf8_general_ci  NO                                                         select,insert,update,references                            
+LastChangeDate      timestamp                                                              (NULL)           NO              CURRENT_TIMESTAMP                          select,insert,update,references                            
+Position            int(11)                                                                (NULL)           NO              0                                          select,insert,update,references                            
 		
+		
+		
+article
+---------------------------------------------
+
+Field         Type                   Collation        Null    Key     Default  Extra           Privileges                       Comment
+------------  ---------------------  ---------------  ------  ------  -------  --------------  -------------------------------  -------
+article_id    mediumint(8) unsigned  (NULL)           NO      PRI     (NULL)   auto_increment  select,insert,update,references         
+catid        smallint(5)            (NULL)           NO      MUL     0                        select,insert,update,references         
+title         varchar(150)           utf8_general_ci  NO                                       select,insert,update,references         
+content       longtext               utf8_general_ci  NO              (NULL)                   select,insert,update,references         
+author        varchar(30)            utf8_general_ci  NO                                       select,insert,update,references         
+author_email  varchar(60)            utf8_general_ci  NO                                       select,insert,update,references         
+keywords      varchar(255)           utf8_general_ci  NO                                       select,insert,update,references         
+article_type  tinyint(1) unsigned    (NULL)           NO              2                        select,insert,update,references         
+is_open       tinyint(1) unsigned    (NULL)           NO              1                        select,insert,update,references         
+add_time      int(10) unsigned       (NULL)           NO              0                        select,insert,update,references         
+file_url      varchar(255)           utf8_general_ci  NO                                       select,insert,update,references         
+open_type     tinyint(1) unsigned    (NULL)           NO              0                        select,insert,update,references         
+link          varchar(255)           utf8_general_ci  NO                                       select,insert,update,references         
+description   varchar(255)           utf8_general_ci  YES             (NULL)                   select,insert,update,references         
+
+
+
+
+articlecat
+-------------------------------------------------
+
+Field        Type                  Collation        Null    Key     Default  Extra           Privileges                       Comment
+-----------  --------------------  ---------------  ------  ------  -------  --------------  -------------------------------  -------
+cat_id       smallint(5)           (NULL)           NO      PRI     (NULL)   auto_increment  select,insert,update,references         
+cat_name     varchar(255)          utf8_general_ci  NO                                       select,insert,update,references         
+cat_type     tinyint(1) unsigned   (NULL)           NO      MUL     1                        select,insert,update,references         
+keywords     varchar(255)          utf8_general_ci  NO                                       select,insert,update,references         
+cat_desc     varchar(255)          utf8_general_ci  NO                                       select,insert,update,references         
+sort_order   tinyint(3) unsigned   (NULL)           NO      MUL     50                       select,insert,update,references         
+show_in_nav  tinyint(1) unsigned   (NULL)           NO              0                        select,insert,update,references         
+parent_id    smallint(5) unsigned  (NULL)           NO      MUL     0                        select,insert,update,references         		
