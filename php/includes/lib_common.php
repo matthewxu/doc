@@ -13,7 +13,7 @@
  * $Id: lib_common.php 17146 2010-04-29 06:20:43Z liuhui $
 */
 
-if (!defined('IN_ECS'))
+if (!defined('IN_DDT'))
 {
     die('Hacking attempt');
 }

@@ -5,16 +5,18 @@
 	*/
 	//mt定义入口常量
 	define('IN_ECS', true);
-	/* 取得当前ecshop所在的根目录 */
 	//str_replace(find,replace,string,count)
 	define('ROOT_PATH', str_replace('testindexsmarty.php', '', str_replace('\\', '/', __FILE__)));
+	$_CFG = array();
+    $_CFG['template']='default';
+    $_CFG['language']='zh_cn';
+	
+	
 	/* 创建 Smarty 对象。*/
 	//cls_template.php 模版类 
     require(ROOT_PATH . 'includes/cls_template.php');
-    $_CFG = array();
-    $_CFG['template']='default';
+    require(ROOT_PATH . 'languages/'.$_CFG['language'].'/common.php');
     $smarty = new cls_template;
-    
 	$smarty->direct_output = false;
 	$smarty->force_compile = true;
     $smarty->template_dir   = ROOT_PATH . 'themes/'.$_CFG['template'];
@@ -44,6 +46,7 @@
      $smarty->assign('searchtitle', '点点淘搜索');   
     #####recent view object
 	$oview = array();
+	$i=0;
 	while($i++<10){
 		$oview[$i]['img']='images/_uu-1DaNOyy8wgsaXarxI5NJTWV0XOR1axo-TxkQ0FEyFXZ1ir3bnAbddY6U.jpg';
 		$oview[$i]['price']='340$';
@@ -56,64 +59,6 @@
 		$oview[$i]['description']='8GB...';
 		$oview[$i]['num']=$i-1;
 	}
-	/***
-	$oview[1]['img']='images/_uu-1DaNOyy8wgsaXarxI5NJTWV0XOR1axo-TxkQ0FEyFXZ1ir3bnAbddY6U.jpg';
-	$oview[1]['price']='340$';
-	$oview[1]['star1']='1';
-	$oview[1]['star2']='1';
-	$oview[1]['star3']='1';
-	$oview[1]['star4']='1';
-	$oview[1]['star5']='0';
-	$oview[1]['name']='Samsung2 i9000 ';
-	$oview[1]['description']='8GB...';
-	$oview[1]['num']='1';
-	
-	$oview[2]['img']='images/_uu-1DaNOyy8wgsaXarxI5NJTWV0XOR1axo-TxkQ0FEyFXZ1ir3bnAbddY6U.jpg';
-	$oview[2]['price']='340$';
-	$oview[2]['star1']='1';
-	$oview[2]['star2']='1';
-	$oview[2]['star3']='1';
-	$oview[2]['star4']='1';
-	$oview[2]['star5']='0';
-	$oview[2]['name']='Samsung2 i9000 ';
-	$oview[2]['description']='8GB...';
-	$oview[2]['num']='2';
-	
-	$oview[3]['img']='images/_uu-1DaNOyy8wgsaXarxI5NJTWV0XOR1axo-TxkQ0FEyFXZ1ir3bnAbddY6U.jpg';
-	$oview[3]['price']='340$';
-	$oview[3]['star1']='1';
-	$oview[3]['star2']='1';
-	$oview[3]['star3']='1';
-	$oview[3]['star4']='1';
-	$oview[3]['star5']='0';
-	$oview[3]['name']='Samsung2 i9000 ';
-	$oview[3]['description']='8GB...';
-	$oview[3]['num']='3';
-
-	$oview[4]['img']='images/_uu-1DaNOyy8wgsaXarxI5NJTWV0XOR1axo-TxkQ0FEyFXZ1ir3bnAbddY6U.jpg';
-	$oview[4]['price']='340$';
-	$oview[4]['star1']='1';
-	$oview[4]['star2']='1';
-	$oview[4]['star3']='1';
-	$oview[4]['star4']='1';
-	$oview[4]['star5']='0';
-	$oview[4]['name']='Samsung2 i9000 ';
-	$oview[4]['description']='8GB...';
-	$oview[4]['num']='4';
-	
-
-
-	$oview[5]['img']='images/_uu-1DaNOyy8wgsaXarxI5NJTWV0XOR1axo-TxkQ0FEyFXZ1ir3bnAbddY6U.jpg';
-	$oview[5]['price']='340$';
-	$oview[5]['star1']='1';
-	$oview[5]['star2']='1';
-	$oview[5]['star3']='1';
-	$oview[5]['star4']='1';
-	$oview[5]['star5']='0';
-	$oview[5]['name']='Samsung2 i9000 ';
-	$oview[5]['description']='8GB...';
-	$oview[5]['num']='4';
-	**/
 	####hot
 	$ohot = array();
 	$ohot[0]['img']='images/_uu-1DaNOyy8wgsaXarxI5NJTWV0XOR1axo-TxkQ0FEyFXZ1ir3bnAbddY6U.jpg';
@@ -139,15 +84,15 @@
 	$okw=array();
 	$i=0;
 	while($i++<10){
-		$okw[$i][keyword]='手机';
-		$okw[$i][link]='a.htm';
+		$okw[$i]['keyword']='手机';
+		$okw[$i]['link']='a.htm';
 	}
 	
 	$smarty->assign('ohot', $ohot);
 	$smarty->assign('oview', $oview);
 	$smarty->assign('okw', $okw);
+	$smarty->assign('lang',$_LANG);
 	#####foot object
-	
 		$ofoot = array();
         $ofoot[0]['model']      = '首页';
         $ofoot[0]['modellink']       = 'a.html';

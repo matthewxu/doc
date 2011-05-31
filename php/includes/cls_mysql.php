@@ -1,19 +1,16 @@
 <?php
 
 /**
- * ECSHOP MYSQL 公用类库
+ * DIANDIANTAO MYSQL 公用类库
  * ============================================================================
- * 版权所有 2005-2010 上海商派网络科技有限公司，并保留所有权利。
- * 网站地址: http://www.ecshop.com；
+ * 网站地址: http://www.DIANDIANTAO.com；
  * ----------------------------------------------------------------------------
  * 这不是一个自由软件！您只能在不用于商业目的的前提下对程序代码进行修改和
  * 使用；不允许对程序代码以任何形式任何目的的再发布。
  * ============================================================================
- * $Author: liuhui $
- * $Id: cls_mysql.php 17063 2010-03-25 06:35:46Z liuhui $
 */
 
-if (!defined('IN_ECS'))
+if (!defined('IN_DDT'))
 {
     die('Hacking attempt');
 }
@@ -387,7 +384,7 @@ class cls_mysql
     {
         if ($message)
         {
-            echo "<b>ECSHOP info</b>: $message\n\n<br /><br />";
+            echo "<b>DIANDIANTAO info</b>: $message\n\n<br /><br />";
             //print('<a href="http://faq.comsenz.com/?type=mysql&dberrno=2003&dberror=Can%27t%20connect%20to%20MySQL%20server%20on" target="_blank">http://faq.comsenz.com/</a>');
         }
         else

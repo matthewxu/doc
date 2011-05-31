@@ -53,6 +53,7 @@
      $smarty->assign('t_searchbutton','搜');
     #####recent view object
 	$ocat = array();
+	$i=0;
 	while($i++<3){
 		$ocat[$i]['catname']='光学产品/光学仪器';
 		$ocat[$i]['catlink']='a.html';
@@ -63,26 +64,26 @@
 	$oprice=array();
 	$i=0;
 	while($i++<5){
-		$oprice[$i][price]='低于 70';
-		$oprice[$i][pricelink]='a.htm';
+		$oprice[$i]['price']='低于 70';
+		$oprice[$i]['pricelink']='a.htm';
 	}
 	$obrand=array();
 	$i=0;
 	while($i++<8){
-		$obrand[$i][brand]='品牌'.$i;
-		$obrand[$i][brandlink]='a.htm';
-		$obrand[$i][brandimglink]='a.jpg';
+		$obrand[$i]['brand']='品牌'.$i;
+		$obrand[$i]['brandlink']='a.htm';
+		$obrand[$i]['brandimglink']='a.jpg';
 	}
 	$opage=array();
 	$i=0;
 	while($i++<6){
-		$opage[$i][num]=$i;
-		$opage[$i][link]=$i.'a.htm';
+		$opage[$i]['num']=$i;
+		$opage[$i]['link']=$i.'a.htm';
 	}
 	$i++;
-	$onpage[num]='2';
-	$onpage[next]='下一页';
-	$onpage[link]='2'.'a.htm';
+	$onpage['num']='2';
+	$onpage['next']='下一页';
+	$onpage['link']='2'.'a.htm';
 	
 	$osort=array();
 	$osort['t_sortstyle']='排序方式';
@@ -121,6 +122,7 @@
 		$onew[$i]['link']='a.html';
 		$onew[$i]['desc']='驴行天下，没有一个好的的望远镜怎么行呢，以下是一些望远镜知识，希望能对大家选购';
 	}
+	
 	$smarty->assign('opage',$opage);
 	$smarty->assign('onpage',$onpage);
 	$smarty->assign('osort',$osort);
