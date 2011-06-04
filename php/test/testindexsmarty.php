@@ -45,8 +45,8 @@
      $smarty->assign('ohead', $ohead);
      $smarty->assign('home', 'index.php');   
      $smarty->assign('searchlink', 'index.php');   
-     $smarty->assign('searchbox', '搜索商品');     
-     $smarty->assign('searchtitle', '点点淘搜索');   
+//     $smarty->assign('searchbox', '搜索商品');     
+//     $smarty->assign('searchtitle', '点点淘搜索');   
     $smarty->assign('lang',$_LANG);
      #####recent view object
 	$oview = array();

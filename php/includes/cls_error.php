@@ -15,7 +15,7 @@ if (!defined('IN_DDT'))
     die('Hacking attempt');
 }
 
-class ecs_error
+class ddt_error
 {
     var $_message   = array();
     var $_template  = '';
@@ -30,7 +30,7 @@ class ecs_error
      */
     function __construct($tpl)
     {
-        $this->ecs_error($tpl);
+        $this->ddt_error($tpl);
     }
 
     /**
@@ -40,7 +40,7 @@ class ecs_error
      * @param   string  $tpl
      * @return  void
      */
-    function ecs_error($tpl)
+    function ddt_error($tpl)
     {
         $this->_template = $tpl;
     }

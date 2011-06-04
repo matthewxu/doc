@@ -107,7 +107,7 @@ $db->set_disable_cache_tables(array($ddt->table('sessions'), $ddt->table('sessio
 $db_host = $db_user = $db_pass = $db_name = NULL;
 
 /* 创建错误处理对象 */
-$err = new ecs_error('message.dwt');
+$err = new ddt_error('message.dwt');
 
 /* 载入系统参数 */
 $_CFG = load_config();
