@@ -55,11 +55,20 @@
 			searchKeyword(keyword)
 		result
 			searchKeyword(keyword,groupcount)
+	F.history
+		pageViewHistory(_log)
+		session(_log)		
 2.UI logic and Flow
 	A.Index.php
+		
 		a).
-			>> user in	>>	show nav >> show search box >> show recent hot(or popular) >> show theme product(gift/classic....)
-			>> show user recent view>> show footer.  
+			>> user in	>>	check user login(init.php->lib_common.php(readconfig ))	>>	show nav >> show search box >> show recent hot(or popular) >> show theme product(gift/classic....)
+			>> show user recent view>> show footer.
+			user 
+				login/logout:
+				page view history
+				write reviews
+				star/bookforinfo/bookforprice  
 		b).	>> login (ajax)	>	original page
 		c). >> nav channel 	>	channel search page
 		d). >> product		>	product seller page
@@ -106,7 +115,7 @@
 			includes/cls_error.php init
 			common.php		语言文件 		init
 			check if spider
-			check if smarty and init smarty		
+			check if smarty and init smarty	
 			check if debug
 			check if gzenable
 		2).get head nav search channel 
@@ -117,25 +126,6 @@
 		4).get user recent view top 6 products >> cookie(user history if login) to get productid>> sphinxsearch.php	>> getdata from mysql(goods.php)	
 		5).get themes top 6 products >> lib_common.php get themes(cache and db)
 		6).get foot nav list.	>> lib_common.php
-		***********************************************
-	    $smarty->assign('categories',      get_categories_tree()); // 分类树
-	    $smarty->assign('helps',           get_shop_help());       // 网店帮助
-	    $smarty->assign('top_goods',       get_top10());           // 销售排行
-	
-	    $smarty->assign('best_goods',      get_recommend_goods('best'));    // 推荐商品
-	    $smarty->assign('new_goods',       get_recommend_goods('new'));     // 最新商品
-	    $smarty->assign('hot_goods',       get_recommend_goods('hot'));     // 热点文章
-	    $smarty->assign('promotion_goods', get_promote_goods()); // 特价商品
-	    $smarty->assign('brand_list',      get_brands());
-	    
-	
-	    $smarty->assign('promotion_info',  get_promotion_info()); // 增加一个动态显示所有促销信息的标签栏
-	
-	    $smarty->assign('invoice_list',    index_get_invoice_query());  // 发货查询
-	    $smarty->assign('new_articles',    index_get_new_articles());   // 最新文章
-	    $smarty->assign('group_buy_goods', index_get_group_buy());      // 团购商品
-	    $smarty->assign('auction_list',    index_get_auction());        // 拍卖活动
-	    $smarty->assign('shop_notice',     $_CFG['shop_notice']);       // 商店公告
 		
 		***********************************************  				
 	B.q-kw.php

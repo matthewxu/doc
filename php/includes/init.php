@@ -17,7 +17,6 @@ if (__FILE__ == '')
 }
 
 /* 取得当前ecshop所在的根目录 */
-//str_replace(find,replace,string,count)
 define('ROOT_PATH', str_replace('includes/init.php', '', str_replace('\\', '/', __FILE__)));
 
 /* 初始化设置 */
@@ -70,7 +69,7 @@ require(ROOT_PATH . 'includes/lib_base.php');
 
 
 //业务,模板,显示,数据库处理
-//require(ROOT_PATH . 'includes/lib_common.php');
+require(ROOT_PATH . 'includes/lib_common.php');
 //数据库处理
 //require(ROOT_PATH . 'includes/lib_main.php');
 //数据库数据插入
@@ -144,6 +143,18 @@ if (is_spider())
 }
 
 
+if (!defined('INIT_NO_USERS'))
+{
+    /* 初始化session */
+	    //SESSION 公用类库 
+    include(ROOT_PATH . 'includes/cls_session.php');
+
+    $sess = new cls_session($db, $ecs->table('sessions'), $ecs->table('sessions_data'));
+
+    define('SESS_ID', $sess->get_session_id());
+}
+
+
 if (!defined('INIT_NO_SMARTY'))
 {
     header('Cache-control: private');
@@ -182,6 +193,91 @@ if (!defined('INIT_NO_SMARTY'))
     }
 
 }
+
+
+if (!defined('INIT_NO_USERS'))
+{
+    /* 会员信息 */
+    $user =& init_users();
+
+    if (!isset($_SESSION['user_id']))
+    {
+        /* 获取投放站点的名称 */
+        $site_name = isset($_GET['from'])   ? $_GET['from'] : addslashes($_LANG['self_site']);
+        $from_ad   = !empty($_GET['ad_id']) ? intval($_GET['ad_id']) : 0;
+
+        $_SESSION['from_ad'] = $from_ad; // 用户点击的广告ID
+        $_SESSION['referer'] = stripslashes($site_name); // 用户来源
+
+        unset($site_name);
+
+        if (!defined('INGORE_VISIT_STATS'))
+        {
+            visit_stats();
+        }
+    }
+
+    if (empty($_SESSION['user_id']))
+    {
+        if ($user->get_cookie())
+        {
+            /* 如果会员已经登录并且还没有获得会员的帐户余额、积分以及优惠券 */
+            if ($_SESSION['user_id'] > 0)
+            {
+                update_user_info();
+            }
+        }
+        else
+        {
+            $_SESSION['user_id']     = 0;
+            $_SESSION['user_name']   = '';
+            $_SESSION['email']       = '';
+            $_SESSION['user_rank']   = 0;
+            $_SESSION['discount']    = 1.00;
+            if (!isset($_SESSION['login_fail']))
+            {
+                $_SESSION['login_fail'] = 0;
+            }
+        }
+    }
+
+    /* 设置推荐会员 */
+    if (isset($_GET['u']))
+    {
+        set_affiliate();
+    }
+
+    /* session 不存在，检查cookie */
+    if (!empty($_COOKIE['ECS']['user_id']) && !empty($_COOKIE['ECS']['password']))
+    {
+        // 找到了cookie, 验证cookie信息
+        $sql = 'SELECT user_id, user_name, password ' .
+                ' FROM ' .$ecs->table('users') .
+                " WHERE user_id = '" . intval($_COOKIE['ECS']['user_id']) . "' AND password = '" .$_COOKIE['ECS']['password']. "'";
+
+        $row = $db->GetRow($sql);
+
+        if (!$row)
+        {
+            // 没有找到这个记录
+           $time = time() - 3600;
+           setcookie("ECS[user_id]",  '', $time, '/');
+           setcookie("ECS[password]", '', $time, '/');
+        }
+        else
+        {
+            $_SESSION['user_id'] = $row['user_id'];
+            $_SESSION['user_name'] = $row['user_name'];
+            update_user_info();
+        }
+    }
+
+    if (isset($smarty))
+    {
+        $smarty->assign('ecs_session', $_SESSION);
+    }
+}
+
 
 
 if ((DEBUG_MODE & 1) == 1)

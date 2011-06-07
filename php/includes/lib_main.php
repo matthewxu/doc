@@ -16,15 +16,75 @@ if (!defined('IN_ECS'))
 }
 
 /**
- * 更新用户SESSION,COOKIE及登录时间、登录次数。
+ * mt更新用户SESSION,COOKIE及登录时间、登录次数。
  *
  * @access  public
  * @return  void
  */
 function update_user_info()
 {
+    if (!$_SESSION['user_id'])
+    {
+        return false;
+    }
 
-	die('update_user_info');	
+    /* 查询会员信息 */
+    $time = date('Y-m-d');
+    $sql = 'SELECT u.user_money, u.pay_points, u.user_rank, u.rank_points, '.
+            ' IFNULL(b.type_money, 0) AS user_bonus, u.last_login, u.last_ip'.
+            ' FROM ' .$GLOBALS['ecs']->table('users'). ' AS u ' .
+            ' LEFT JOIN ' .$GLOBALS['ecs']->table('user_bonus'). ' AS ub'.
+            ' ON ub.user_id = u.user_id AND ub.used_time = 0 ' .
+            ' LEFT JOIN ' .$GLOBALS['ecs']->table('bonus_type'). ' AS b'.
+            " ON b.type_id = ub.bonus_type_id AND b.use_start_date <= '$time' AND b.use_end_date >= '$time' ".
+            " WHERE u.user_id = '$_SESSION[user_id]'";
+    if ($row = $GLOBALS['db']->getRow($sql))
+    {
+        /* 更新SESSION */
+        $_SESSION['last_time']   = $row['last_login'];
+        $_SESSION['last_ip']     = $row['last_ip'];
+        $_SESSION['login_fail']  = 0;
+
+        /* 取得用户等级和折扣 */
+        if ($row['user_rank'] == 0)
+        {
+            // 非特殊等级，根据等级积分计算用户等级（注意：不包括特殊等级）
+            $sql = 'SELECT rank_id, discount FROM ' . $GLOBALS['ecs']->table('user_rank') . " WHERE special_rank = '0' AND min_points <= " . intval($row['rank_points']) . ' AND max_points > ' . intval($row['rank_points']);
+            if ($row = $GLOBALS['db']->getRow($sql))
+            {
+                $_SESSION['user_rank'] = $row['rank_id'];
+                $_SESSION['discount']  = $row['discount'] / 100.00;
+            }
+            else
+            {
+                $_SESSION['user_rank'] = 0;
+                $_SESSION['discount']  = 1;
+            }
+        }
+        else
+        {
+            // 特殊等级
+            $sql = 'SELECT rank_id, discount FROM ' . $GLOBALS['ecs']->table('user_rank') . " WHERE rank_id = '$row[user_rank]'";
+            if ($row = $GLOBALS['db']->getRow($sql))
+            {
+                $_SESSION['user_rank'] = $row['rank_id'];
+                $_SESSION['discount']  = $row['discount'] / 100.00;
+            }
+            else
+            {
+                $_SESSION['user_rank'] = 0;
+                $_SESSION['discount']  = 1;
+            }
+        }
+    }
+
+    /* 更新登录时间，登录次数及登录ip */
+    $sql = "UPDATE " .$GLOBALS['ecs']->table('users'). " SET".
+           " visit_count = visit_count + 1, ".
+           " last_ip = '" .real_ip(). "',".
+           " last_login = '" .gmtime(). "'".
+           " WHERE user_id = '" . $_SESSION['user_id'] . "'";
+    $GLOBALS['db']->query($sql);
 	
 }
 

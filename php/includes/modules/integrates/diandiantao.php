@@ -1,16 +1,13 @@
 <?php
 
 /**
- * ECSHOP 会员数据处理类
+ * diandiantao 会员数据处理类
  * ============================================================================
- * 版权所有 2005-2010 上海商派网络科技有限公司，并保留所有权利。
- * 网站地址: http://www.ecshop.com
+ * 网站地址: http://www.diandiantao.com
  * ----------------------------------------------------------------------------
  * 这是一个免费开源的软件；这意味着您可以在不用于商业目的的前提下对程序代码
  * 进行修改、使用和再发布。
  * ============================================================================
- * $Author: liuhui $
- * $Id: ecshop.php 17063 2010-03-25 06:35:46Z liuhui $
  */
 
 if (!defined('IN_ECS'))
@@ -24,31 +21,31 @@ if (isset($set_modules) && $set_modules == TRUE)
     $i = (isset($modules)) ? count($modules) : 0;
 
     /* 会员数据整合插件的代码必须和文件名保持一致 */
-    $modules[$i]['code']    = 'ecshop';
+    $modules[$i]['code']    = 'diandiantao';
 
     /* 被整合的第三方程序的名称 */
-    $modules[$i]['name']    = 'ECSHOP';
+    $modules[$i]['name']    = 'DIANDIANTAO';
 
     /* 被整合的第三方程序的版本 */
-    $modules[$i]['version'] = '2.0';
+    $modules[$i]['version'] = '1.0';
 
     /* 插件的作者 */
-    $modules[$i]['author']  = 'ECSHOP R&D TEAM';
+    $modules[$i]['author']  = 'MATTHEW';
 
     /* 插件作者的官方网站 */
-    $modules[$i]['website'] = 'http://www.ecshop.com';
+    $modules[$i]['website'] = 'http://www.DIANDIANTAO.com';
 
     return;
 }
 
 require_once(ROOT_PATH . 'includes/modules/integrates/integrate.php');
-class ecshop extends integrate
+class diandiantao extends integrate
 {
-    var $is_ecshop = 1;
+    var $is_diandiantao = 1;
 
     function __construct($cfg)
     {
-        $this->ecshop($cfg);
+        $this->diandiantao($cfg);
     }
 
     /**
@@ -59,7 +56,7 @@ class ecshop extends integrate
      *
      * @return void
      */
-    function ecshop($cfg)
+    function diandiantao($cfg)
     {
         parent::integrate(array());
         $this->user_table = 'users';
@@ -71,7 +68,7 @@ class ecshop extends integrate
         $this->field_bday = 'birthday';
         $this->field_reg_date = 'reg_time';
         $this->need_sync = false;
-        $this->is_ecshop = 1;
+        $this->is_diandiantao = 1;
     }
 
 
