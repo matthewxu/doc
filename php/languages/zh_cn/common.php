@@ -44,5 +44,6 @@ $_LANG['detail']='详情';
 $_LANG['allreview'] = '查看全部评论内容';
 $_LANG['alldetail'] = '查看全部详情';
 
+$_LANG['self_site'] = '本站';
 ?>
 

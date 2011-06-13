@@ -1,0 +1,264 @@
+#footer {
+    padding-right: 0pt;
+    padding-bottom: 0pt;
+    padding-left: 0pt;
+    padding-top:100px;
+	
+    margin-right: 0pt;
+    margin-bottom: 0pt;
+    margin-left: 0pt;
+}
+
+div.header {
+    margin-bottom: 9px;
+    margin-left: -2px;
+    position: relative;
+    zoom: 1
+}
+
+div.header img.logo {
+    border: 0;
+    float: left;
+}
+
+div.header:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 82%;
+    font-size-adjust: none;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    line-height: normal;
+}
+
+.bottom-links {
+    margin-bottom: 0px;
+	padding-right: 0pt;
+    padding-bottom:1px;
+    padding-left:   0pt;
+    text-align: center;
+}
+
+.bottom-links a {
+    margin: 0 10px;
+    text-decoration: none;
+    color: #4272db;
+}
+
+.bottom-links a:hover {
+    text-decoration: underline;
+}
+
+.copyright {
+    font-size: 85%;
+    color: #777;
+    text-align: center;
+}
+
+div.errorbox-good {
+}
+
+div.errorbox-bad {
+}
+
+div.errormsg {
+    color: red;
+    font-size: smaller;
+    font-family: arial, sans-serif;
+}
+
+font.errormsg {
+    color: red;
+    font-size: smaller;
+    font-family: arial, sans-serif;
+}
+
+div.pagemsg {
+    font-size: smaller;
+    font-weight: bold;
+    text-align: center;
+}
+
+div.pagemsg span {
+    padding: 5px;
+    background: #ff9;
+}
+
+div.topbarwrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+div.topbar {
+    padding: 3px 8px 0px;
+}
+
+div.header div.headercontent {
+    float: right;
+    margin-top: 17px;
+}
+
+div.pagetitle {
+    font-weight: bold;
+}
+
+table#signupform {
+    left: -5px;
+    top: -7px;
+    position: relative;
+}
+
+table#signupform td {
+    padding: 7px 5px;
+}
+
+table#signupform td table td {
+    padding: 1px;
+}
+
+.gaia.ops.gsl {
+    font-family: arial, sans-serif;
+    color: #3366cc;
+    font-weight: bold;
+}
+
+.gaia.sub.el {
+    font-family: arial, sans-serif;
+    font-size: smaller;
+    font-weight: bold;
+}
+
+.gaia.sub.pl {
+    font-family: arial, sans-serif;
+    font-size: smaller;
+    font-weight: bold;
+}
+
+.gaia.sub.rpl {
+    font-family: arial, sans-serif;
+    font-size: smaller;
+    font-weight: bold;
+}
+
+.gaia.sub.es {
+    font-family: arial, sans-serif;
+    font-size: smaller;
+    font-style: italic;
+}
+
+.gaia.sub.seex {
+    font-family: arial, sans-serif;
+    font-size: smaller;
+    color: #6f6f6f;
+}
+
+.gaia.sub.pc {
+    font-family: arial, sans-serif;
+    font-size: smaller;
+    color: #6f6f6f;
+}
+
+.gaia.cca.al {
+    font-family: arial, sans-serif;
+    font-size: smaller;
+    font-weight: bold;
+}
+
+.gaia.cca.ol {
+    font-family: arial, sans-serif;
+    font-size: x-small;
+}
+
+.gaia.cca.cmt {
+    font-family: arial, sans-serif;
+    font-size: smaller;
+    color: #6f6f6f;
+}
+
+.gaia.cud.cl {
+    font-family: arial, sans-serif;
+    font-size: smaller;
+    font-weight: bold;
+}
+
+.gaia.captchahtml.desc {
+    font-family: arial, sans-serif;
+    font-size: smaller;
+}
+
+.gaia.captchahtml.cmt {
+    font-family: arial, sans-serif;
+    font-size: smaller;
+    color: #6f6f6f;
+}
+
+.gaia.sub.norm {
+    font-family: arial, sans-serif;
+    font-size: smaller;
+}
+
+#guser {
+    FONT-SIZE: 13px;
+    PADDING-TOP: 0px !important padding-bottom: 7px;
+    text-align: right;
+}
+
+A.gb4 {
+    TEXT-DECORATION: underline !important
+}
+
+#srch-block {
+    text-align: center;
+    margin-top: 18pt;
+    margin-bottom: 8pt
+}
+
+.srch_box {
+    font-family: Arial, sans-serif;
+    font-size: 139%;
+    padding: 4px 10px 4px 6px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-bottom: 1;
+    width: 550px;
+    height: 22px;
+    float: left;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0
+}
+
+img {
+    border: 0
+}
+
+#body-center {
+    max-width: 1165px;
+    margin: 0 auto;
+}
+
+#gbar a.gb1, #gbar a.gb2, #gbar a.gb3, #gbar a.gb4 {
+    color: #11c !important;
+}
+
+#gbar a.gb2:hover {
+    color: #fff !important
+}
+
+#srch-logo {
+    margin-right: 9px;
+}
+
+

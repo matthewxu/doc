@@ -13,7 +13,7 @@
  * $Id: inc_constant.php 17063 2010-03-25 06:35:46Z liuhui $
 */
 
-if (!defined('IN_ECS'))
+if (!defined('IN_DDT'))
 {
     die('Hacking attempt');
 }

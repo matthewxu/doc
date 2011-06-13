@@ -728,7 +728,11 @@ a {
 
 .bottom-links {
     padding: 1.38em;
-    margin-bottom: 0px
+    margin-bottom: 0px 
+    padding-right:    0pt;
+    padding-bottom:    22px;
+    padding-left:    0pt;
+	text-align:center;
 }
 
 .ps-sprite {
@@ -812,12 +816,13 @@ a {
     background-position: -44px 0;
     width: 16px
 }
+
 /*
-.n .nr {
-    background-position: -60px 0;
-    width: 16px
-}
-*/
+ .n .nr {
+ background-position: -60px 0;
+ width: 16px
+ }
+ */
 #nn, #nl {
     background-position: -76px 0
 }
@@ -876,92 +881,93 @@ a {
     width: 20px;
     background-position: -89px -22px
 }
+
 /*
-.popup-cont {
-    position: absolute;
-    border: 1px solid #ccc;
-    visibility: hidden;
-    padding: 15px;
-    width: 450px;
-    background: white;
-    z-index: 10;
-    display: none
-}
-
-.popup-display {
-    display: inline
-}
-
-.popup-close {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    height: 12px;
-    width: 12px;
-    overflow: hidden;
-    background: transparent url(../images/popup-sprite.png) no-repeat -90px 0;
-    cursor: pointer
-}
-
-.popup-title {
-    font-size: 124%;
-    font-weight: bold;
-    padding-bottom: 3px
-}
-
-.popup-map {
-    float: left
-}
-
-.popup-arrow {
-    background: transparent url(../images/popup-sprite.png) no-repeat 0 0;
-    position: absolute;
-    overflow: hidden
-}
-
-.popup-arrow-top {
-    background-position: -46px -23px;
-    height: 23px;
-    left: 20px;
-    top: -23px;
-    width: 44px
-}
-
-.popup-arrow-bottom {
-    background-position: -46px 0;
-    bottom: -23px;
-    height: 23px;
-    left: 20px;
-    width: 44px
-}
-
-.popup-arrow-bottomright {
-    background-position: -46px 0;
-    bottom: -23px;
-    height: 23px;
-    right: 20px;
-    width: 44px
-}
-
-.popup-arrow-left {
-    height: 44px;
-    width: 23px;
-    top: 20px;
-    left: -23px
-}
-
-.popup-arrow-right {
-    background-position: -23px 0;
-    height: 44px;
-    width: 23px;
-    top: 20px;
-    right: -23px
-}
-
-.popup-map img {
-    border: 1px solid #00c
-}
-*/
+ .popup-cont {
+ position: absolute;
+ border: 1px solid #ccc;
+ visibility: hidden;
+ padding: 15px;
+ width: 450px;
+ background: white;
+ z-index: 10;
+ display: none
+ }
+ 
+ .popup-display {
+ display: inline
+ }
+ 
+ .popup-close {
+ position: absolute;
+ top: 10px;
+ right: 10px;
+ height: 12px;
+ width: 12px;
+ overflow: hidden;
+ background: transparent url(../images/popup-sprite.png) no-repeat -90px 0;
+ cursor: pointer
+ }
+ 
+ .popup-title {
+ font-size: 124%;
+ font-weight: bold;
+ padding-bottom: 3px
+ }
+ 
+ .popup-map {
+ float: left
+ }
+ 
+ .popup-arrow {
+ background: transparent url(../images/popup-sprite.png) no-repeat 0 0;
+ position: absolute;
+ overflow: hidden
+ }
+ 
+ .popup-arrow-top {
+ background-position: -46px -23px;
+ height: 23px;
+ left: 20px;
+ top: -23px;
+ width: 44px
+ }
+ 
+ .popup-arrow-bottom {
+ background-position: -46px 0;
+ bottom: -23px;
+ height: 23px;
+ left: 20px;
+ width: 44px
+ }
+ 
+ .popup-arrow-bottomright {
+ background-position: -46px 0;
+ bottom: -23px;
+ height: 23px;
+ right: 20px;
+ width: 44px
+ }
+ 
+ .popup-arrow-left {
+ height: 44px;
+ width: 23px;
+ top: 20px;
+ left: -23px
+ }
+ 
+ .popup-arrow-right {
+ background-position: -23px 0;
+ height: 44px;
+ width: 23px;
+ top: 20px;
+ right: -23px
+ }
+ 
+ .popup-map img {
+ border: 1px solid #00c
+ }
+ */
 .loc-list-cont {
     margin-left: 200px
 }
@@ -974,164 +980,165 @@ body .locations-table td {
     padding: 3px;
     background-color: white
 }
+
 /*
-.map-pin {
-    background: transparent url(../images/red_icons_A_J.png) no-repeat 0 0;
-    height: 38px;
-    width: 24px;
-    position: relative;
-    overflow: hidden
-}
-
-.pin-A {
-    background-position: 0 0
-}
-
-.pin-B {
-    background-position: 0 -38px
-}
-
-.pin-C {
-    background-position: 0 -76px
-}
-
-.pin-D {
-    background-position: 0 -114px
-}
-
-.pin-E {
-    background-position: 0 -152px
-}
-
-.pin-F {
-    background-position: 0 -190px
-}
-
-.pin-G {
-    background-position: 0 -228px
-}
-
-.pin-H {
-    background-position: 0 -266px
-}
-
-.pin-I {
-    background-position: 0 -304px
-}
-
-.pin-J {
-    background-position: 0 -342px
-}
-
-a.tiny-pin, a.tiny-pin:link, a.tiny-pin:hover {
-    text-decoration: none;
-    color: #4272db
-}
-
-a.tiny-pin:hover span {
-    text-decoration: underline
-}
-
-.tiny-pin table {
-    vertical-align: middle;
-    display: inline;
-    margin-right: 4px
-}
-
-.tiny-pin table {
-    display: inline-table
-}
-
-.tiny-pin p {
-    background-image: url(../images/nav_logo16.png);
-    background-position: -71px -60px;
-    height: 15px;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    width: 9px
-}
-*/
+ .map-pin {
+ background: transparent url(../images/red_icons_A_J.png) no-repeat 0 0;
+ height: 38px;
+ width: 24px;
+ position: relative;
+ overflow: hidden
+ }
+ 
+ .pin-A {
+ background-position: 0 0
+ }
+ 
+ .pin-B {
+ background-position: 0 -38px
+ }
+ 
+ .pin-C {
+ background-position: 0 -76px
+ }
+ 
+ .pin-D {
+ background-position: 0 -114px
+ }
+ 
+ .pin-E {
+ background-position: 0 -152px
+ }
+ 
+ .pin-F {
+ background-position: 0 -190px
+ }
+ 
+ .pin-G {
+ background-position: 0 -228px
+ }
+ 
+ .pin-H {
+ background-position: 0 -266px
+ }
+ 
+ .pin-I {
+ background-position: 0 -304px
+ }
+ 
+ .pin-J {
+ background-position: 0 -342px
+ }
+ 
+ a.tiny-pin, a.tiny-pin:link, a.tiny-pin:hover {
+ text-decoration: none;
+ color: #4272db
+ }
+ 
+ a.tiny-pin:hover span {
+ text-decoration: underline
+ }
+ 
+ .tiny-pin table {
+ vertical-align: middle;
+ display: inline;
+ margin-right: 4px
+ }
+ 
+ .tiny-pin table {
+ display: inline-table
+ }
+ 
+ .tiny-pin p {
+ background-image: url(../images/nav_logo16.png);
+ background-position: -71px -60px;
+ height: 15px;
+ margin: 0;
+ padding: 0;
+ overflow: hidden;
+ width: 9px
+ }
+ */
 /*
-.local-map-pin {
-    vertical-align: middle;
-    position: relative;
-    top: -1px
-}
-
-.local-plusbox {
-    margin: 16px 0 0;
-    width: 99.5%;
-    overflow: hidden;
-    display: none
-}
-
-.local-map {
-    padding: 1px;
-    float: left;
-    margin-left: 100px
-}
-
-.local-map .plusbox-img {
-    border: 1px solid #00c
-}
-
-.local-stores {
-    margin-left: 310px
-}
-
-.local-store-price-col {
-    float: right;
-    width: 17em;
-    padding-top: 3px
-}
-
-.local-store .map-pin {
-    float: left
-}
-
-.local-store-name {
-    margin-left: 28px;
-    padding-top: 3px
-}
-
-.local-store-name-col {
-    margin-right: 19em
-}
-
-.local-store-price {
-    font-size: 18px;
-    font-weight: bold
-}
-
-.local-plusbox .local-call-for-price {
-    font-size: 72%
-}
-
-.local-in-stock, .local-limited {
-    color: #282
-}
-
-.local-oos {
-    color: #c11
-}
-
-.local-store {
-    overflow: hidden;
-    width: 100%;
-    margin-bottom: 4px
-}
-*/
+ .local-map-pin {
+ vertical-align: middle;
+ position: relative;
+ top: -1px
+ }
+ 
+ .local-plusbox {
+ margin: 16px 0 0;
+ width: 99.5%;
+ overflow: hidden;
+ display: none
+ }
+ 
+ .local-map {
+ padding: 1px;
+ float: left;
+ margin-left: 100px
+ }
+ 
+ .local-map .plusbox-img {
+ border: 1px solid #00c
+ }
+ 
+ .local-stores {
+ margin-left: 310px
+ }
+ 
+ .local-store-price-col {
+ float: right;
+ width: 17em;
+ padding-top: 3px
+ }
+ 
+ .local-store .map-pin {
+ float: left
+ }
+ 
+ .local-store-name {
+ margin-left: 28px;
+ padding-top: 3px
+ }
+ 
+ .local-store-name-col {
+ margin-right: 19em
+ }
+ 
+ .local-store-price {
+ font-size: 18px;
+ font-weight: bold
+ }
+ 
+ .local-plusbox .local-call-for-price {
+ font-size: 72%
+ }
+ 
+ .local-in-stock, .local-limited {
+ color: #282
+ }
+ 
+ .local-oos {
+ color: #c11
+ }
+ 
+ .local-store {
+ overflow: hidden;
+ width: 100%;
+ margin-bottom: 4px
+ }
+ */
 /*
-.grid a b, .list b, #ads-rhs b, #ads-top b, #ads-bot b {
-    color: #c03;
-    font-weight: normal
-}
-
-.grid a b, .list a b, #ads-rhs a b, #ads-top a b, #ads-bot a b {
-    text-decoration: underline
-}
-*/
+ .grid a b, .list b, #ads-rhs b, #ads-top b, #ads-bot b {
+ color: #c03;
+ font-weight: normal
+ }
+ 
+ .grid a b, .list a b, #ads-rhs a b, #ads-top a b, #ads-bot a b {
+ text-decoration: underline
+ }
+ */
 #breadcrumbs b {
     color: #000;
     font-weight: bold

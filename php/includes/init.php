@@ -4,7 +4,7 @@
  * 
 */
 
-if (!defined('IN_ECS'))
+if (!defined('IN_DDT'))
 {
     die('Hacking attempt!!!!');
 }
@@ -71,13 +71,14 @@ require(ROOT_PATH . 'includes/lib_base.php');
 //业务,模板,显示,数据库处理
 require(ROOT_PATH . 'includes/lib_common.php');
 //数据库处理
-//require(ROOT_PATH . 'includes/lib_main.php');
+require(ROOT_PATH . 'includes/lib_main.php');
 //数据库数据插入
 //require(ROOT_PATH . 'includes/lib_insert.php');
 //商品操作
 //require(ROOT_PATH . 'includes/lib_goods.php');
 //文章操作
 /* 对用户传入的变量进行转义操作。*/
+
 if (!get_magic_quotes_gpc())
 {
     if (!empty($_GET))
@@ -102,7 +103,6 @@ define('IMAGE_DIR', $ddt->image_dir());
 /* 初始化数据库类 */
 require(ROOT_PATH . 'includes/cls_mysql.php');
 $db = new cls_mysql($db_host, $db_user, $db_pass, $db_name);
-$db->set_disable_cache_tables(array($ddt->table('sessions'), $ddt->table('sessions_data'), $ddt->table('cart')));
 $db_host = $db_user = $db_pass = $db_name = NULL;
 
 /* 创建错误处理对象 */
@@ -142,18 +142,16 @@ if (is_spider())
     $_SESSION['discount']    = 1.00;
 }
 
-
 if (!defined('INIT_NO_USERS'))
 {
     /* 初始化session */
 	    //SESSION 公用类库 
     include(ROOT_PATH . 'includes/cls_session.php');
 
-    $sess = new cls_session($db, $ecs->table('sessions'), $ecs->table('sessions_data'));
+    $sess = new cls_session($db, $ddt->table('sessions'), $ddt->table('sessions_log'));
 
     define('SESS_ID', $sess->get_session_id());
 }
-
 
 if (!defined('INIT_NO_SMARTY'))
 {
@@ -185,15 +183,10 @@ if (!defined('INIT_NO_SMARTY'))
     $smarty->assign('ecs_charset', EC_CHARSET);
     if (!empty($_CFG['stylename']))
     {
-        $smarty->assign('ecs_css_path', 'themes/' . $_CFG['template'] . '/style_' . $_CFG['stylename'] . '.css');
+        $smarty->assign('css_file', 'themes/' . $_CFG['template'] . '/style/' . $_CFG['stylename'] . '.css');
     }
-    else
-    {
-        $smarty->assign('ecs_css_path', 'themes/' . $_CFG['template'] . '/style.css');
-    }
-
+    $smarty->assign('themes', 'themes/' .$_CFG['template']);
 }
-
 
 if (!defined('INIT_NO_USERS'))
 {
@@ -241,14 +234,8 @@ if (!defined('INIT_NO_USERS'))
         }
     }
 
-    /* 设置推荐会员 */
-    if (isset($_GET['u']))
-    {
-        set_affiliate();
-    }
-
     /* session 不存在，检查cookie */
-    if (!empty($_COOKIE['ECS']['user_id']) && !empty($_COOKIE['ECS']['password']))
+    if (!empty($_COOKIE['DDT']['user_id']) && !empty($_COOKIE['DDT']['password']))
     {
         // 找到了cookie, 验证cookie信息
         $sql = 'SELECT user_id, user_name, password ' .
@@ -261,8 +248,8 @@ if (!defined('INIT_NO_USERS'))
         {
             // 没有找到这个记录
            $time = time() - 3600;
-           setcookie("ECS[user_id]",  '', $time, '/');
-           setcookie("ECS[password]", '', $time, '/');
+           setcookie("DDT[user_id]",  '', $time, '/');
+           setcookie("DDT[password]", '', $time, '/');
         }
         else
         {
@@ -274,7 +261,7 @@ if (!defined('INIT_NO_USERS'))
 
     if (isset($smarty))
     {
-        $smarty->assign('ecs_session', $_SESSION);
+        $smarty->assign('ddt_session', $_SESSION);
     }
 }
 

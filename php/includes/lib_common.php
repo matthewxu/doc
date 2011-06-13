@@ -559,7 +559,7 @@ function load_config()
     $data = read_static_cache('ddt_config');
     if ($data === false)
     {
-        $sql = 'SELECT code, value,type FROM ' . $GLOBALS['ddt']->table('config') . ' WHERE parent_id > 0';
+        $sql = 'SELECT code, value,type FROM ' . $GLOBALS['ddt']->table('config') ;
         $res = $GLOBALS['db']->getAll($sql);
 
         foreach ($res AS $row)

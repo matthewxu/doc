@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<title>{$page_title}</title>
+<link rel="shortcut icon" href="favicon.ico" />
+<link rel="icon" href="animated_favicon.gif" type="image/gif" />
+
+<link type="text/css" rel="stylesheet" href="{$themes}/style/user.css">
+
+<script type="text/javascript" src="{$themes}/js/user.js">  </script>
+
+<body>
+		<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+        <!-- {if $action eq 'login'} -->
+        	<!-- #BeginLibraryItem "/library/page_user_login.lbi.htm" --><!-- #EndLibraryItem -->
+        <!-- {elseif $action eq 'signin'} -->
+     		<!-- #BeginLibraryItem "/library/page_user_signin.lbi.htm" --><!-- #EndLibraryItem -->
+     	<!-- {elseif $action eq 'recovery'} -->
+     		<!-- #BeginLibraryItem "/library/page_user_recovery.lbi.htm" --><!-- #EndLibraryItem -->
+     	<!-- {/if} -->
+		<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+		
+</body>
+
+   	<script language="JavaScript">
+        gaia_setFocus();
+    </script>
+</html>

@@ -2,13 +2,13 @@
 // database host
 $db_host   = "localhost:3306";
 // database name
-$db_name   = "test";
+$db_name   = "BUY";
 // database username
 $db_user   = "root";
 // database password
 $db_pass   = "123456";
 // table prefix
-$prefix    = "ecs_";
+$prefix    = "";
 $timezone    = "Asia/Shanghai";
 $cookie_path    = "/";
 $cookie_domain    = "";

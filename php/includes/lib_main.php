@@ -10,7 +10,7 @@
  * ============================================================================
 */
 
-if (!defined('IN_ECS'))
+if (!defined('IN_DDT'))
 {
     die('Hacking attempt');
 }
@@ -31,12 +31,8 @@ function update_user_info()
     /* 查询会员信息 */
     $time = date('Y-m-d');
     $sql = 'SELECT u.user_money, u.pay_points, u.user_rank, u.rank_points, '.
-            ' IFNULL(b.type_money, 0) AS user_bonus, u.last_login, u.last_ip'.
+            '  u.last_login, u.last_ip'.
             ' FROM ' .$GLOBALS['ecs']->table('users'). ' AS u ' .
-            ' LEFT JOIN ' .$GLOBALS['ecs']->table('user_bonus'). ' AS ub'.
-            ' ON ub.user_id = u.user_id AND ub.used_time = 0 ' .
-            ' LEFT JOIN ' .$GLOBALS['ecs']->table('bonus_type'). ' AS b'.
-            " ON b.type_id = ub.bonus_type_id AND b.use_start_date <= '$time' AND b.use_end_date >= '$time' ".
             " WHERE u.user_id = '$_SESSION[user_id]'";
     if ($row = $GLOBALS['db']->getRow($sql))
     {
@@ -48,33 +44,14 @@ function update_user_info()
         /* 取得用户等级和折扣 */
         if ($row['user_rank'] == 0)
         {
-            // 非特殊等级，根据等级积分计算用户等级（注意：不包括特殊等级）
-            $sql = 'SELECT rank_id, discount FROM ' . $GLOBALS['ecs']->table('user_rank') . " WHERE special_rank = '0' AND min_points <= " . intval($row['rank_points']) . ' AND max_points > ' . intval($row['rank_points']);
-            if ($row = $GLOBALS['db']->getRow($sql))
-            {
-                $_SESSION['user_rank'] = $row['rank_id'];
-                $_SESSION['discount']  = $row['discount'] / 100.00;
-            }
-            else
-            {
                 $_SESSION['user_rank'] = 0;
                 $_SESSION['discount']  = 1;
-            }
         }
         else
         {
             // 特殊等级
-            $sql = 'SELECT rank_id, discount FROM ' . $GLOBALS['ecs']->table('user_rank') . " WHERE rank_id = '$row[user_rank]'";
-            if ($row = $GLOBALS['db']->getRow($sql))
-            {
-                $_SESSION['user_rank'] = $row['rank_id'];
-                $_SESSION['discount']  = $row['discount'] / 100.00;
-            }
-            else
-            {
                 $_SESSION['user_rank'] = 0;
                 $_SESSION['discount']  = 1;
-            }
         }
     }
 
@@ -566,13 +543,13 @@ function visit_stats()
     }
     $time = gmtime();
     /* 检查客户端是否存在访问统计的cookie */
-    $visit_times = (!empty($_COOKIE['ECS']['visit_times'])) ? intval($_COOKIE['ECS']['visit_times']) + 1 : 1;
-    setcookie('ECS[visit_times]', $visit_times, $time + 86400 * 365, '/');
+    $visit_times = (!empty($_COOKIE['DDT']['visit_times'])) ? intval($_COOKIE['DDT']['visit_times']) + 1 : 1;
+    setcookie('DDT[visit_times]', $visit_times, $time + 86400 * 365, '/');
 
     $browser  = get_user_browser();
     $os       = get_os();
     $ip       = real_ip();
-    $area     = ecs_geoip($ip);
+    $area     = ddt_geoip($ip);
 
     /* 语言 */
     if (!empty($_SERVER['HTTP_ACCEPT_LANGUAGE']))
@@ -610,7 +587,7 @@ function visit_stats()
         $domain = $path = '';
     }
 
-    $sql = 'INSERT INTO ' . $GLOBALS['ecs']->table('stats') . ' ( ' .
+    $sql = 'INSERT INTO ' . $GLOBALS['ddt']->table('stats') . ' ( ' .
                 'ip_address, visit_times, browser, system, language, area, ' .
                 'referer_domain, referer_path, access_url, access_time' .
             ') VALUES (' .
@@ -994,19 +971,15 @@ function assign_comment($id, $type, $page = 1)
     return $cmt;
 }
 
-
+/*
+ * 
+ */
 function assign_template($ctype = '', $catlist = array())
 {
     global $smarty;
-
+	
+    #nav bar,footer,seo
     $smarty->assign('image_width',   $GLOBALS['_CFG']['image_width']);
-    $smarty->assign('image_height',  $GLOBALS['_CFG']['image_height']);
-    $smarty->assign('points_name',   $GLOBALS['_CFG']['integral_name']);
-    $smarty->assign('qq',            explode(',', $GLOBALS['_CFG']['qq']));
-    $smarty->assign('ww',            explode(',', $GLOBALS['_CFG']['ww']));
-    $smarty->assign('ym',            explode(',', $GLOBALS['_CFG']['ym']));
-    $smarty->assign('msn',           explode(',', $GLOBALS['_CFG']['msn']));
-    $smarty->assign('skype',         explode(',', $GLOBALS['_CFG']['skype']));
     $smarty->assign('stats_code',    $GLOBALS['_CFG']['stats_code']);
     $smarty->assign('copyright',     sprintf($GLOBALS['_LANG']['copyright'], date('Y'), $GLOBALS['_CFG']['shop_name']));
     $smarty->assign('shop_name',     $GLOBALS['_CFG']['shop_name']);
@@ -1155,7 +1128,7 @@ function get_library_number($library, $template = null)
  */
 function get_navigator($ctype = '', $catlist = array())
 {
-    $sql = 'SELECT * FROM '. $GLOBALS['ecs']->table('nav') . '
+    $sql = 'SELECT * FROM '. $GLOBALS['ddt']->table('nav') . '
             WHERE ifshow = \'1\' ORDER BY type, vieworder';
     $res = $GLOBALS['db']->query($sql);
     $cur_url = substr(strrchr($_SERVER['REQUEST_URI'],'/'),1);
