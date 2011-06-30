@@ -574,11 +574,11 @@ class integrate
             $time = time() + 3600 * 24 * 15;
 
             setcookie("ECS[username]", $username, $time, $this->cookie_path, $this->cookie_domain);
-            $sql = "SELECT user_id, password FROM " . $GLOBALS['ecs']->table('users') . " WHERE user_name='$username' LIMIT 1";
+            $sql = "SELECT id, password FROM " . $GLOBALS['ddt']->table('user') . " WHERE username='$username' LIMIT 1";
             $row = $GLOBALS['db']->getRow($sql);
             if ($row)
             {
-                setcookie("ECS[user_id]", $row['user_id'], $time, $this->cookie_path, $this->cookie_domain);
+                setcookie("ECS[user_id]", $row['id'], $time, $this->cookie_path, $this->cookie_domain);
                 setcookie("ECS[password]", $row['password'], $time, $this->cookie_path, $this->cookie_domain);
             }
         }
@@ -600,12 +600,12 @@ class integrate
         }
         else
         {
-            $sql = "SELECT user_id, password, email FROM " . $GLOBALS['ecs']->table('users') . " WHERE user_name='$username' LIMIT 1";
+            $sql = "SELECT id, password, email FROM " . $GLOBALS['ddt']->table('user') . " WHERE username='$username' LIMIT 1";
             $row = $GLOBALS['db']->getRow($sql);
 
             if ($row)
             {
-                $_SESSION['user_id']   = $row['user_id'];
+                $_SESSION['user_id']   = $row['id'];
                 $_SESSION['user_name'] = $username;
                 $_SESSION['email']     = $row['email'];
             }

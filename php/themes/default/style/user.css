@@ -75,6 +75,13 @@ div.errormsg {
     font-family: arial, sans-serif;
 }
 
+div.closedmsg {
+	text-align: center;
+    color: red;
+    font-size: 200%;
+	font-weight: bold;
+}
+
 font.errormsg {
     color: red;
     font-size: smaller;

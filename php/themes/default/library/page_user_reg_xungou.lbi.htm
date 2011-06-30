@@ -1,0 +1,495 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<div id="maincontent">
+    <h3>{$lang.createaccount}</h3>
+    <table width="700">
+        <tbody>
+            <tr>
+                <td>
+                    <font size="-1">
+                        {$lang.ifhaveaccount}<a href="{$thisfile}?act=login">{$lang.loginhere}</a>。
+                    </font>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <form id="createaccount" name="createaccount" action="{$thisfile}?act=act_reg" method="post" onsubmit="return chkregsub();">
+        <table bgcolor="white" border="0" cellpadding="2" cellspacing="0" width="1%">
+            <tbody>
+                <tr>
+                    <td>
+                        <table bgcolor="#000000" border="0" cellpadding="0" cellspacing="0" width="1%">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <table bgcolor="#eeeeee" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                            <tbody>
+                                                <tr>
+                                                    <td align="left" bgcolor="#ffffff" valign="top">
+                                                        <table id="signupform" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="100%">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td colspan="2" valign="top">
+                                                                        <span class="gaia ops gsl">{$lang.needinfo}</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td nowrap="nowrap" valign="top">
+                                                                        <span class="gaia sub pl">{$lang.enterpsw}:</span>
+                                                                        <b>&nbsp;&nbsp;</b>
+                                                                    </td>
+                                                                    <td>
+                                                                        <table border="0" cellpadding="0" cellspacing="0">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td>
+                                                                                        <div>
+																							<input n="2" name="Passwd" id="Passwd" size="30" class="gaia sub passwdtxtfield" onblur="check_password(this.value);" type="password">
+                                                                                        </div>
+				                                                                        <div class="errormsg" id="ES_passwordMessage" style="display:none;font:red;">
+				                                                                        </div>		
+																						<script language="javascript">
+                                                                            				function check_password(conform_password){
+				                                                                                password = document.getElementById('Passwd').value;				                                                                                
+				                                                                                if (conform_password.length < 6) {
+				                                                                                    document.getElementById('ES_passwordMessage').innerHTML = '{$lang.tooshortpsw}';
+				                                                                                    document.getElementById('ES_passwordMessage').style.display = 'block';
+				                                                                                    return false;
+				                                                                                }
+				                                                                                else {
+				                                                                                    document.getElementById('ES_passwordMessage').innerHTML = '{$lang.rightpsw}';
+				                                                                                    document.getElementById('ES_passwordMessage').style.display = 'none';
+																									return true;
+				                                                                                }
+				                                                                            }
+				                                                                        </script>																																										
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td valign="top">
+                                                                        <span class="gaia sub rpl">{$lang.enterpswagain}：</span>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div>
+                                                                            <input n="3" name="PasswdAgain" id="PasswdAgain" size="30" class="gaia sub passwdtxtfield" onblur="check_conform_password(this.value);" type="password">
+                                                                        </div>
+                                                                        <div class="errormsg" id="ES_passwordErrorMessage" style="display:none;font:red;">
+                                                                        </div>
+                                                                        <script language="javascript">
+                                                                            function check_conform_password(conform_password){
+                                                                                password = document.getElementById('Passwd').value;
+				                                                                if (conform_password.length < 6) {
+                                                                                    document.getElementById('ES_passwordErrorMessage').innerHTML = '{$lang.tooshortpsw}';
+                                                                                    document.getElementById('ES_passwordErrorMessage').style.display = 'block';
+                                                                                    return false;
+                                                                                }
+																				if (conform_password != password) {
+                                                                                    document.getElementById('ES_passwordErrorMessage').innerHTML = '{$lang.pswnotsame}';
+                                                                                    document.getElementById('ES_passwordErrorMessage').style.display = 'block';
+                                                                                }
+                                                                                else {
+                                                                                    document.getElementById('ES_passwordErrorMessage').innerHTML = '{$lang.rightpsw}';
+                                                                                    document.getElementById('ES_passwordErrorMessage').style.display = 'none';
+																					return true;
+                                                                                }
+																				 
+                                                                            }
+                                                                        </script>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td nowrap="nowrap" valign="top">
+                                                                        <span class="gaia sub el">{$lang.youremail}:</span>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div>
+                                                                            <input n="1" gtbfieldid="5" name="Email" id="Email" size="30" class="gaia sub emailtxtfield" onblur="ES_spellCheckEmail(this.value,1)" type="text">
+                                                                             <div class="errormsg" id="ES_emailErrorMessage" style="display: none;">
+                                                                            </div>
+                                                                            <script type="text/javascript"> <!--
+																			
+								                                                        function ESe(b,e){
+																							if (b) {
+																								document.getElementById(e).innerHTML = b;
+																								document.getElementById(e).style.display = 'block';
+																							}else{
+																								document.getElementById(e).innerHTML = '';
+																								document.getElementById(e).style.display = 'none';
+																							}
+																						}																				
+																					    function  ES_spellCheckEmail(chemail,asemail){																							
+																							var isemail=(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/);	
+																							
+																							if(chemail== ''){
+																								ESe("请输入邮箱",'ES_emailErrorMessage');
+																							}else if(chemail.replace(/[^\x00-\xff]/g, "**").length <= 6 || !isemail.test(chemail)){
+																								ESe('邮箱格式不对 ','ES_emailErrorMessage');
+																							} else if(asemail){
+																								var turl = "{$thisfile}?act=checkemail&email="+chemail;
+																								Ajax.call( turl,'' ,GetUemail, 'GET', 'TEXT', true, true );
+																							}else{
+																								return true;
+																							}	
+																						}
+																						
+																						function GetUemail(resultText){
+																							//resultText=decodeURIComponent(resultText);
+																							if(resultText == 0){
+																								ESe('','ES_emailErrorMessage');
+																								return true;
+																							} else {
+																								ESe(resultText,'ES_emailErrorMessage');
+																								return false;
+																							}
+																							
+																						}
+																					                                                                              
+                                                                                --> 
+                                                                            </script>
+                                                                            
+																		  <script type="text/javascript">
+																		  	function chkregsub(){
+																				var formKey = 'createaccount';	                                                                           
+																				var psw1=document.forms[formKey]['Passwd'].value;
+																				var psw2=document.forms[formKey]['PasswdAgain'].value;
+																				var email=document.forms[formKey]['Email'].value;
+																				var re1=check_password(psw1);
+																				var re2=check_conform_password(psw2);
+																				var re3=ES_spellCheckEmail(email);
+																				if(re1 && re2 && re3){
+																					return true;
+																				}
+																				return false;
+																			}
+																			
+																		  
+																		  </script>
+                                                                        </div>
+                                                                        <span class="gaia sub seex">{$lang.emaileg}</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <!-- 判断是否启用验证码{if $enabled_captcha} -->
+                                                                <tr>
+                                                                    <td valign="top">
+                                                                        <span class="gaia cud cl">{$lang.wordsconfirm}：</span>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div><input type="text" size="8" name="captcha" class="inputBg"	onblur="checkcaptcha(this.value);" /><img src="captcha.php?{$rand}" alt="captcha" style="vertical-align: middle;cursor: pointer;" onClick="this.src='captcha.php?'+Math.random()" />
+																		</div>
+																		<div class="errormsg" id="captchaErrorMessage" style="display: none;" />
+                                                                    </td>
+																	 <script type="text/javascript">
+																	 		    function  checkcaptcha(capvalue){																							
+																								var turl = "{$thisfile}?act=checkcaptcha&captcha="+encodeURIComponent(capvalue);
+																								Ajax.call( turl,'' ,ajaxcheckcaptcha, 'GET', 'TEXT', true, true );
+																								//XMLHttp.send_request("GET",turl,null ,"text" ,GetUemail);
+																						}
+																						
+																						function ajaxcheckcaptcha(resultText){
+																							resultText=decodeURIComponent(resultText);
+																							if(resultText == 0){
+																								ESe('','captchaErrorMessage');
+																								return true;
+																							} else {
+																								ESe(resultText,'captchaErrorMessage');
+																								return false;
+																							}
+																							
+																						}
+																				
+																	 
+																	 </script> 	
+                                                                </tr><!--{/if}-->
+                                                                <tr>
+                                                                    <td colspan="2">
+                                                                        <hr>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td nowrap="nowrap">
+                                                                        &nbsp;
+                                                                    </td>
+                                                                    <td align="left">
+                                                                        <font size="-1">
+                                                                            <input name="PersistentCookie" id="PersistentCookie" value="yes" checked="checked" type="checkbox"><input name="rmShown" value="1" type="hidden">{$lang.keeplogin}
+                                                                        </font>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td nowrap="nowrap">
+                                                                        &nbsp;
+                                                                    </td>
+                                                                    <td align="left">
+                                                                        <input value="1" name="smhck" id="smhck" checked="checked" type="checkbox"><input value="1" id="nshk" name="nshk" type="hidden">
+                                                                        <font size="-1" face="Arial, sans-serif">
+                                                                            {$lang.sethistory}<a href="{$thisfile}?act=history" target="_blank">{$lang.detail}</a>
+                                                                        </font>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="1">
+                                                                        &nbsp;
+                                                                    </td>
+                                                                    <td>
+                                                                        <input style="width: 21em;" id="submitbutton" name="submitbutton" value=" {$lang.acceptandsignin}" type="SUBMIT">
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td nowrap="nowrap" valign="top">
+                                                                        <font size="-1" face="Arial, sans-serif">
+                                                                            <b>{$lang.service}：</b>
+                                                                        </font>
+                                                                    </td>
+                                                                    <td valign="top">
+                                                                        <font size="-1" face="Arial, sans-serif">
+                                                                            {$lang.servicelist}
+                                                                        </font>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>
+                                                                        &nbsp;
+                                                                    </td>
+                                                                    <td valign="top">
+                                                                        <div>
+                                                                            <div style="display: inline;" id="tos_div">
+                                                                                <table border="0" cellpadding="0" cellspacing="0">
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td>
+                                                                                                <textarea rows="5" cols="80" style="width: 100%;" readonly="readonly" onfocus="this.rows=10">
+                                                                                                </textarea>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>
+                                                                                                &nbsp;
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>
+                                                                                                <font size="-1">
+                                                                                                    {$lang.clickandaccept}
+                                                                                                </font>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
+
+<!--
+
+<script type="text/javascript" src="{$themes}/js/ajax_func.js"></script>
+<script type="text/javascript" src="{$themes}/js/json.js"></script>
+<script type="text/javascript" src="{$themes}/js/json2.js"></script>
+
+
+<script language="javascript" type="text/javascript">
+function $(oid){
+	return document.getElementById(oid);
+}
+
+function checkusername(){
+	var uname = $('username').value;
+	var ulen = uname.replace(/[^\x00-\xff]/g, "**").length;
+	if(uname == ''){
+		$('chkname').innerHTML='';
+	} else if(ulen < 3 || ulen > 20){
+		$('chkname').innerHTML='<font color="red">请确保用户名长度在3-20个字符之间，1个汉字代表2个字符</font>';
+	} else{		
+		var nurl = "/servlet/regcheck.php?do=submit&send=1&uname="+encodeURIComponent(uname)+"&timestamp=" + new Date().getTime();
+		XMLHttp.send_request("GET",nurl,null ,"text" ,GetUname);	
+	}
+}
+function GetUname(xmlHttp){
+	var resultText = xmlHttp.responseText;
+	if(resultText == 0){
+		$('chkname').innerHTML = '<font color="red">用户名已被注册</font>';
+	} else if(resultText == 3){
+		$('chkname').innerHTML = '<font color="red">用户名包含特殊字符，请重新设置</font>';
+	}else {
+		$('chkname').innerHTML = '<font color="#008000">恭喜您，用户名可用！</font>';
+	}
+}
+
+function chkpass(){
+	var pa= $('password').value;
+	var s = pa.length;
+	if(pa != ''){
+		if(s < 6 || s > 16){		
+			$("chkpass0").innerHTML = '<font color="red">密码长度需在6～16位之间</font>';		
+		} else {
+			$("chkpass0").innerHTML = '<font style="color:#008000;">密码格式正确</font>';
+			if($("password2").value != ""){
+				if($("password").value != $("password2").value){
+					$("chkpass").innerHTML = '<font color="red">两次输入密码不一致</font>';
+					is_pa = false;				
+				} else {
+					$("chkpass").innerHTML = '<font style="color:#008000;">两次密码一致</font>';
+				}
+			}
+		}
+	} else {
+		$("chkpass0").innerHTML = '';
+	}
+}
+function chkpass2(){
+	var pa= $('password2').value;
+	var s = pa.length;
+	if(pa != ''){
+		if(s < 6 || s > 16){		
+			$("chkpass").innerHTML = '<font color="red">密码长度需在6～16位之间</font>';
+		}else if($('password').value != $('password2').value){
+			$("chkpass").innerHTML = '<font color="red">两次输入密码不一致</font>';
+		} else {
+			$("chkpass").innerHTML = '<font style="color:#008000;">两次密码一致</font>';
+		}
+	} else {
+		$("chkpass").innerHTML = '';
+	}
+}
+
+function checkemail(){
+	var em = $('email');
+	var isemail=(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/);
+	if(em.value == ''){
+		$('chkemail').innerHTML = "";
+	}else if(em.value.replace(/[^\x00-\xff]/g, "**").length <= 6 || !isemail.test(em.value)){
+		$('chkemail').innerHTML = '<font color="red">邮箱格式不对</font>';
+	} else {
+		var turl = "/servlet/regcheck.php?do=submit&send=2&em="+encodeURIComponent(em.value)+"&timestamp=" + new Date().getTime();
+		XMLHttp.send_request("GET",turl,null ,"text" ,GetUemail);
+	}	
+}
+
+function GetUemail(xmlHttp){
+	var resultText = xmlHttp.responseText;
+	if(resultText == 0){
+		$('chkemail').innerHTML = '<font color="red">邮箱已被注册</font>';
+	} else {
+		$('chkemail').innerHTML = '<font color="#008000">恭喜您，邮箱可用！</font>';
+	}
+}
+
+function checkseccode(){
+	var code = $('seccodeverify').value;
+	var turl = "/servlet/regcheck.php?do=submit&send=3&sec="+encodeURIComponent(code)+"&timestamp=" + new Date().getTime();
+	XMLHttp.send_request("GET",turl,null ,"text" ,GetUcode);
+}
+
+function GetUcode(xmlHttp){
+	var resultText = xmlHttp.responseText;
+	if(resultText == 0){
+		$('checkseccodeverify').innerHTML = '<img width="16" height="16" src="images/default/check_error.gif">';
+		$('chgstr').style.display="";
+	} else {
+		$('checkseccodeverify').innerHTML = '<img width="16" height="16" src="images/default/check_right.gif">';
+		$('chgstr').style.display="none";
+	}
+}
+
+function chkregsub(){
+	var is_name = is_pa = is_pa2 = is_em = true; 
+	var uname = $('username').value;
+	var ulen = uname.replace(/[^\x00-\xff]/g, "**").length;
+	if(uname == ''){
+		$('chkname').innerHTML='<font color="red">请填写用户名</font>';
+		is_name = false;
+	} else if(ulen < 3 || ulen > 20){
+		$('chkname').innerHTML='<font color="red">请确保用户名长度在3-20个字符之间，1个汉字代表2个字符</font>';
+		is_name = false;
+	}
+	
+	var pa= $('password').value;
+	var s = pa.length;
+	if(pa == ''){
+		$("chkpass0").innerHTML = "<font color='red'>请输入密码</font>";
+		is_pa = false;
+	} else {
+		if(s < 6 || s > 16){		
+			$("chkpass0").innerHTML = '<font color="red">密码长度需在6～16位之间</font>';	
+			is_pa = false;	
+		}
+	}
+	
+	
+	var pa2= $('password2').value;
+	var s2 = pa2.length;
+	if(pa2 != ''){
+		if(s2 < 6 || s2 > 16){		
+			$("chkpass").innerHTML = '<font color="red">密码长度需在6～16位之间</font>';
+			is_pa2 = false;
+		}else if($('password').value != $('password2').value){
+			$("chkpass").innerHTML = '<font color="red">两次输入密码不一致</font>';
+			is_pa2 = false;
+		}
+	} else {
+		$("chkpass").innerHTML = "<font color='red'>请确认密码</font>";
+		is_pa2 = false;
+	}
+	
+	var em = $('email');
+	var isemail=(/^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/);
+	if(em.value == ''){
+		$('chkemail').innerHTML = "<font color='red'>请填写邮箱地址</font>";
+		is_em = false;
+	}else if(em.value.replace(/[^\x00-\xff]/g, "**").length <= 6 || !isemail.test(em.value)){
+		$('chkemail').innerHTML = '<font color="red">邮箱格式不对</font>';
+		is_em = false;
+	}
+	if(is_name && is_pa && is_pa2 && is_em){
+		$('registerformsubmit').disabled="disabled";
+		var turl = "/servlet/regcheck.php?do=submit&send=5&uname="+encodeURIComponent($('username').value)+"&em="+encodeURIComponent($('email').value)+"&pass="+encodeURIComponent($('password').value)+"&repass="+encodeURIComponent($('password2').value)+"&sec="+encodeURIComponent($('seccodeverify').value)+"&isagree="+encodeURIComponent($('agreebbrule').value)+"&timestamp=" + new Date().getTime();
+		XMLHttp.send_request("GET",turl,null ,"text" ,GetReginfo);
+	}
+}
+function GetReginfo(xmlHttp){
+	var resultText = xmlHttp.responseText;
+	var info = resultText.parseJSON();
+	if(info.is_reg == 0){
+		$("layer_reg").innerHTML = '<dl class="succ_get"><dd class="login_g02 l"><p class="succ_get01" style="padding-top:20px; color:#606060; width:320px;">抱歉！注册失败&nbsp;&nbsp;<a href="http://www.xungou.com/about/idea.htm" target="_blank">联系管理员</a></p></dd><div class="clear"></div></dl><div class="clear"></div>';
+	} else if(info.is_reg == 1){
+		$("layer_reg").innerHTML = '<dl class="succ_get"><dt class="login_gou l"></dt><dd class="login_g02 l"><p class="succ_get01" style="padding-top:20px;">恭喜您！注册成功</p></dd><div class="clear"></div></dl><div><input class="cg_bt_mo" type="button" value="前往迅购网首页" onclick=\'location.href="http://www.xungou.com";\' /><input class="cg_bt_mo" type="button" value="前往用户中心" onclick=\'location.href="http://mg.xungou.com";\' /><input class="cg_bt_mo" type="button" value="返回前一页" onclick=\'location.href="http://www.xungou.com";\' /></div><div class="clear"></div><div class="cg_notes border_1"><p><b>也许您还需要知道：</b></p><div class="clear10"></div><p><span class="login_wszl"><a href="http://club.xungou.com/memcp.php?action=profile&typeid=2" target="_blank">立即完善用户资料>></a></span></p><p>想找地方逛逛？您可以>> <a href="http://zhekou.xungou.com/redeem/" target="_blank">兑换礼品</a> >> <a href="http://zhekou.xungou.com/coupon/" target="_blank">领取优惠券</a> >> <a href="http://tuangou.xungou.com/" target="_blank">团购网站大全</a> >> <a href="http://shop.xungou.com/" target="_blank">购物网站大全</a> >> <a href="http://huangguan.xungou.com/" target="_blank">淘宝皇冠店</a></p></div>';
+	} else if(info.is_reg == 2){
+		$('registerformsubmit').disabled="";
+		if(info.is_name == 2){
+			$('chkname').innerHTML = '<font color="red">用户名已被注册</font>';
+		}
+		if(info.is_name == 3){
+			$('chkname').innerHTML = '<font color="red">用户名包含特殊字符，请重新设置</font>';
+		}
+		if(info.is_em == 2){
+			$('chkemail').innerHTML = '<font color="red">邮箱已被注册</font>';
+		}
+		if(info.is_code == 0){
+			$('checkseccodeverify').innerHTML = '<img width="16" height="16" src="images/default/check_error.gif">';
+			$('chgstr').style.display="";
+		}
+	}
+}
+</script>
+
+-->

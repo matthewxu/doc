@@ -10,14 +10,20 @@
 
 <link type="text/css" rel="stylesheet" href="{$themes}/style/user.css">
 
-<script type="text/javascript" src="{$themes}/js/user.js">  </script>
+<script type="text/javascript" src="{$themes}/js/transport.js">  </script>
 
+</head>
 <body>
 		<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+        <!-- {if $reg_closed eq 1} -->
+	    		<div >
+	        		<div class='closedmsg'> {$lang.register_closed} </div>
+	      		</div>
+	    <!-- {/if} -->	
         <!-- {if $action eq 'login'} -->
         	<!-- #BeginLibraryItem "/library/page_user_login.lbi.htm" --><!-- #EndLibraryItem -->
-        <!-- {elseif $action eq 'signin'} -->
-     		<!-- #BeginLibraryItem "/library/page_user_signin.lbi.htm" --><!-- #EndLibraryItem -->
+        <!-- {elseif $action eq 'reg'} -->
+     		<!-- #BeginLibraryItem "/library/page_user_reg_xungou.lbi.htm" --><!-- #EndLibraryItem -->
      	<!-- {elseif $action eq 'recovery'} -->
      		<!-- #BeginLibraryItem "/library/page_user_recovery.lbi.htm" --><!-- #EndLibraryItem -->
      	<!-- {/if} -->
@@ -25,7 +31,5 @@
 		
 </body>
 
-   	<script language="JavaScript">
-        gaia_setFocus();
-    </script>
+
 </html>

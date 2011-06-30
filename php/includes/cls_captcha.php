@@ -1,21 +1,19 @@
 <?php
 
 /**
- * ECSHOP 验证码图片类
+ * DIANDIANTAO 验证码图片类
  * ============================================================================
- * 版权所有 2005-2010 上海商派网络科技有限公司，并保留所有权利。
- * 网站地址: http://www.ecshop.com；
+ * 网站地址: http://www.DIANDIANTAO.com；
  * ----------------------------------------------------------------------------
  * 这不是一个自由软件！您只能在不用于商业目的的前提下对程序代码进行修改和
  * 使用；不允许对程序代码以任何形式任何目的的再发布。
  * ============================================================================
- * $Author: liuhui $
- * $Id: cls_captcha.php 17063 2010-03-25 06:35:46Z liuhui $
 */
 
-if (!defined('IN_ECS'))
+if (!defined('IN_DDT'))
 {
     die('Hacking attempt');
+    
 }
 
 class captcha
@@ -163,7 +161,7 @@ class captcha
         if (function_exists('imagecreatefromjpeg') && ((imagetypes() & IMG_JPG) > 0))
         {
             $theme  = $this->themes_jpg[mt_rand(1, count($this->themes_jpg))];
-        }
+         }
         else
         {
             $theme  = $this->themes_gif[mt_rand(1, count($this->themes_gif))];
@@ -171,6 +169,7 @@ class captcha
 
         if (!file_exists($this->folder . $theme[0]))
         {
+
             return false;
         }
         else

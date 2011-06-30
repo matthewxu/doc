@@ -28,25 +28,14 @@ if (!defined('IN_DDT'))
  */
 function register($username, $password, $email, $other = array())
 {
+	
+		
     /* 检查注册是否关闭 */
-    if (!empty($GLOBALS['_CFG']['shop_reg_closed']))
+    if (!empty($GLOBALS['_CFG']['reg_closed']))
     {
-        $GLOBALS['err']->add($GLOBALS['_LANG']['shop_register_closed']);
+        $GLOBALS['err']->add($GLOBALS['_LANG']['register_closed']);
     }
-    /* 检查username */
-    if (empty($username))
-    {
-        $GLOBALS['err']->add($GLOBALS['_LANG']['username_empty']);
-    }
-    else
-    {
-        if (preg_match('/\'\/^\\s*$|^c:\\\\con\\\\con$|[%,\\*\\"\\s\\t\\<\\>\\&\'\\\\]/', $username))
-        {
-            $GLOBALS['err']->add(sprintf($GLOBALS['_LANG']['username_invalid'], htmlspecialchars($username)));
-        }
-    }
-
-    /* 检查email */
+	 /* 检查email */
     if (empty($email))
     {
         $GLOBALS['err']->add($GLOBALS['_LANG']['email_empty']);
@@ -58,21 +47,37 @@ function register($username, $password, $email, $other = array())
             $GLOBALS['err']->add(sprintf($GLOBALS['_LANG']['email_invalid'], htmlspecialchars($email)));
         }
     }
+    /* 检查username */
+    if (empty($username))
+    {
+    	$username=$email;
+        //$GLOBALS['err']->add($GLOBALS['_LANG']['username_empty']);
+    }
+    else
+    {
+        if (preg_match('/\'\/^\\s*$|^c:\\\\con\\\\con$|[%,\\*\\"\\s\\t\\<\\>\\&\'\\\\]/', $username))
+        {
+            $GLOBALS['err']->add(sprintf($GLOBALS['_LANG']['username_invalid'], htmlspecialchars($username)));
+        }
+    }
+
+   
 
     if ($GLOBALS['err']->error_no > 0)
     {
         return false;
     }
 
-    /* 检查是否和管理员重名 */
+    /* 检查是否和管理员重名
     if (admin_registered($username))
     {
         $GLOBALS['err']->add(sprintf($GLOBALS['_LANG']['username_exist'], $username));
         return false;
     }
-
+ */
     if (!$GLOBALS['user']->add_user($username, $password, $email))
     {
+    	
         if ($GLOBALS['user']->error == ERR_INVALID_USERNAME)
         {
             $GLOBALS['err']->add(sprintf($GLOBALS['_LANG']['username_invalid'], $username));
@@ -108,50 +113,9 @@ function register($username, $password, $email, $other = array())
     else
     {
         //注册成功
-
         /* 设置成登录状态 */
         $GLOBALS['user']->set_session($username);
         $GLOBALS['user']->set_cookie($username);
-
-        /* 注册送积分 */
-        if (!empty($GLOBALS['_CFG']['register_points']))
-        {
-            log_account_change($_SESSION['user_id'], 0, 0, $GLOBALS['_CFG']['register_points'], $GLOBALS['_CFG']['register_points'], $GLOBALS['_LANG']['register_points']);
-        }
-
-        /*推荐处理*/
-        $affiliate  = unserialize($GLOBALS['_CFG']['affiliate']);
-        if (isset($affiliate['on']) && $affiliate['on'] == 1)
-        {
-            // 推荐开关开启
-            $up_uid     = get_affiliate();
-            empty($affiliate) && $affiliate = array();
-            $affiliate['config']['level_register_all'] = intval($affiliate['config']['level_register_all']);
-            $affiliate['config']['level_register_up'] = intval($affiliate['config']['level_register_up']);
-            if ($up_uid)
-            {
-                if (!empty($affiliate['config']['level_register_all']))
-                {
-                    if (!empty($affiliate['config']['level_register_up']))
-                    {
-                        $rank_points = $GLOBALS['db']->getOne("SELECT rank_points FROM " . $GLOBALS['ecs']->table('users') . " WHERE user_id = '$up_uid'");
-                        if ($rank_points + $affiliate['config']['level_register_all'] <= $affiliate['config']['level_register_up'])
-                        {
-                            log_account_change($up_uid, 0, 0, $affiliate['config']['level_register_all'], 0, sprintf($GLOBALS['_LANG']['register_affiliate'], $_SESSION['user_id'], $username));
-                        }
-                    }
-                    else
-                    {
-                        log_account_change($up_uid, 0, 0, $affiliate['config']['level_register_all'], 0, $GLOBALS['_LANG']['register_affiliate']);
-                    }
-                }
-
-                //设置推荐人
-                $sql = 'UPDATE '. $GLOBALS['ecs']->table('users') . ' SET parent_id = ' . $up_uid . ' WHERE user_id = ' . $_SESSION['user_id'];
-
-                $GLOBALS['db']->query($sql);
-            }
-        }
 
         //定义other合法的变量数组
         $other_key_array = array('msn', 'qq', 'office_phone', 'home_phone', 'mobile_phone');
@@ -172,11 +136,9 @@ function register($username, $password, $email, $other = array())
             }
             $update_data = array_merge($update_data, $other);
         }
-        $GLOBALS['db']->autoExecute($GLOBALS['ecs']->table('users'), $update_data, 'UPDATE', 'user_id = ' . $_SESSION['user_id']);
-
+        
+        $GLOBALS['db']->autoExecute($GLOBALS['ddt']->table('user'), $update_data, 'UPDATE', 'id = ' . $_SESSION['user_id']);
         update_user_info();      // 更新用户信息
-        recalculate_price();     // 重新计算购物车中的商品价格
-
         return true;
     }
 }
@@ -340,6 +302,8 @@ function send_regiter_hash ($user_id)
  */
 function register_hash ($operation, $key)
 {
+	
+
     if ($operation == 'encode')
     {
         $user_id = intval($key);

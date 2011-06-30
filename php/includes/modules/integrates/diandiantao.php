@@ -59,9 +59,9 @@ class diandiantao extends integrate
     function diandiantao($cfg)
     {
         parent::integrate(array());
-        $this->user_table = 'users';
-        $this->field_id = 'user_id';
-        $this->field_name = 'user_name';
+        $this->user_table = 'user';
+        $this->field_id = 'id';
+        $this->field_name = 'username';
         $this->field_pass = 'password';
         $this->field_email = 'email';
         $this->field_gender = 'sex';

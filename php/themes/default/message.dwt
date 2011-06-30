@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+        <noscript>
+            <meta http-equiv=refresh content="0; URL=/prdhp?hl=zh-cn&tab=wf&output=nojs">
+        </noscript>
+        <!--{if $auto_redirect}-->
+        	<!--{if $message.back_url}-->
+        	<meta http-equiv=refresh name=save content="3; URL={$message.back_url}" />
+        	<!-- {else} -->
+        	<script type="text/javascript">
+				function redirect () { setTimeout("window.history.back()",3000); };
+				redirect();
+			</script>
+			<!--{/if}-->
+		<!--{/if}-->
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta name="Keywords" content="{$keywords}" />
+        <meta name="Description" content="{$description}" />
+        <title>
+            {$page_title}
+        </title>
+        <link type="text/css" rel="stylesheet" href="{$themes}/style/ps-style.css">
+        <link type="text/css" rel="stylesheet" href="{$themes}/style/ps-newstyle.css">
+        <link type="text/css" rel="stylesheet" href="{$themes}/style/ps-center.css">
+        <link type="text/css" rel="stylesheet" href="{$themes}/style/ps-product.css">
+
+</head>
+<body>
+		<!-- #BeginLibraryItem "/library/page_header.lbi" --><!-- #EndLibraryItem -->
+
+		<div class="blank"></div>
+		<div class="block">
+		  <div class="box">
+		   <div class="box_1">
+		    <h3><span>{$lang.system_info}</span></h3>
+		    <div class="boxCenterList RelaArticle" align="center">
+		      <div style="margin:20px auto;">
+		      <p style="font-size: 14px; font-weight:bold; color: red;">{$message.content}</p>
+		        <div class="blank"></div>
+		        <!-- {if $message.url_info} -->
+		          <!--{foreach from=$message.url_info key=info item=url}-->
+		          <p><a href="{$url}">{$info}</a></p>
+		          <!--{/foreach}-->
+		        <!--{/if}-->
+		      </div>
+		    </div>
+		   </div>
+		  </div>
+		</div>
+		<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
+</body>
+
+</html>

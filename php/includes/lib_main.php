@@ -28,39 +28,13 @@ function update_user_info()
         return false;
     }
 
-    /* 查询会员信息 */
-    $time = date('Y-m-d');
-    $sql = 'SELECT u.user_money, u.pay_points, u.user_rank, u.rank_points, '.
-            '  u.last_login, u.last_ip'.
-            ' FROM ' .$GLOBALS['ecs']->table('users'). ' AS u ' .
-            " WHERE u.user_id = '$_SESSION[user_id]'";
-    if ($row = $GLOBALS['db']->getRow($sql))
-    {
-        /* 更新SESSION */
-        $_SESSION['last_time']   = $row['last_login'];
-        $_SESSION['last_ip']     = $row['last_ip'];
-        $_SESSION['login_fail']  = 0;
-
-        /* 取得用户等级和折扣 */
-        if ($row['user_rank'] == 0)
-        {
-                $_SESSION['user_rank'] = 0;
-                $_SESSION['discount']  = 1;
-        }
-        else
-        {
-            // 特殊等级
-                $_SESSION['user_rank'] = 0;
-                $_SESSION['discount']  = 1;
-        }
-    }
-
+   
     /* 更新登录时间，登录次数及登录ip */
-    $sql = "UPDATE " .$GLOBALS['ecs']->table('users'). " SET".
+    $sql = "UPDATE " .$GLOBALS['ddt']->table('user'). " SET".
            " visit_count = visit_count + 1, ".
            " last_ip = '" .real_ip(). "',".
            " last_login = '" .gmtime(). "'".
-           " WHERE user_id = '" . $_SESSION['user_id'] . "'";
+           " WHERE id = '" . $_SESSION['id'] . "'";
     $GLOBALS['db']->query($sql);
 	
 }
@@ -89,7 +63,113 @@ function get_user_info($id=0)
  */
 function assign_ur_here($cat = 0, $str = '')
 {
-   die('assign_ur_here');	
+    /* 判断是否重写，取得文件名 */
+    $cur_url = basename(PHP_SELF);
+    if (intval($GLOBALS['_CFG']['rewrite']))
+    {
+        $filename = strpos($cur_url,'-') ? substr($cur_url, 0, strpos($cur_url,'-')) : substr($cur_url, 0, -4);
+    }
+    else
+    {
+        $filename = substr($cur_url, 0, -4);
+    }
+
+    /* 初始化“页面标题”和“当前位置” */
+    $page_title = $GLOBALS['_CFG']['web_title'];
+    $ur_here    = '<a href=".">' . $GLOBALS['_LANG']['home'] . '</a>';
+	
+    /* 根据文件名分别处理中间的部分 */
+    if ($filename != 'index')
+    {
+    	
+    	/* 搜索 */
+           if ('search' == $filename )
+            {
+                if ($cat > 0)
+                {
+                    $cat_arr = get_article_parent_cats($cat);
+
+                    $key  = 'acid';
+                    $type = 'article_cat';
+                }
+                else
+                {
+                    $cat_arr = array();
+                }
+            }
+        /* 处理有分类的 */
+        elseif (in_array($filename, array('category', 'goods', 'article_cat', 'article', 'brand','search')))
+        {
+            /* 商品分类或商品 */
+            if ('category' == $filename || 'goods' == $filename || 'brand' == $filename)
+            {
+                if ($cat > 0)
+                {
+                    $cat_arr = get_parent_cats($cat);
+
+                    $key     = 'cid';
+                    $type    = 'category';
+                }
+                else
+                {
+                    $cat_arr = array();
+                }
+            }
+            /* 文章分类或文章 */
+            elseif ('article_cat' == $filename || 'article' == $filename)
+            {
+                if ($cat > 0)
+                {
+                    $cat_arr = get_article_parent_cats($cat);
+
+                    $key  = 'acid';
+                    $type = 'article_cat';
+                }
+                else
+                {
+                    $cat_arr = array();
+                }
+            }
+
+            /* 循环分类 */
+            if (!empty($cat_arr))
+            {
+                krsort($cat_arr);
+                foreach ($cat_arr AS $val)
+                {
+                    $page_title = htmlspecialchars($val['cat_name']) . '_' . $page_title;
+                    $args       = array($key => $val['cat_id']);
+                    $ur_here   .= ' <code>&gt;</code> <a href="' . build_uri($type, $args, $val['cat_name']) . '">' .
+                                    htmlspecialchars($val['cat_name']) . '</a>';
+                }
+            }
+        }
+        /* 处理无分类的 */
+        else
+        {
+            /* 团购 */
+            if ('group_buy' == $filename)
+            {
+                $page_title = $GLOBALS['_LANG']['group_buy_goods'] . '_' . $page_title;
+                $args       = array('gbid' => '0');
+                $ur_here   .= ' <code>&gt;</code> <a href="group_buy.php">' .
+                                $GLOBALS['_LANG']['group_buy_goods'] . '</a>';
+            }
+           
+            /* 其他的在这里补充 */
+        }
+    }
+
+    /* 处理最后一部分 */
+    if (!empty($str))
+    {
+        $page_title  = $str . '_' . $page_title;
+        $ur_here    .= ' <code>&gt;</code> ' . $str;
+//        echo "$page_title $ur_here<br>";
+    }
+
+    /* 返回值 */
+    return array('title' => $page_title, 'ur_here' => $ur_here);	
 }
 
 /**
@@ -835,7 +915,7 @@ function show_message($content, $links = '', $hrefs = '', $type = 'info', $auto_
     else
     {
         $link   = empty($links) ? $GLOBALS['_LANG']['back_up_page'] : $links;
-        $href    = empty($hrefs) ? 'javascript:history.back()'       : $hrefs;
+        $href   = $hrefs;
         $msg['url_info'][$link] = $href;
         $msg['back_url'] = $href;
     }
@@ -845,10 +925,6 @@ function show_message($content, $links = '', $hrefs = '', $type = 'info', $auto_
     $GLOBALS['smarty']->assign('page_title', $position['title']);   // 页面标题
     $GLOBALS['smarty']->assign('ur_here',    $position['ur_here']); // 当前位置
 
-    if (is_null($GLOBALS['smarty']->get_template_vars('helps')))
-    {
-        $GLOBALS['smarty']->assign('helps', get_shop_help()); // 网店帮助
-    }
 
     $GLOBALS['smarty']->assign('auto_redirect', $auto_redirect);
     $GLOBALS['smarty']->assign('message', $msg);
@@ -990,8 +1066,7 @@ function assign_template($ctype = '', $catlist = array())
     $smarty->assign('ecs_version',   VERSION);
     $smarty->assign('icp_number',    $GLOBALS['_CFG']['icp_number']);
     $smarty->assign('username',      !empty($_SESSION['user_name']) ? $_SESSION['user_name'] : '');
-    $smarty->assign('category_list', cat_list(0, 0, true,  2, false));
-    $smarty->assign('catalog_list',  cat_list(0, 0, false, 1, false));
+
     $smarty->assign('navigator_list',        get_navigator($ctype, $catlist));  //自定义导航栏
 
     if (!empty($GLOBALS['_CFG']['search_keywords']))
