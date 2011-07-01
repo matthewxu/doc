@@ -67,7 +67,7 @@
                     <TD style="PADDING-LEFT: 10px" vAlign=top align=middle>
                         <DIV id=rhs>
                             <DIV id=rhs_login_signup_box>
-                                <FORM id=gaia_loginform method=post action=https://www.google.com/accounts/ServiceLoginAuth>
+                                <FORM id=gaia_loginform method=post action="{$thisfile}?act=act_login">
                                     <DIV id=gaia_loginbox>
                                         <TABLE class=form-noindent border=0 cellSpacing=3 cellPadding=5 width="100%">
                                             <TBODY>
@@ -104,7 +104,12 @@
                                                                             </DIV>
                                                                         </TD>
                                                                         <TD>
-                                                                            <INPUT id=continue value=http://www.google.com.hk/ type=hidden name=continue><INPUT id=dsh value=-6201437495787808296 type=hidden name=dsh><INPUT id=hl value=zh-TW type=hidden name=hl><INPUT id=timeStmp type=hidden name=timeStmp><INPUT id=secTok type=hidden name=secTok><INPUT value=k7xXY3c592k type=hidden name=GALX><INPUT id=Email class="gaia le val" size=18 name=Email>
+																			<INPUT id=dsh value=-6201437495787808296 type=hidden name=dsh>
+																			<INPUT id=hl value=zh-TW type=hidden name=hl>
+																			<INPUT id=timeStmp type=hidden name=timeStmp>
+																			<INPUT id=secTok type=hidden name=secTok>
+																			<INPUT value=k7xXY3c592k type=hidden name=GALX>
+																			<INPUT id=Email class="gaia le val" size=18 name=Email>
                                                                         </TD>
                                                                     </TR>
                                                                     <TR>
@@ -124,15 +129,58 @@
                                                                             <INPUT id=Passwd class="gaia le val" size=18 type=password name=Passwd>
                                                                         </TD>
                                                                     </TR>
+																	<!--{if $enabled_captcha} -->                                                           <TR id=password-row class=enabled>
+                                                                    <TD noWrap align=right>
+                                                                            <SPAN class="gaia le lbl">{$lang.wordsconfirm}： </SPAN>
+                                                                        </TD>
+                                                                        <TD>
+                                                                        	<input type="text" size="6" name="captcha" class="inputBg"	onblur="checkcaptcha(this.value);" />
+                                                                           <img src="captcha.php?{$rand}" alt="captcha" style="vertical-align: middle;cursor: pointer;" onClick="this.src='captcha.php?'+Math.random()" />
+                                                                        </TD>
+                                                                    </TR>
+																	 <script type="text/javascript">
+																	 		    function  checkcaptcha(capvalue){																							
+																								var turl = "{$thisfile}?act=checkcaptcha&captcha="+encodeURIComponent(capvalue);
+																								Ajax.call( turl,'' ,ajaxcheckcaptcha, 'GET', 'TEXT', true, true );
+																								//XMLHttp.send_request("GET",turl,null ,"text" ,GetUemail);
+																						}
+																						
+																						function ajaxcheckcaptcha(resultText){
+																							resultText=decodeURIComponent(resultText);
+																							if(resultText == 0){
+																								ESe('','captchaErrorMessage');
+																								return true;
+																							} else {
+																								ESe(resultText,'captchaErrorMessage');
+																								return false;
+																							}
+																							
+																						}
+																				 function ESe(b,e){
+																							if (b) {
+																								document.getElementById(e).innerHTML = b;
+																								document.getElementById(e).style.display = 'block';
+																							}else{
+																								document.getElementById(e).innerHTML = '';
+																								document.getElementById(e).style.display = 'none';
+																							}
+																						}	
+																	 
+																	 </script> 	
+																	<!--{/if}-->
+																	
                                                                     <TR>
                                                                         <TD>
                                                                         </TD>
                                                                         <TD align=left>
+                                                                        	<div class="errormsg" id="captchaErrorMessage" style="display: none;" />
                                                                         </TD>
                                                                     </TR>
+																	
                                                                     <TR id=rememberme-row class=enabled>
                                                                         <TD vAlign=top align=right>
-                                                                            <INPUT id=PersistentCookie value=yes CHECKED type=checkbox name=PersistentCookie><INPUT value=1 type=hidden name=rmShown>
+                                                                            <INPUT id=PersistentCookie value=yes CHECKED type=checkbox name=remember>
+																			<INPUT value=1 type=hidden name=rmShown>
                                                                         </TD>
                                                                         <TD align=left>
                                                                             <LABEL id=PersistentCookieLabel class="gaia le rem" for=PersistentCookie>保持登入狀態 </LABEL>

@@ -1,0 +1,163 @@
+body, td, a, p, .h, div, span, textarea { font-family: arial, sans-serif; }
+
+.h { font-size: 20px; }
+
+.q { color: #0000cc; }
+
+a { color: #0000cc; }
+
+.ml:link {color: #666666;}
+.ml:visited {color: #666666;}
+
+.i, .i:link { color: #a90a08 }
+
+div.n { margin-top: 1ex }
+.n a { font-size: 10pt; color: #000 }
+.n .i { font-size: 10pt; font-weight: bold }
+
+.b { font-size: 12pt; color: #00c; font-weight: bold }
+
+.bl { font-size: 10pt; padding:5px; background-color: #E5ECF9; }
+
+.star-web{ margin: 1px 0px 0px 0px; border:0px; cursor: pointer; }
+.star-img{ margin: 0px 5px 0px 0px; border:0px; cursor: pointer; }
+
+tr.off td { background-color: #FFFFFF; font-size: 83%; }
+tr.off2 td { background-color: #FFFFFF; font-size: 83%; }
+tr.on td { background-color: #e5ecf9; font-size: 83%; font-weight:bold; }
+tr.off:hover td { background-color: #EFF5FF; }
+tr.on a, tr.off a, tr.off2 a { white-space: nowrap; }
+
+.cp { width: 99%; padding:0 0 0 2px; cursor: pointer; }
+.cb { width: 1%; padding:0 0 0 2px; }
+
+#ac-list { border: 1px solid #4E991F; background: #DAF3CB; color: #000; font-family: arial, sans-serif; font-size: 83%; padding:2px; }
+#ac-list div { padding: 1px 3px 1px 3px; }
+#ac-list .selected { background: #6DC738; color: #000; }
+
+.froogle { color: #008000; }
+.froogle a, .froogle a:link, .froogle a:visited { color: #008000; }
+.prod-lnk a, .prod-lnk a:link, .prod-lnk a:visited { color: #7777cc; }
+
+.smh_truncate { table-layout: fixed; border-collapse: collapse; }
+.smh_truncate td { white-space: nowrap; vertical-align: top; }
+.smh_truncate div { overflow: hidden; text-overflow: ellipsis; font-size: 83%; }
+
+.bar_blue { overflow: hidden; background-color: #99CCFF; height:50%; margin-top:5px; }
+
+.per a { text-decoration: none; }
+.per a:hover { text-decoration: underline; }
+.per { margin-top: 1px; }
+
+.sortable {font-size:83%;border:0px;}
+table.sortable a.sortheader { font-weight: bold; text-decoration: none; display:
+block; }
+
+.form-noindent { background-color: #ffffff; border: #C3D9FF 1px solid }
+
+.footer {
+  padding: 5px;
+  font-size: 83%;
+  background: #e5ecf9;
+  text-align: center;
+}
+
+
+.ts     { font-size: 83%; background-color: #e5ecf9;
+          color: #666666; text-align: center; }
+.noborder { border-width: 0px; border-collapse: collapse; }
+.noborder tr, .noborder td { padding: 0px; }
+
+.elem   { font-size: 83%; }
+.grey   { color: #666666; }
+.blue   { color: #7777CC; }
+.green  { color: green; }
+.wide   { width: 100%; }
+.center { margin-left: auto; margin-right: auto; }
+.nowrap { white-space: nowrap; }
+.textcenter { text-align: center; }
+.valign { vertical-align: top; }
+hr.thingrey { border: 0; height: 1px; color: #999999;
+              background-color: #999999; }
+.lg,.nf,.nc,.nn,.np,.nlp,.xb{position:relative;overflow:hidden;display:block}
+.lgc,.nfc,.nci,.nlc,.nnc,.npc,.nlpc,.xbc{position:absolute}
+.nf,.nc,.nn,.np,.nlp{height:26px}
+.lg{width:150px;height:52px;margin:15px 0 12px}
+.lgc{top:-26px}
+.npc{left:0}
+.nf{width:18px}
+.nfc{left:-26px}
+.nc{width:16px}
+.nci{left:-44px}
+.nlc{left:-60px}
+.nn{width:100px}
+.nnc{left:-76px}
+.np{width:44px}
+.nlp{width:46px}
+.nlpc {left:-76px}
+.xb{width:12px;height:12px;cursor:pointer}
+.xbc{left:-138px;top:-78px}
+.starsizer{width:15px;height:15px;position:relative;overflow:hidden;display:block}
+.staron{position:absolute;left:0;top:0}
+.staroff{position:absolute;left:-15px;top:0}
+.zipsizer{width:12px;height:12px;position:relative;overflow:hidden}
+.zipplus{position:absolute;left:-30px;top:0}
+.zipmin{position:absolute;left:-42px;top:0}
+
+.modal-dialog {
+  background: #c1d9ff;
+  border: 1px solid #3a5774;
+  color: #000;
+  padding: 4px;
+  position: absolute;
+}
+
+.modal-dialog a,
+.modal-dialog a:link,
+.modal-dialog a:visited  {
+  color: #06c;
+  cursor: pointer;
+}
+
+.modal-dialog-bg {
+  background: #666;
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+
+.modal-dialog-title {
+  background: #e0edfe;
+  color: #000;
+  cursor: pointer;
+  font-size: 120%;
+  font-weight: bold;
+
+  /* Add padding on the right to ensure the close button has room. */
+  padding: 8px 31px 8px 8px;
+
+  position: relative;
+  _zoom: 1; /* Ensures proper width in IE6 RTL. */
+}
+
+.modal-dialog-title-close {
+  /* Client apps may override the URL at which they serve the sprite. */
+  background: #e0edfe url(https://ssl.gstatic.com/editor/editortoolbar.png) no-repeat -528px 0;
+  cursor: default;
+  height: 15px;
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  width: 15px;
+  vertical-align: middle;
+}
+
+.modal-dialog-buttons,
+.modal-dialog-content {
+  background-color: #fff;
+  padding: 8px;
+}
+
+.goog-buttonset-default {
+  font-weight: bold;
+}

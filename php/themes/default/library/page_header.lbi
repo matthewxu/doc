@@ -1,13 +1,24 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <div id="gbar">
+        	<div  id="gbar1">
             <nobr>
                 <!--{foreach from=$ohead item=ihead}-->
-                <a id="gb_1" href="{$ihead.modellink}"  class="gb1">
+                <a href="{$ihead.modellink}">
                     {$ihead.model}
                 </a>
 				<!--{/foreach}-->
-
-            </nobr>
+				
+	        </nobr>
+            <span class="gb_user" >
+            <!--{if $user_info}-->
+            	<a href="{$thisfile}?act=profile">hi,{$user_info.username}</a>
+            	<a href="{$thisfile}?act=logout">退出</a>
+            <!--{else}-->
+            	<a href="{$thisfile}?act=login">登錄</a>
+            	<a href="{$thisfile}?act=reg">註冊</a>
+			<!--{/if}-->
+            </span>
+           </div>
         </div>
         <div id="body-center">
             <div id="srch-block">

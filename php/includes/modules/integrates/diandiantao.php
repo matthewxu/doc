@@ -90,7 +90,6 @@ class diandiantao extends integrate
         {
             $post_username = $username;
         }
-
         if ($password === null)
         {
             $sql = "SELECT " . $this->field_id .
@@ -101,9 +100,9 @@ class diandiantao extends integrate
         }
         else
         {
-            $sql = "SELECT user_id, password, salt " .
+            $sql = "SELECT id, password, salt " .
                    " FROM " . $this->table($this->user_table).
-                   " WHERE user_name='$post_username'";
+                   " WHERE username='$post_username'";
             $row = $this->db->getRow($sql);
 
             if (empty($row))
@@ -119,7 +118,7 @@ class diandiantao extends integrate
                 }
                 else
                 {
-                    return $row['user_id'];
+                    return $row['id'];
                 }
             }
             else
@@ -158,7 +157,7 @@ class diandiantao extends integrate
                        " WHERE user_id = '$row[user_id]'";
                 $this->db->query($sql);
 
-                return $row['user_id'];
+                return $row['id'];
             }
         }
     }

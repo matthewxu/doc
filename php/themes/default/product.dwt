@@ -21,7 +21,6 @@
        <div id="result-count">
                 {searchsum}获得约 14,143 条结果（用时 0.39 秒）
        </div>
-            
         <!-- #BeginLibraryItem "/library/page_attribute.lbi" --><!-- #EndLibraryItem -->
      	<!-- #BeginLibraryItem "/library/page_search_result.lbi" --><!-- #EndLibraryItem -->
 		<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->

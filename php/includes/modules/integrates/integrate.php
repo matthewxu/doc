@@ -140,8 +140,10 @@ class integrate
      */
     function login($username, $password, $remember = null)
     {
+
         if ($this->check_user($username, $password) > 0)
         {
+
             if ($this->need_sync)
             {
                 $this->sync($username,$password);
@@ -489,9 +491,7 @@ class integrate
      */
     function check_user($username, $password = null)
     {
-
         $post_username = $username;
-
         /* 如果没有定义密码则只检查用户名 */
         if ($password === null)
         {
@@ -606,7 +606,7 @@ class integrate
             if ($row)
             {
                 $_SESSION['user_id']   = $row['id'];
-                $_SESSION['user_name'] = $username;
+                $_SESSION['username'] = $username;
                 $_SESSION['email']     = $row['email'];
             }
         }

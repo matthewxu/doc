@@ -36,12 +36,22 @@ a {
   color: #4272db;
 }
 
-#gbar a.gb1, #gbar a.gb2, #gbar a.gb3, #gbar a.gb4 {
+#gbar{
+  font-size:110%;
   color:#11c !important;
+  background-color: #7ca1d6;
+  margin-left:-10px;
+  margin-right:-10px;
+  height:30px;
 }
-
-#gbar a.gb2:hover{color:#fff !important}
-
+#gbar1{
+  position:relative;
+  top:5px;
+  bottom:0px;
+  left:20px;
+}
+#gbar a:hover{color:#fff !important}
+#gbar .gb_user {float:right; margin-right:50px;}
 .a, .a:link,
 #ads-top cite, #ads-rhs cite, #ads-bot cite, #ads-prices cite,
 .result cite, .result-seller-rating a {

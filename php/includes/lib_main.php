@@ -50,7 +50,18 @@ function update_user_info()
 function get_user_info($id=0)
 {
 	
-		die('get_user_info');	
+    if ($id == 0)
+    {
+        $id = $_SESSION['user_id'];
+    }
+    $time = date('Y-m-d');
+    $sql  = 'SELECT u.id, u.email, u.username'.
+            ' FROM ' .$GLOBALS['ddt']->table('user'). ' AS u ' .
+            " WHERE u.id = '$id'";
+    $user = $GLOBALS['db']->getRow($sql);
+    $bonus = get_user_bonus($id);
+    $user['username']    = $user['user_name'];
+    return $user;
     
 }
 /**

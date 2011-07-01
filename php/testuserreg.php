@@ -15,13 +15,16 @@ define('IN_DDT', true);
 require(dirname(__FILE__) . '/includes/init.php');
 /* 载入语言文件 */
 require_once(ROOT_PATH . 'languages/' .$_CFG['lang']. '/user.php');
-$user_id = $_SESSION['user_id'];
+
 
 $action  = isset($_REQUEST['act']) ? trim($_REQUEST['act']) : 'reg';
-
+$user_id = $_SESSION['user_id'];
+if($user_id && ($action=='reg' || $action=='login')){
+	$action='profile';
+}
 $thisfile=basename(PHP_SELF);
 $smarty->assign('thisfile', $thisfile);
-	
+$smarty->assign('action',   $action);	
 /* 显示会员注册界面 */
 if ($action == 'reg')
 {
@@ -116,7 +119,8 @@ elseif ($action == 'act_reg')
         if (register($username, $password, $email, $other) !== false)
         {
         	
-
+        	$userinfo['username']= $_SESSION['username'];
+			$smarty->assign('user_info',$userinfo );
             /* 写入密码提示问题和答案 */
             if (!empty($passwd_answer) && !empty($sel_question))
             {
@@ -125,6 +129,7 @@ elseif ($action == 'act_reg')
             }
 
             $ucdata = empty($user->ucdata)? "" : $user->ucdata;
+            
             show_message(sprintf($_LANG['register_success'], $username . $ucdata), array($_LANG['back_up_page'], $_LANG['profile_lnk']), array($back_act, 'user.php'), 'info');
         }
         else
@@ -176,14 +181,94 @@ elseif ($action=='checkcaptcha')
         die(0);
 }
 
-/* 验证用户注册用户名是否可以注册 */
-elseif ($action == 'is_registered')
+elseif ($action == 'profile')
 {
+		$smarty->assign('action',     'profile');
+		if($user_id){
+			$userinfo['username']= $_SESSION['username'];
+			$smarty->assign('user_info',$userinfo );
+		}
+        $smarty->display('user.dwt');
 }
 
 
 elseif($action == 'check_email')
 {
+}elseif($action == 'logout')
+{    
+	if (!isset($back_act) && isset($GLOBALS['_SERVER']['HTTP_REFERER']))
+    {
+        $back_act = strpos($GLOBALS['_SERVER']['HTTP_REFERER'], $thisfile) ? './index.php' : $GLOBALS['_SERVER']['HTTP_REFERER'];
+    }
+
+    $user->logout();
+    $ucdata = empty($user->ucdata)? "" : $user->ucdata;
+    show_message($_LANG['logout'] . $ucdata, array($_LANG['back_up_page'], $_LANG['back_home_lnk']), array($back_act, 'index.php'), 'info');
+}elseif($action=='login'){
+	if (empty($back_act))
+    {
+        if (empty($back_act) && isset($GLOBALS['_SERVER']['HTTP_REFERER']))
+        {
+            $back_act = strpos($GLOBALS['_SERVER']['HTTP_REFERER'], $thisfile) ? './index.php' : $GLOBALS['_SERVER']['HTTP_REFERER'];
+        }
+        else
+        {
+            $back_act = $thisfile;
+        }
+
+    }
+
+
+    $captcha = intval($_CFG['captcha']);
+    if (($captcha & CAPTCHA_LOGIN) && (!($captcha & CAPTCHA_LOGIN_FAIL) || (($captcha & CAPTCHA_LOGIN_FAIL) && $_SESSION['login_fail'] > 2)) && gd_version() > 0)
+    {
+        $GLOBALS['smarty']->assign('enabled_captcha', 1);
+        $GLOBALS['smarty']->assign('rand', mt_rand());
+    }
+
+    $smarty->assign('back_act', $back_act);
+    $smarty->display('user.dwt');
+}
+elseif($action=='act_login'){
+	
+    $username = isset($_POST['Email']) ? trim($_POST['Email']) : '';
+    $password = isset($_POST['Passwd']) ? trim($_POST['Passwd']) : '';
+    $back_act = isset($_POST['back_act']) ? trim($_POST['back_act']) : '';
+
+
+    $captcha = intval($_CFG['captcha']);
+    if (($captcha & CAPTCHA_LOGIN) && (!($captcha & CAPTCHA_LOGIN_FAIL) || (($captcha & CAPTCHA_LOGIN_FAIL) && $_SESSION['login_fail'] > 2)) && gd_version() > 0)
+    {
+        if (empty($_POST['captcha']))
+        {
+            show_message($_LANG['invalid_captcha'], $_LANG['relogin_lnk'], 'user.php', 'error');
+        }
+
+        /* 检查验证码 */
+        include_once('includes/cls_captcha.php');
+
+        $validator = new captcha();
+        $validator->session_word = 'captcha_login';
+        if (!$validator->check_word($_POST['captcha']))
+        {
+            show_message($_LANG['invalid_captcha'], $_LANG['relogin_lnk'], 'user.php', 'error');
+        }
+    }
+
+    if ($user->login($username, $password,isset($_POST['remember'])))
+    {
+    	
+        update_user_info();
+        $userinfo['username']= $_SESSION['username'];
+		$smarty->assign('user_info',$userinfo );
+        $ucdata = isset($user->ucdata)? $user->ucdata : '';
+        show_message($_LANG['login_success'] . $ucdata , array($_LANG['back_up_page'], $_LANG['profile_lnk']), array($back_act,'user.php'), 'info');
+    }
+    else
+    {
+        $_SESSION['login_fail'] ++ ;
+        show_message($_LANG['login_failure'], $_LANG['relogin_lnk'], 'user.php', 'error');
+    }
 }
 
 ?>

@@ -24,6 +24,8 @@
         	<!-- #BeginLibraryItem "/library/page_user_login.lbi.htm" --><!-- #EndLibraryItem -->
         <!-- {elseif $action eq 'reg'} -->
      		<!-- #BeginLibraryItem "/library/page_user_reg_xungou.lbi.htm" --><!-- #EndLibraryItem -->
+     	<!-- {elseif $action eq 'profile'} -->
+     		<!-- #BeginLibraryItem "/library/page_user_profile.lbi.htm" --><!-- #EndLibraryItem -->
      	<!-- {elseif $action eq 'recovery'} -->
      		<!-- #BeginLibraryItem "/library/page_user_recovery.lbi.htm" --><!-- #EndLibraryItem -->
      	<!-- {/if} -->
