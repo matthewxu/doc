@@ -331,6 +331,19 @@ CREATE TABLE `channel` (
 
 /*Data for the table `channel` */
 
+/*Table structure for table `comment` */
+
+DROP TABLE IF EXISTS `comment`;
+
+CREATE TABLE `comment` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `comment` text,
+  `createtime` timestamp NOT NULL default CURRENT_TIMESTAMP,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `comment` */
+
 /*Table structure for table `config` */
 
 DROP TABLE IF EXISTS `config`;
@@ -354,7 +367,7 @@ insert  into `config`(`id`,`code`,`type`,`store_range`,`store_dir`,`value`,`sort
 insert  into `config`(`id`,`code`,`type`,`store_range`,`store_dir`,`value`,`sort_order`) values (906,'cache_time','','','','360000',1);
 insert  into `config`(`id`,`code`,`type`,`store_range`,`store_dir`,`value`,`sort_order`) values (907,'integrate_config','','','','',1);
 insert  into `config`(`id`,`code`,`type`,`store_range`,`store_dir`,`value`,`sort_order`) values (908,'captcha','','','','0',1);
-insert  into `config`(`id`,`code`,`type`,`store_range`,`store_dir`,`value`,`sort_order`) values (909,'captcha_width','','','','100',1);
+insert  into `config`(`id`,`code`,`type`,`store_range`,`store_dir`,`value`,`sort_order`) values (909,'captcha_width','','','','80',1);
 insert  into `config`(`id`,`code`,`type`,`store_range`,`store_dir`,`value`,`sort_order`) values (910,'captcha_height','','','','20',1);
 insert  into `config`(`id`,`code`,`type`,`store_range`,`store_dir`,`value`,`sort_order`) values (911,'reg_closed','','','','0',1);
 
@@ -449,7 +462,7 @@ CREATE TABLE `sessions` (
 
 /*Data for the table `sessions` */
 
-insert  into `sessions`(`sesskey`,`expiry`,`userid`,`adminid`,`ip`,`user_name`,`user_rank`,`discount`,`email`,`data`) values ('f9bf344799dd4ec53b6beeeb5a2a4b29',1309414686,32881,0,'127.0.0.1','2@1.com',0,'1.00','2@1.com','a:4:{s:7:\"from_ad\";i:0;s:7:\"referer\";s:6:\"本站\";s:10:\"login_fail\";i:0;s:8:\"back_act\";s:45:\"http://localhost:8880/buy/php/testuserreg.php\";}');
+insert  into `sessions`(`sesskey`,`expiry`,`userid`,`adminid`,`ip`,`user_name`,`user_rank`,`discount`,`email`,`data`) values ('a80b908d759263689fb24638448c3a20',1309516834,0,0,'127.0.0.1','0',0,'1.00','0','a:3:{s:7:\"from_ad\";i:0;s:7:\"referer\";s:6:\"本站\";s:10:\"login_fail\";i:0;}');
 
 /*Table structure for table `sessions_log` */
 
@@ -504,7 +517,7 @@ CREATE TABLE `stats` (
   `access_url` varchar(255) NOT NULL default '',
   PRIMARY KEY  (`id`),
   KEY `access_time` (`access_time`)
-) ENGINE=MyISAM AUTO_INCREMENT=62 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=69 DEFAULT CHARSET=utf8;
 
 /*Data for the table `stats` */
 
@@ -569,6 +582,13 @@ insert  into `stats`(`id`,`access_time`,`ip_address`,`visit_times`,`browser`,`sy
 insert  into `stats`(`id`,`access_time`,`ip_address`,`visit_times`,`browser`,`system`,`language`,`area`,`referer_domain`,`referer_path`,`access_url`) values (59,1309372243,'127.0.0.1',30,'FireFox 3.6.18','Windows NT','zh-cn,zh','LAN','','','/buy/php/testuserreg.php');
 insert  into `stats`(`id`,`access_time`,`ip_address`,`visit_times`,`browser`,`system`,`language`,`area`,`referer_domain`,`referer_path`,`access_url`) values (60,1309376345,'127.0.0.1',31,'FireFox 3.6.18','Windows NT','zh-cn,zh','LAN','http://localhost:8880','/buy/php/testuserreg.php','/buy/php/testuserreg.php');
 insert  into `stats`(`id`,`access_time`,`ip_address`,`visit_times`,`browser`,`system`,`language`,`area`,`referer_domain`,`referer_path`,`access_url`) values (61,1309381613,'127.0.0.1',32,'FireFox 3.6.18','Windows NT','zh-cn,zh','LAN','','','/buy/php/testuserreg.php');
+insert  into `stats`(`id`,`access_time`,`ip_address`,`visit_times`,`browser`,`system`,`language`,`area`,`referer_domain`,`referer_path`,`access_url`) values (62,1309412639,'127.0.0.1',33,'FireFox 3.6.18','Windows NT','zh-cn,zh','LAN','','','/buy/php/testuserreg.php');
+insert  into `stats`(`id`,`access_time`,`ip_address`,`visit_times`,`browser`,`system`,`language`,`area`,`referer_domain`,`referer_path`,`access_url`) values (63,1309414354,'127.0.0.1',1,'Safari 534.30','Windows NT','zh-CN,zh','LAN','','','/buy/php/testuserreg.php');
+insert  into `stats`(`id`,`access_time`,`ip_address`,`visit_times`,`browser`,`system`,`language`,`area`,`referer_domain`,`referer_path`,`access_url`) values (64,1309472355,'127.0.0.1',34,'FireFox 3.6.18','Windows NT','zh-cn,zh','LAN','','','/buy/php/testuserreg.php');
+insert  into `stats`(`id`,`access_time`,`ip_address`,`visit_times`,`browser`,`system`,`language`,`area`,`referer_domain`,`referer_path`,`access_url`) values (65,1309479262,'127.0.0.1',35,'FireFox 3.6.18','Windows NT','zh-cn,zh','LAN','','','/buy/php/testuserreg.php');
+insert  into `stats`(`id`,`access_time`,`ip_address`,`visit_times`,`browser`,`system`,`language`,`area`,`referer_domain`,`referer_path`,`access_url`) values (66,1309482046,'127.0.0.1',36,'FireFox 3.6.18','Windows NT','zh-cn,zh','LAN','http://localhost:8880','/buy/php/testuserreg.php','/buy/php/testuserreg.php');
+insert  into `stats`(`id`,`access_time`,`ip_address`,`visit_times`,`browser`,`system`,`language`,`area`,`referer_domain`,`referer_path`,`access_url`) values (67,1309487786,'127.0.0.1',37,'FireFox 3.6.18','Windows NT','zh-cn,zh','LAN','http://localhost:8880','/buy/php/testuserreg.php?act=logout','/buy/php/testuserreg.php');
+insert  into `stats`(`id`,`access_time`,`ip_address`,`visit_times`,`browser`,`system`,`language`,`area`,`referer_domain`,`referer_path`,`access_url`) values (68,1309488034,'127.0.0.1',38,'FireFox 3.6.18','Windows NT','zh-cn,zh','LAN','','','/buy/php/index.php');
 
 /*Table structure for table `tag` */
 
@@ -581,6 +601,51 @@ CREATE TABLE `tag` (
 ) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tag` */
+
+/*Table structure for table `url` */
+
+DROP TABLE IF EXISTS `url`;
+
+CREATE TABLE `url` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `url` varchar(1024) NOT NULL,
+  `content` text,
+  `catid` int(11) default '0',
+  `md5` varchar(32) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `url` */
+
+/*Table structure for table `url2user2comment` */
+
+DROP TABLE IF EXISTS `url2user2comment`;
+
+CREATE TABLE `url2user2comment` (
+  `ID` int(11) unsigned NOT NULL auto_increment,
+  `URLID` int(11) NOT NULL,
+  `USERID` int(11) NOT NULL,
+  `COMMENTID` int(11) NOT NULL,
+  `CREATETIME` timestamp NOT NULL default CURRENT_TIMESTAMP,
+  PRIMARY KEY  (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `url2user2comment` */
+
+/*Table structure for table `url2user2tag` */
+
+DROP TABLE IF EXISTS `url2user2tag`;
+
+CREATE TABLE `url2user2tag` (
+  `id` int(11) unsigned NOT NULL auto_increment,
+  `urlid` int(11) default NULL,
+  `userid` int(11) default NULL,
+  `tagid` int(11) default NULL,
+  `createtime` timestamp NULL default CURRENT_TIMESTAMP,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `url2user2tag` */
 
 /*Table structure for table `user` */
 
@@ -597,8 +662,8 @@ CREATE TABLE `user` (
   `Answer` text,
   `Validate` enum('YES','NO') default 'NO',
   `reg_time` timestamp NULL default CURRENT_TIMESTAMP,
-  `VisitTime` datetime default '0000-00-00 00:00:00',
-  `last_login` char(2) NOT NULL default '',
+  `last_login` datetime default '0000-00-00 00:00:00',
+  `Country` varchar(20) NOT NULL default '',
   `PostalCode` varchar(8) NOT NULL default '',
   `UserPaidAccount` varchar(64) NOT NULL default '',
   `AccountType` smallint(4) NOT NULL default '0',
@@ -609,15 +674,21 @@ CREATE TABLE `user` (
   `mobile_phone` varchar(20) default NULL,
   `visit_count` int(10) default '0',
   `last_ip` varchar(20) default NULL,
+  `salt` varchar(10) default '',
   PRIMARY KEY  (`ID`,`UserName`,`Birthday`),
   UNIQUE KEY `Email` (`Email`),
   KEY `login` (`UserName`,`password`)
-) ENGINE=MyISAM AUTO_INCREMENT=32882 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=32887 DEFAULT CHARSET=utf8;
 
 /*Data for the table `user` */
 
-insert  into `user`(`ID`,`UserName`,`password`,`Email`,`sex`,`Birthday`,`Question`,`Answer`,`Validate`,`reg_time`,`VisitTime`,`last_login`,`PostalCode`,`UserPaidAccount`,`AccountType`,`qq`,`msn`,`office_phone`,`home_phone`,`mobile_phone`,`visit_count`,`last_ip`) values (32871,'1@1.com','111111','1@1.com',NULL,'0000-00-00',NULL,NULL,'NO',NULL,'0000-00-00 00:00:00','','','',0,NULL,NULL,NULL,NULL,NULL,0,NULL);
-insert  into `user`(`ID`,`UserName`,`password`,`Email`,`sex`,`Birthday`,`Question`,`Answer`,`Validate`,`reg_time`,`VisitTime`,`last_login`,`PostalCode`,`UserPaidAccount`,`AccountType`,`qq`,`msn`,`office_phone`,`home_phone`,`mobile_phone`,`visit_count`,`last_ip`) values (32881,'2@1.com','96e79218965eb72c92a549dd5a330112','2@1.com',NULL,'0000-00-00',NULL,NULL,'NO','0000-00-00 00:00:00','0000-00-00 00:00:00','','','',0,'','','','','',0,NULL);
+insert  into `user`(`ID`,`UserName`,`password`,`Email`,`sex`,`Birthday`,`Question`,`Answer`,`Validate`,`reg_time`,`last_login`,`Country`,`PostalCode`,`UserPaidAccount`,`AccountType`,`qq`,`msn`,`office_phone`,`home_phone`,`mobile_phone`,`visit_count`,`last_ip`,`salt`) values (32871,'1@1.com','111111','1@1.com',NULL,'0000-00-00',NULL,NULL,'NO',NULL,'0000-00-00 00:00:00','','','',0,NULL,NULL,NULL,NULL,NULL,0,NULL,'');
+insert  into `user`(`ID`,`UserName`,`password`,`Email`,`sex`,`Birthday`,`Question`,`Answer`,`Validate`,`reg_time`,`last_login`,`Country`,`PostalCode`,`UserPaidAccount`,`AccountType`,`qq`,`msn`,`office_phone`,`home_phone`,`mobile_phone`,`visit_count`,`last_ip`,`salt`) values (32881,'2@1.com','96e79218965eb72c92a549dd5a330112','2@1.com',NULL,'0000-00-00',NULL,NULL,'NO','0000-00-00 00:00:00','0000-00-00 00:00:00','','','',0,'','','','','',0,NULL,'');
+insert  into `user`(`ID`,`UserName`,`password`,`Email`,`sex`,`Birthday`,`Question`,`Answer`,`Validate`,`reg_time`,`last_login`,`Country`,`PostalCode`,`UserPaidAccount`,`AccountType`,`qq`,`msn`,`office_phone`,`home_phone`,`mobile_phone`,`visit_count`,`last_ip`,`salt`) values (32882,'a@a.com','96e79218965eb72c92a549dd5a330112','a@a.com',NULL,'0000-00-00',NULL,NULL,'NO','0000-00-00 00:00:00','0000-00-00 00:00:00','','','',0,'','','','','',0,NULL,'');
+insert  into `user`(`ID`,`UserName`,`password`,`Email`,`sex`,`Birthday`,`Question`,`Answer`,`Validate`,`reg_time`,`last_login`,`Country`,`PostalCode`,`UserPaidAccount`,`AccountType`,`qq`,`msn`,`office_phone`,`home_phone`,`mobile_phone`,`visit_count`,`last_ip`,`salt`) values (32883,'dfd@hot.com','96e79218965eb72c92a549dd5a330112','dfd@hot.com',NULL,'0000-00-00',NULL,NULL,'NO','0000-00-00 00:00:00','0000-00-00 00:00:00','','','',0,'','','','','',0,NULL,'');
+insert  into `user`(`ID`,`UserName`,`password`,`Email`,`sex`,`Birthday`,`Question`,`Answer`,`Validate`,`reg_time`,`last_login`,`Country`,`PostalCode`,`UserPaidAccount`,`AccountType`,`qq`,`msn`,`office_phone`,`home_phone`,`mobile_phone`,`visit_count`,`last_ip`,`salt`) values (32884,'matthew0816@gmail.com','96e79218965eb72c92a549dd5a330112','matthew0816@gmail.com',NULL,'0000-00-00',NULL,NULL,'NO','0000-00-00 00:00:00','0000-00-00 00:00:00','','','',0,'','','','','',0,NULL,'');
+insert  into `user`(`ID`,`UserName`,`password`,`Email`,`sex`,`Birthday`,`Question`,`Answer`,`Validate`,`reg_time`,`last_login`,`Country`,`PostalCode`,`UserPaidAccount`,`AccountType`,`qq`,`msn`,`office_phone`,`home_phone`,`mobile_phone`,`visit_count`,`last_ip`,`salt`) values (32885,'a@a11.com','96e79218965eb72c92a549dd5a330112','a@a11.com',NULL,'0000-00-00',NULL,NULL,'NO','0000-00-00 00:00:00','0000-00-00 00:00:00','','','',0,'','','','','',0,NULL,'');
+insert  into `user`(`ID`,`UserName`,`password`,`Email`,`sex`,`Birthday`,`Question`,`Answer`,`Validate`,`reg_time`,`last_login`,`Country`,`PostalCode`,`UserPaidAccount`,`AccountType`,`qq`,`msn`,`office_phone`,`home_phone`,`mobile_phone`,`visit_count`,`last_ip`,`salt`) values (32886,'2@2.com','96e79218965eb72c92a549dd5a330112','2@2.com',NULL,'0000-00-00',NULL,NULL,'NO','0000-00-00 00:00:00','0000-00-00 00:00:00','','','',0,'','','','','',0,NULL,'');
 
 /*Table structure for table `userhistory` */
 
