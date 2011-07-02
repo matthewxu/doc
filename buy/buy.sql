@@ -358,7 +358,7 @@ CREATE TABLE `config` (
   `sort_order` tinyint(3) unsigned NOT NULL default '1',
   PRIMARY KEY  (`id`),
   UNIQUE KEY `code` (`code`)
-) ENGINE=MyISAM AUTO_INCREMENT=912 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=922 DEFAULT CHARSET=utf8;
 
 /*Data for the table `config` */
 
@@ -370,6 +370,50 @@ insert  into `config`(`id`,`code`,`type`,`store_range`,`store_dir`,`value`,`sort
 insert  into `config`(`id`,`code`,`type`,`store_range`,`store_dir`,`value`,`sort_order`) values (909,'captcha_width','','','','80',1);
 insert  into `config`(`id`,`code`,`type`,`store_range`,`store_dir`,`value`,`sort_order`) values (910,'captcha_height','','','','20',1);
 insert  into `config`(`id`,`code`,`type`,`store_range`,`store_dir`,`value`,`sort_order`) values (911,'reg_closed','','','','0',1);
+insert  into `config`(`id`,`code`,`type`,`store_range`,`store_dir`,`value`,`sort_order`) values (912,'mail_charset','','','','utf8',1);
+insert  into `config`(`id`,`code`,`type`,`store_range`,`store_dir`,`value`,`sort_order`) values (913,'shop_name','','','','diandiantao',1);
+insert  into `config`(`id`,`code`,`type`,`store_range`,`store_dir`,`value`,`sort_order`) values (914,'mail_service','','','','0',1);
+insert  into `config`(`id`,`code`,`type`,`store_range`,`store_dir`,`value`,`sort_order`) values (916,'smtp_host','','','','localhost',1);
+insert  into `config`(`id`,`code`,`type`,`store_range`,`store_dir`,`value`,`sort_order`) values (917,'smtp_port','','','','25',1);
+insert  into `config`(`id`,`code`,`type`,`store_range`,`store_dir`,`value`,`sort_order`) values (918,'smtp_user','','','','',1);
+insert  into `config`(`id`,`code`,`type`,`store_range`,`store_dir`,`value`,`sort_order`) values (919,'smtp_pass','','','','',1);
+insert  into `config`(`id`,`code`,`type`,`store_range`,`store_dir`,`value`,`sort_order`) values (920,'smtp_mail','','','','',1);
+insert  into `config`(`id`,`code`,`type`,`store_range`,`store_dir`,`value`,`sort_order`) values (921,'smtp_ssl','','','','0',1);
+
+/*Table structure for table `mail_templates` */
+
+DROP TABLE IF EXISTS `mail_templates`;
+
+CREATE TABLE `mail_templates` (
+  `template_id` tinyint(1) unsigned NOT NULL auto_increment,
+  `template_code` varchar(30) NOT NULL default '',
+  `is_html` tinyint(1) unsigned NOT NULL default '0',
+  `template_subject` varchar(200) NOT NULL default '',
+  `template_content` text NOT NULL,
+  `last_modify` int(10) unsigned NOT NULL default '0',
+  `last_send` int(10) unsigned NOT NULL default '0',
+  `type` varchar(10) NOT NULL,
+  PRIMARY KEY  (`template_id`),
+  UNIQUE KEY `template_code` (`template_code`),
+  KEY `type` (`type`)
+) ENGINE=MyISAM AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+
+/*Data for the table `mail_templates` */
+
+insert  into `mail_templates`(`template_id`,`template_code`,`is_html`,`template_subject`,`template_content`,`last_modify`,`last_send`,`type`) values (1,'send_password',1,'密码找回','{$user_name}您好！<br>\n<br>\n您已经进行了密码重置的操作，请点击以下链接(或者复制到您的浏览器):<br>\n<br>\n<a href=\"{$reset_email}\" target=\"_blank\">{$reset_email}</a><br>\n<br>\n以确认您的新密码重置操作！<br>\n<br>\n{$shop_name}<br>\n{$send_date}',1194824789,0,'template');
+insert  into `mail_templates`(`template_id`,`template_code`,`is_html`,`template_subject`,`template_content`,`last_modify`,`last_send`,`type`) values (2,'order_confirm',0,'订单确认通知','亲爱的{$order.consignee}，你好！ \n\n我们已经收到您于 {$order.formated_add_time} 提交的订单，该订单编号为：{$order.order_sn} 请记住这个编号以便日后的查询。\n\n{$shop_name}\n{$sent_date}\n\n\n',1158226370,0,'template');
+insert  into `mail_templates`(`template_id`,`template_code`,`is_html`,`template_subject`,`template_content`,`last_modify`,`last_send`,`type`) values (3,'deliver_notice',1,'发货通知','亲爱的{$order.consignee}。你好！</br></br>\n\n您的订单{$order.order_sn}已于{$send_time}按照您预定的配送方式给您发货了。</br>\n</br>\n{if $order.invoice_no}发货单号是{$order.invoice_no}。</br>{/if}\n</br>\n在您收到货物之后请点击下面的链接确认您已经收到货物：</br>\n<a href=\"{$confirm_url}\" target=\"_blank\">{$confirm_url}</a></br></br>\n如果您还没有收到货物可以点击以下链接给我们留言：</br></br>\n<a href=\"{$send_msg_url}\" target=\"_blank\">{$send_msg_url}</a></br>\n<br>\n再次感谢您对我们的支持。欢迎您的再次光临。 <br>\n<br>\n{$shop_name} </br>\n{$send_date}',1194823291,0,'template');
+insert  into `mail_templates`(`template_id`,`template_code`,`is_html`,`template_subject`,`template_content`,`last_modify`,`last_send`,`type`) values (4,'order_cancel',0,'订单取消','亲爱的{$order.consignee}，你好！ \n\n您的编号为：{$order.order_sn}的订单已取消。\n\n{$shop_name}\n{$send_date}',1156491130,0,'template');
+insert  into `mail_templates`(`template_id`,`template_code`,`is_html`,`template_subject`,`template_content`,`last_modify`,`last_send`,`type`) values (5,'order_invalid',0,'订单无效','亲爱的{$order.consignee}，你好！\n\n您的编号为：{$order.order_sn}的订单无效。\n\n{$shop_name}\n{$send_date}',1156491164,0,'template');
+insert  into `mail_templates`(`template_id`,`template_code`,`is_html`,`template_subject`,`template_content`,`last_modify`,`last_send`,`type`) values (6,'send_bonus',0,'发红包','亲爱的{$user_name}您好！\n\n恭喜您获得了{$count}个红包，金额{if $count > 1}分别{/if}为{$money}\n\n{$shop_name}\n{$send_date}\n',1156491184,0,'template');
+insert  into `mail_templates`(`template_id`,`template_code`,`is_html`,`template_subject`,`template_content`,`last_modify`,`last_send`,`type`) values (7,'group_buy',1,'团购商品','亲爱的{$consignee}，您好！<br>\n<br>\n您于{$order_time}在本店参加团购商品活动，所购买的商品名称为：{$goods_name}，数量：{$goods_number}，订单号为：{$order_sn}，订单金额为：{$order_amount}<br>\n<br>\n此团购商品现在已到结束日期，并达到最低价格，您现在可以对该订单付款。<br>\n<br>\n请点击下面的链接：<br>\n<a href=\"{$shop_url}\" target=\"_blank\">{$shop_url}</a><br>\n<br>\n请尽快登录到用户中心，查看您的订单详情信息。 <br>\n<br>\n{$shop_name} <br>\n<br>\n{$send_date}',1194824668,0,'template');
+insert  into `mail_templates`(`template_id`,`template_code`,`is_html`,`template_subject`,`template_content`,`last_modify`,`last_send`,`type`) values (8,'register_validate',1,'邮件验证','{$user_name}您好！<br><br>\r\n\r\n这封邮件是 {$shop_name} 发送的。你收到这封邮件是为了验证你注册邮件地址是否有效。如果您已经通过验证了，请忽略这封邮件。<br>\r\n请点击以下链接(或者复制到您的浏览器)来验证你的邮件地址:<br>\r\n<a href=\"{$validate_email}\" target=\"_blank\">{$validate_email}</a><br><br>\r\n\r\n{$shop_name}<br>\r\n{$send_date}',1162201031,0,'template');
+insert  into `mail_templates`(`template_id`,`template_code`,`is_html`,`template_subject`,`template_content`,`last_modify`,`last_send`,`type`) values (9,'virtual_card',0,'虚拟卡片','亲爱的{$order.consignee}\r\n你好！您的订单{$order.order_sn}中{$goods.goods_name} 商品的详细信息如下:\r\n{foreach from=$virtual_card item=card}\r\n{if $card.card_sn}卡号：{$card.card_sn}{/if}{if $card.card_password}卡片密码：{$card.card_password}{/if}{if $card.end_date}截至日期：{$card.end_date}{/if}\r\n{/foreach}\r\n再次感谢您对我们的支持。欢迎您的再次光临。\r\n\r\n{$shop_name} \r\n{$send_date}',1162201031,0,'template');
+insert  into `mail_templates`(`template_id`,`template_code`,`is_html`,`template_subject`,`template_content`,`last_modify`,`last_send`,`type`) values (10,'attention_list',0,'关注商品','亲爱的{$user_name}您好~\n\n您关注的商品 : {$goods_name} 最近已经更新,请您查看最新的商品信息\n\n{$goods_url}\r\n\r\n{$shop_name} \r\n{$send_date}',1183851073,0,'template');
+insert  into `mail_templates`(`template_id`,`template_code`,`is_html`,`template_subject`,`template_content`,`last_modify`,`last_send`,`type`) values (11,'remind_of_new_order',0,'新订单通知','亲爱的店长，您好：\n   快来看看吧，又有新订单了。\n    订单号:{$order.order_sn} \n 订单金额:{$order.order_amount}，\n 用户购买商品:{foreach from=$goods_list item=goods_data}{$goods_data.goods_name}(货号:{$goods_data.goods_sn})    {/foreach} \n\n 收货人:{$order.consignee}， \n 收货人地址:{$order.address}，\n 收货人电话:{$order.tel} {$order.mobile}, \n 配送方式:{$order.shipping_name}(费用:{$order.shipping_fee}), \n 付款方式:{$order.pay_name}(费用:{$order.pay_fee})。\n\n               系统提醒\n               {$send_date}',1196239170,0,'template');
+insert  into `mail_templates`(`template_id`,`template_code`,`is_html`,`template_subject`,`template_content`,`last_modify`,`last_send`,`type`) values (12,'goods_booking',1,'缺货回复','亲爱的{$user_name}。你好！</br></br>{$dispose_note}</br></br>您提交的缺货商品链接为</br></br><a href=\"{$goods_link}\" target=\"_blank\">{$goods_name}</a></br><br>{$shop_name} </br>{$send_date}',0,0,'template');
+insert  into `mail_templates`(`template_id`,`template_code`,`is_html`,`template_subject`,`template_content`,`last_modify`,`last_send`,`type`) values (13,'user_message',1,'留言回复','亲爱的{$user_name}。你好！</br></br>对您的留言：</br>{$message_content}</br></br>店主作了如下回复：</br>{$message_note}</br></br>您可以随时回到店中和店主继续沟通。</br>{$shop_name}</br>{$send_date}',0,0,'template');
+insert  into `mail_templates`(`template_id`,`template_code`,`is_html`,`template_subject`,`template_content`,`last_modify`,`last_send`,`type`) values (14,'recomment',1,'用户评论回复','亲爱的{$user_name}。你好！</br></br>对您的评论：</br>“{$comment}”</br></br>店主作了如下回复：</br>“{$recomment}”</br></br>您可以随时回到店中和店主继续沟通。</br>{$shop_name}</br>{$send_date}',0,0,'template');
 
 /*Table structure for table `merchant` */
 
@@ -462,7 +506,7 @@ CREATE TABLE `sessions` (
 
 /*Data for the table `sessions` */
 
-insert  into `sessions`(`sesskey`,`expiry`,`userid`,`adminid`,`ip`,`user_name`,`user_rank`,`discount`,`email`,`data`) values ('a80b908d759263689fb24638448c3a20',1309516834,0,0,'127.0.0.1','0',0,'1.00','0','a:3:{s:7:\"from_ad\";i:0;s:7:\"referer\";s:6:\"本站\";s:10:\"login_fail\";i:0;}');
+insert  into `sessions`(`sesskey`,`expiry`,`userid`,`adminid`,`ip`,`user_name`,`user_rank`,`discount`,`email`,`data`) values ('1133df6ad9d3789bc475fc77a2eb300d',1309627932,0,0,'127.0.0.1','0',0,'1.00','0','a:3:{s:7:\"from_ad\";i:0;s:7:\"referer\";s:6:\"本站\";s:10:\"login_fail\";i:0;}');
 
 /*Table structure for table `sessions_log` */
 
@@ -517,7 +561,7 @@ CREATE TABLE `stats` (
   `access_url` varchar(255) NOT NULL default '',
   PRIMARY KEY  (`id`),
   KEY `access_time` (`access_time`)
-) ENGINE=MyISAM AUTO_INCREMENT=69 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=82 DEFAULT CHARSET=utf8;
 
 /*Data for the table `stats` */
 
@@ -589,6 +633,19 @@ insert  into `stats`(`id`,`access_time`,`ip_address`,`visit_times`,`browser`,`sy
 insert  into `stats`(`id`,`access_time`,`ip_address`,`visit_times`,`browser`,`system`,`language`,`area`,`referer_domain`,`referer_path`,`access_url`) values (66,1309482046,'127.0.0.1',36,'FireFox 3.6.18','Windows NT','zh-cn,zh','LAN','http://localhost:8880','/buy/php/testuserreg.php','/buy/php/testuserreg.php');
 insert  into `stats`(`id`,`access_time`,`ip_address`,`visit_times`,`browser`,`system`,`language`,`area`,`referer_domain`,`referer_path`,`access_url`) values (67,1309487786,'127.0.0.1',37,'FireFox 3.6.18','Windows NT','zh-cn,zh','LAN','http://localhost:8880','/buy/php/testuserreg.php?act=logout','/buy/php/testuserreg.php');
 insert  into `stats`(`id`,`access_time`,`ip_address`,`visit_times`,`browser`,`system`,`language`,`area`,`referer_domain`,`referer_path`,`access_url`) values (68,1309488034,'127.0.0.1',38,'FireFox 3.6.18','Windows NT','zh-cn,zh','LAN','','','/buy/php/index.php');
+insert  into `stats`(`id`,`access_time`,`ip_address`,`visit_times`,`browser`,`system`,`language`,`area`,`referer_domain`,`referer_path`,`access_url`) values (69,1309498903,'127.0.0.1',39,'FireFox 3.6.18','Windows NT','zh-cn,zh','LAN','http://localhost:8880','/buy/php/testuserreg.php?act=login','/buy/php/testuserreg.php');
+insert  into `stats`(`id`,`access_time`,`ip_address`,`visit_times`,`browser`,`system`,`language`,`area`,`referer_domain`,`referer_path`,`access_url`) values (70,1309499918,'127.0.0.1',40,'FireFox 3.6.18','Windows NT','zh-cn,zh','LAN','','','/buy/php/index.php');
+insert  into `stats`(`id`,`access_time`,`ip_address`,`visit_times`,`browser`,`system`,`language`,`area`,`referer_domain`,`referer_path`,`access_url`) values (71,1309501255,'127.0.0.1',41,'FireFox 3.6.18','Windows NT','zh-cn,zh','LAN','','','/buy/php/index.php');
+insert  into `stats`(`id`,`access_time`,`ip_address`,`visit_times`,`browser`,`system`,`language`,`area`,`referer_domain`,`referer_path`,`access_url`) values (72,1309502213,'127.0.0.1',42,'FireFox 3.6.18','Windows NT','zh-cn,zh','LAN','','','/buy/php/testuserreg.php');
+insert  into `stats`(`id`,`access_time`,`ip_address`,`visit_times`,`browser`,`system`,`language`,`area`,`referer_domain`,`referer_path`,`access_url`) values (73,1309502626,'127.0.0.1',43,'FireFox 3.6.18','Windows NT','zh-cn,zh','LAN','','','/buy/php/testuserreg.php');
+insert  into `stats`(`id`,`access_time`,`ip_address`,`visit_times`,`browser`,`system`,`language`,`area`,`referer_domain`,`referer_path`,`access_url`) values (74,1309504231,'127.0.0.1',44,'FireFox 3.6.18','Windows NT','zh-cn,zh','LAN','','','/buy/php/testuserreg.php');
+insert  into `stats`(`id`,`access_time`,`ip_address`,`visit_times`,`browser`,`system`,`language`,`area`,`referer_domain`,`referer_path`,`access_url`) values (75,1309504884,'127.0.0.1',45,'FireFox 3.6.18','Windows NT','zh-cn,zh','LAN','','','/buy/php/testuserreg.php');
+insert  into `stats`(`id`,`access_time`,`ip_address`,`visit_times`,`browser`,`system`,`language`,`area`,`referer_domain`,`referer_path`,`access_url`) values (76,1309504959,'127.0.0.1',46,'FireFox 3.6.18','Windows NT','zh-cn,zh','LAN','','','/buy/php/testuserreg.php');
+insert  into `stats`(`id`,`access_time`,`ip_address`,`visit_times`,`browser`,`system`,`language`,`area`,`referer_domain`,`referer_path`,`access_url`) values (77,1309545354,'127.0.0.1',47,'FireFox 3.6.18','Windows NT','zh-cn,zh','LAN','','','/buy/php/testuserreg.php');
+insert  into `stats`(`id`,`access_time`,`ip_address`,`visit_times`,`browser`,`system`,`language`,`area`,`referer_domain`,`referer_path`,`access_url`) values (78,1309581741,'127.0.0.1',48,'FireFox 3.6.18','Windows NT','zh-cn,zh','LAN','http://localhost:8880','/buy/php/testuserreg.php?act=qpsw','/buy/php/testuserreg.php');
+insert  into `stats`(`id`,`access_time`,`ip_address`,`visit_times`,`browser`,`system`,`language`,`area`,`referer_domain`,`referer_path`,`access_url`) values (79,1309591661,'127.0.0.1',49,'FireFox 3.6.18','Windows NT','zh-cn,zh','LAN','','','/buy/php/testuserreg.php');
+insert  into `stats`(`id`,`access_time`,`ip_address`,`visit_times`,`browser`,`system`,`language`,`area`,`referer_domain`,`referer_path`,`access_url`) values (80,1309597243,'127.0.0.1',50,'FireFox 3.6.18','Windows NT','zh-cn,zh','LAN','http://localhost:8880','/buy/php/testuserreg.php?act=qpsw','/buy/php/testuserreg.php');
+insert  into `stats`(`id`,`access_time`,`ip_address`,`visit_times`,`browser`,`system`,`language`,`area`,`referer_domain`,`referer_path`,`access_url`) values (81,1309597867,'127.0.0.1',51,'FireFox 3.6.18','Windows NT','zh-cn,zh','LAN','','','/buy/php/user.php');
 
 /*Table structure for table `tag` */
 
@@ -688,7 +745,7 @@ insert  into `user`(`ID`,`UserName`,`password`,`Email`,`sex`,`Birthday`,`Questio
 insert  into `user`(`ID`,`UserName`,`password`,`Email`,`sex`,`Birthday`,`Question`,`Answer`,`Validate`,`reg_time`,`last_login`,`Country`,`PostalCode`,`UserPaidAccount`,`AccountType`,`qq`,`msn`,`office_phone`,`home_phone`,`mobile_phone`,`visit_count`,`last_ip`,`salt`) values (32883,'dfd@hot.com','96e79218965eb72c92a549dd5a330112','dfd@hot.com',NULL,'0000-00-00',NULL,NULL,'NO','0000-00-00 00:00:00','0000-00-00 00:00:00','','','',0,'','','','','',0,NULL,'');
 insert  into `user`(`ID`,`UserName`,`password`,`Email`,`sex`,`Birthday`,`Question`,`Answer`,`Validate`,`reg_time`,`last_login`,`Country`,`PostalCode`,`UserPaidAccount`,`AccountType`,`qq`,`msn`,`office_phone`,`home_phone`,`mobile_phone`,`visit_count`,`last_ip`,`salt`) values (32884,'matthew0816@gmail.com','96e79218965eb72c92a549dd5a330112','matthew0816@gmail.com',NULL,'0000-00-00',NULL,NULL,'NO','0000-00-00 00:00:00','0000-00-00 00:00:00','','','',0,'','','','','',0,NULL,'');
 insert  into `user`(`ID`,`UserName`,`password`,`Email`,`sex`,`Birthday`,`Question`,`Answer`,`Validate`,`reg_time`,`last_login`,`Country`,`PostalCode`,`UserPaidAccount`,`AccountType`,`qq`,`msn`,`office_phone`,`home_phone`,`mobile_phone`,`visit_count`,`last_ip`,`salt`) values (32885,'a@a11.com','96e79218965eb72c92a549dd5a330112','a@a11.com',NULL,'0000-00-00',NULL,NULL,'NO','0000-00-00 00:00:00','0000-00-00 00:00:00','','','',0,'','','','','',0,NULL,'');
-insert  into `user`(`ID`,`UserName`,`password`,`Email`,`sex`,`Birthday`,`Question`,`Answer`,`Validate`,`reg_time`,`last_login`,`Country`,`PostalCode`,`UserPaidAccount`,`AccountType`,`qq`,`msn`,`office_phone`,`home_phone`,`mobile_phone`,`visit_count`,`last_ip`,`salt`) values (32886,'2@2.com','96e79218965eb72c92a549dd5a330112','2@2.com',NULL,'0000-00-00',NULL,NULL,'NO','0000-00-00 00:00:00','0000-00-00 00:00:00','','','',0,'','','','','',0,NULL,'');
+insert  into `user`(`ID`,`UserName`,`password`,`Email`,`sex`,`Birthday`,`Question`,`Answer`,`Validate`,`reg_time`,`last_login`,`Country`,`PostalCode`,`UserPaidAccount`,`AccountType`,`qq`,`msn`,`office_phone`,`home_phone`,`mobile_phone`,`visit_count`,`last_ip`,`salt`) values (32886,'2@2.com','e3ceb5881a0a1fdaad01296d7554868d','2@2.com',NULL,'0000-00-00',NULL,NULL,'NO','0000-00-00 00:00:00','0000-00-00 00:00:00','','','',0,'','','','','',0,NULL,'');
 
 /*Table structure for table `userhistory` */
 
