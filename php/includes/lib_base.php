@@ -210,6 +210,7 @@ function send_mail($name, $email, $subject, $content, $type = 0, $notification=f
      */
     if ($GLOBALS['_CFG']['mail_service'] == 0 && function_exists('mail'))
     {
+    	
         /* 邮件的头部信息 */
         $content_type = ($type == 0) ? 'Content-Type: text/plain; charset=' . $charset : 'Content-Type: text/html; charset=' . $charset;
         $headers = array();

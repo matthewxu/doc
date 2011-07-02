@@ -932,9 +932,9 @@ function show_message($content, $links = '', $hrefs = '', $type = 'info', $auto_
     }
 
     $msg['type']    = $type;
-    $position = assign_ur_here(0, $GLOBALS['_LANG']['sys_msg']);
-    $GLOBALS['smarty']->assign('page_title', $position['title']);   // 页面标题
-    $GLOBALS['smarty']->assign('ur_here',    $position['ur_here']); // 当前位置
+
+//    $GLOBALS['smarty']->assign('page_title', $position['title']);   // 页面标题
+//	$GLOBALS['smarty']->assign('ur_here',    $position['ur_here']); // 当前位置
 
 
     $GLOBALS['smarty']->assign('auto_redirect', $auto_redirect);
@@ -1066,29 +1066,6 @@ function assign_template($ctype = '', $catlist = array())
     global $smarty;
 	
     #nav bar,footer,seo
-    $smarty->assign('image_width',   $GLOBALS['_CFG']['image_width']);
-    $smarty->assign('stats_code',    $GLOBALS['_CFG']['stats_code']);
-    $smarty->assign('copyright',     sprintf($GLOBALS['_LANG']['copyright'], date('Y'), $GLOBALS['_CFG']['shop_name']));
-    $smarty->assign('shop_name',     $GLOBALS['_CFG']['shop_name']);
-    $smarty->assign('service_email', $GLOBALS['_CFG']['service_email']);
-    $smarty->assign('service_phone', $GLOBALS['_CFG']['service_phone']);
-    $smarty->assign('shop_address',  $GLOBALS['_CFG']['shop_address']);
-    $smarty->assign('licensed',      license_info());
-    $smarty->assign('ecs_version',   VERSION);
-    $smarty->assign('icp_number',    $GLOBALS['_CFG']['icp_number']);
-    $smarty->assign('username',      !empty($_SESSION['user_name']) ? $_SESSION['user_name'] : '');
-
-    $smarty->assign('navigator_list',        get_navigator($ctype, $catlist));  //自定义导航栏
-
-    if (!empty($GLOBALS['_CFG']['search_keywords']))
-    {
-        $searchkeywords = explode(',', trim($GLOBALS['_CFG']['search_keywords']));
-    }
-    else
-    {
-        $searchkeywords = array();
-    }
-    $smarty->assign('searchkeywords', $searchkeywords);
 }
 
 /**
@@ -1314,4 +1291,24 @@ function license_info()
     }
 }
 
+
+/****
+ * 获取站点模块
+ * 
+ * @return array 
+ */
+function  get_sitemodel()
+{
+$sitemodel=array(); 
+$sitemodel[0]['desc']='购物频道，省钱省心省事。找优惠券，比较价格，比较质量，查看评论，查看星级';
+$sitemodel[0]['name']='购物';
+$sitemodel[0]['link']='http://www.diandiantao.com/shopping';
+$sitemodel[0]['img']='http://mail.google.com/mail?hl=zh-TW';
+
+$sitemodel[1]['desc']='收藏频道，喜欢就收藏起来，还可以写写评论，推荐给朋友，推荐到开心网，微薄呢，<br>来吧，看看大家都喜欢什么，都有些什么评论';
+$sitemodel[1]['name']='收藏';
+$sitemodel[1]['link']='http://www.diandiantao.com/markreview';
+$sitemodel[1]['img']='http://mail.google.com/mail?hl=zh-TW';
+return $sitemodel; 	
+}
 ?>

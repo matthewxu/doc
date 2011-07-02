@@ -82,7 +82,17 @@ $_LANG['acceptandsignin'] ='我接受下面服务条款，创建我的帐户';
 /* AJAX 相关 */
 $_LANG['invalid_captcha'] = '对不起，您输入的验证码不正确。';
 
+/*登录界面*/
+$_LANG['siteregdesc']='<B>請登入以個人化您的 diandiantao 經驗。 </B><BR><BR>在您登入「diandiantao 帳戶」之後，diandiantao 還有更多功能可提供給您。您可以自訂網頁、檢視建議，並取得更相關的搜尋結果。 <BR><BR> 請於右側登入，或者，只要選擇一組電子郵件地址和密碼，您就可以 ';
+$_LANG['siteregfree']='免費建立帳戶';
+$_LANG['login']='登录';
+$_LANG['email']='电子邮件地址';
+$_LANG['psw']='密码';
+$_LANG['emaileg2'] = '例如 myname@example.com';
+$_LANG['cannotlogin'] = '忘记密码？忘记帐号？無法登入帳戶嗎？';
+$_LANG['ifnoaccount']='如果您没有DIANDIANTAO帐户，则可';
 
 
+$_LANG['sendemail_false'] = "邮件发送失败，请与网站管理员联系！";
 
 ?>

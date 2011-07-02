@@ -6,60 +6,26 @@
                 <TR>
                     <TD vAlign=top width="75%">
                         <DIV >
-                            <B>請登入以個人化您的 diandiantao 經驗。 </B>
-                            <BR>
-                            <BR>
-                            在您登入「diandiantao 帳戶」之後，diandiantao 還有更多功能可提供給您。 
-                            您可以自訂網頁、檢視建議，並取得更相關的搜尋結果。 
-                            <BR>
-                            <BR>
-                            請於右側登入，或者，只要選擇一組電子郵件地址和密碼，您就可以 <A href="https://www.google.com/accounts/NewAccount?continue=http%3A%2F%2Fwww.google.com.hk%2F&amp;hl=zh-TW">免費建立帳戶</A>。 
+                        	{$lang.siteregdesc}
+                            <A href="{$thisfile}?act=reg">{$lang.siteregfree}</A>。 
                             <BR>
                             <BR>
                             <TABLE border=0 cellPadding=4>
                                 <TBODY>
+                                	<!--{foreach from=$omodel item=imodel}-->
                                     <TR>
                                         <TD>
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         </TD>
                                         <TD>
-                                            <IMG alt=Gmail src="ddt-login_files/googlemail-32.png">
-                                            </IMG>
                                         </TD>
                                         <TD>
-                                            <A href="http://mail.google.com/mail?hl=zh-TW">Gmail</A>
+                                            <A href="{$imodel.link}">{$imodel.name}</A>
                                             <BR>
-                                            使用可減少垃圾郵件的新式電子郵件 
+                                             {$imodel.desc}
                                         </TD>
                                     </TR>
-                                    <TR>
-                                        <TD>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        </TD>
-                                        <TD>
-                                            <IMG alt=網頁記錄 src="ddt-login_files/msh.gif">
-                                            </IMG>
-                                        </TD>
-                                        <TD style="FONT-SIZE: 83%">
-                                            <A href="http://www.google.com/history/?hl=zh-TW">網頁記錄</A>
-                                            <BR>
-                                            從任何電腦存取並管理您的網頁活動 
-                                        </TD>
-                                    </TR>
-                                    <TR>
-                                        <TD>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        </TD>
-                                        <TD>
-                                            <IMG alt=iGoogle src="ddt-login_files/ig.gif">
-                                            </IMG>
-                                        </TD>
-                                        <TD>
-                                            <A href="http://www.google.com/ig?source=gapg&amp;hl=zh-TW">iGoogle</A>
-                                            <BR>
-                                            在 diandiantao 首頁上新增新聞、遊戲及其他 
-                                        </TD>
-                                    </TR>
+                                    <!--{/foreach}-->
                                 </TBODY>
                             </TABLE>
                         </DIV>
@@ -83,7 +49,7 @@
                                                                                     <TR>
                                                                                         <TD height=33 valign=center >
                                                                                             <FONT size=+0>
-                                                                                                <B>点点淘帳戶</B>
+                                                                                                <B>{$lang.login}</B>
                                                                                             </FONT>
                                                                                         </TD>
                                                                                    </TR>
@@ -100,7 +66,7 @@
                                                                     <TR id=email-row>
                                                                         <TD noWrap>
                                                                             <DIV align=right>
-                                                                                <SPAN class="gaia le lbl">電子郵件: </SPAN>
+                                                                                <SPAN class="gaia le lbl">{$lang.email}： </SPAN>
                                                                             </DIV>
                                                                         </TD>
                                                                         <TD>
@@ -117,13 +83,13 @@
                                                                         </TD>
                                                                         <TD align=left>
                                                                             <DIV style="COLOR: #666666; FONT-SIZE: 75%">
-                                                                                範例：pat@example.com 
+                                                                                {$lang.emaileg2}
                                                                             </DIV>
                                                                         </TD>
                                                                     </TR>
                                                                     <TR id=password-row class=enabled>
                                                                         <TD noWrap align=right>
-                                                                            <SPAN class="gaia le lbl">密碼： </SPAN>
+                                                                            <SPAN class="gaia le lbl">{$lang.psw}： </SPAN>
                                                                         </TD>
                                                                         <TD>
                                                                             <INPUT id=Passwd class="gaia le val" size=18 type=password name=Passwd>
@@ -183,19 +149,19 @@
 																			<INPUT value=1 type=hidden name=rmShown>
                                                                         </TD>
                                                                         <TD align=left>
-                                                                            <LABEL id=PersistentCookieLabel class="gaia le rem" for=PersistentCookie>保持登入狀態 </LABEL>
+                                                                            <LABEL id=PersistentCookieLabel class="gaia le rem" for=PersistentCookie>{$lang.keeplogin}</LABEL>
                                                                         </TD>
                                                                     </TR>
                                                                     <TR>
                                                                         <TD>
                                                                         </TD>
                                                                         <TD align=left>
-                                                                            <INPUT id=signIn class="gaia le button" value=登入 type=submit name=signIn>
+                                                                            <INPUT id=signIn class="gaia le button" value={$lang.login} type=submit name=signIn>
                                                                         </TD>
                                                                     </TR>
                                                                     <TR id=ga-fprow>
                                                                         <TD class="gaia le fpwd" height=33 vAlign=bottom colSpan=2 align=middle>
-                                                                            <A href="https://www.google.com/accounts/recovery?continue=http%3A%2F%2Fwww.google.com.hk%2F" target=_top>無法登入帳戶嗎？ </A>
+                                                                            <A href="{$thisfile}?act=qpsw" target=_top>{$lang.cannotlogin} </A>
                                                                         </TD>
                                                                     </TR>
                                                                 </TBODY>
@@ -242,21 +208,15 @@
                                     gaia_setFocus();
                                     -->
                                 </SCRIPT>
-                                <FORM id=gaia_universallogin onsubmit=return(gaia_onLoginSubmit()); method=post action=https://www.google.com/accounts/ServiceLoginAuth>
-                                    <INPUT id=continue value=http://www.google.com.hk/ type=hidden name=continue><INPUT id=dsh value=-6201437495787808296 type=hidden name=dsh><INPUT id=hl value=zh-TW type=hidden name=hl>
-                                </FORM>
-                                <SCRIPT type=text/javascript>
-                                    <!--
-                                    -->
-                                </SCRIPT>
+                                
                                 <BR>
                                 <TABLE class=form-noindent border=0 cellSpacing=3 cellPadding=6 width="100%">
                                     <TBODY>
                                         <TR>
                                             <TD bgColor=#e8eefa align=center>
-                                                <B>沒有 diandiantao帳戶嗎？ </B>
+                                                <B>{$lang.ifnoaccount}</B>
                                                 <BR>
-                                                <A href="https://www.google.com/accounts/NewAccount?continue=http%3A%2F%2Fwww.google.com.hk%2F&amp;hl=zh-TW"><B>現在就建立一個帳戶</B></A>
+                                                <A href="{$thisfile}?act=reg"><B>{$lang.createaccount}</B></A>
                                             </TD>
                                         </TR>
                                     </TBODY>

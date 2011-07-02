@@ -1,0 +1,87 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<H1>重设diandiantao密码</H1>
+<P>
+    要重置您的密码，请键入您用于登录 点点淘 新密码。
+</P>
+<FORM method=post action={$thisfile}?act={$action}>
+<table id="signupform" bgcolor="#ffffff" border="0" cellpadding="0" cellspacing="0" width="100%">
+    <input name="code" value="{$code}" type="hidden">
+	<input name="uid" value="{$uid}" type="hidden">
+	<tbody>
+    <tr>
+        <td nowrap="nowrap" valign="top">
+            <span class="gaia sub pl">{$lang.enterpsw}:</span>
+            <b>&nbsp;&nbsp;</b>
+        </td>
+        <td>
+            <table border="0" cellpadding="0" cellspacing="0">
+                <tbody>
+                    <tr>
+                        <td>
+                        	
+                            <div>
+                                <input n="2" name="Passwd" id="Passwd" size="30" class="gaia sub passwdtxtfield" onblur="check_password(this.value);" type="password">
+                            </div>
+                            <div class="errormsg" id="ES_passwordMessage" style="display:none;font:red;">
+                            </div>
+                            <script language="javascript">
+                                function check_password(conform_password){
+                                    password = document.getElementById('Passwd').value;
+                                    if (conform_password.length < 6) {
+                                        document.getElementById('ES_passwordMessage').innerHTML = '{$lang.tooshortpsw}';
+                                        document.getElementById('ES_passwordMessage').style.display = 'block';
+                                        return false;
+                                    }
+                                    else {
+                                        document.getElementById('ES_passwordMessage').innerHTML = '{$lang.rightpsw}';
+                                        document.getElementById('ES_passwordMessage').style.display = 'none';
+                                        return true;
+                                    }
+                                }
+                            </script>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td valign="top">
+            <span class="gaia sub rpl">{$lang.enterpswagain}：</span>
+        </td>
+        <td>
+            <div>
+                <input n="3" name="PasswdAgain" id="PasswdAgain" size="30" class="gaia sub passwdtxtfield" onblur="check_conform_password(this.value);" type="password">
+            </div>
+            <div class="errormsg" id="ES_passwordErrorMessage" style="display:none;font:red;">
+            </div>
+            <script language="javascript">
+                function check_conform_password(conform_password){
+                    password = document.getElementById('Passwd').value;
+                    if (conform_password.length < 6) {
+                        document.getElementById('ES_passwordErrorMessage').innerHTML = '{$lang.tooshortpsw}';
+                        document.getElementById('ES_passwordErrorMessage').style.display = 'block';
+                        return false;
+                    }
+                    if (conform_password != password) {
+                        document.getElementById('ES_passwordErrorMessage').innerHTML = '{$lang.pswnotsame}';
+                        document.getElementById('ES_passwordErrorMessage').style.display = 'block';
+                    }
+                    else {
+                        document.getElementById('ES_passwordErrorMessage').innerHTML = '{$lang.rightpsw}';
+                        document.getElementById('ES_passwordErrorMessage').style.display = 'none';
+                        return true;
+                    }
+                    
+                }
+            </script>
+        </td>
+    </tr>
+	</tbody>
+	</table>
+         
+    <INPUT value=提交 type=submit>
+</FORM>
+<P>
+    如果还没有 点点淘 帐户，您可以 <A href="https://www.google.com/accounts/newaccount?hl=zh-CN">立即创建一个</A>。
+</P>

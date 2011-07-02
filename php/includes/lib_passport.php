@@ -226,17 +226,19 @@ function check_userinfo($user_name, $email)
  */
 function send_pwd_email($uid, $user_name, $email, $code)
 {
+	
     if (empty($uid) || empty($user_name) || empty($email) || empty($code))
     {
-        ecs_header("Location: user.php?act=get_password\n");
+
+    	ddt_header("Location: user.php?act=get_qpsw\n");
 
         exit;
     }
-
+    
     /* 设置重置邮件模板所需要的内容信息 */
     $template    = get_mail_template('send_password');
-    $reset_email = $GLOBALS['ecs']->url() . 'user.php?act=get_password&uid=' . $uid . '&code=' . $code;
-
+    $reset_email = $GLOBALS['ddt']->url() . 'user.php?act=get_password&uid=' . $uid . '&code=' . $code;
+	die('$reset_email:'.$reset_email);
     $GLOBALS['smarty']->assign('user_name',   $user_name);
     $GLOBALS['smarty']->assign('reset_email', $reset_email);
     $GLOBALS['smarty']->assign('shop_name',   $GLOBALS['_CFG']['shop_name']);

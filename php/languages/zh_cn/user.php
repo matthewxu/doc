@@ -137,7 +137,7 @@ $_LANG['get_password_lnk'] = '返回获取密码页面';
 $_LANG['get_password_by_question'] = '密码问题找回密码';
 $_LANG['get_password_by_mail'] = '注册邮件找回密码';
 $_LANG['back_retry_answer'] = '返回重试';
-
+$_LANG['back_page_up'] = '返回上一页';
 /* 登录 注册 */
 $_LANG['label_username'] = '用户名';
 $_LANG['label_email'] = 'email';
@@ -273,6 +273,8 @@ $_LANG['query_status'] = '查询状态';
 
 
 $_LANG['expire_unit']['hour'] = '小时';
+
+
 $_LANG['expire_unit']['day'] = '天';
 $_LANG['expire_unit']['week'] = '周';
 
@@ -300,5 +302,6 @@ $_LANG['passwd_questions']['favorite_food']   = '我最喜爱的食物？';
 $_LANG['passwd_questions']['interest']        = '我最大的爱好？';
 $_LANG['passwd_questions']['favorite_novel']  = '我最喜欢的小说？';
 $_LANG['passwd_questions']['favorite_equipe'] = '我最喜欢的运动队？';
+
 
 ?>

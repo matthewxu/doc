@@ -188,6 +188,11 @@ if (!defined('INIT_NO_SMARTY'))
     $smarty->assign('themes', 'themes/' .$_CFG['template']);
 }
 
+if (isset($smarty))
+ {
+ 	$model=get_sitemodel();
+    $smarty->assign('omodel', $model);
+ }
 if (!defined('INIT_NO_USERS'))
 {
     /* 会员信息 */

@@ -2,9 +2,9 @@
         <div id="gbar">
         	<div  id="gbar1">
             <nobr>
-                <!--{foreach from=$ohead item=ihead}-->
-                <a href="{$ihead.modellink}">
-                    {$ihead.model}
+                <!--{foreach from=$omodel item=ihead}-->
+                <a href="{$ihead.link}">
+                    {$ihead.name}
                 </a>
 				<!--{/foreach}-->
 				

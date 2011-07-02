@@ -26,8 +26,11 @@
      		<!-- #BeginLibraryItem "/library/page_user_reg_xungou.lbi.htm" --><!-- #EndLibraryItem -->
      	<!-- {elseif $action eq 'profile'} -->
      		<!-- #BeginLibraryItem "/library/page_user_profile.lbi.htm" --><!-- #EndLibraryItem -->
-     	<!-- {elseif $action eq 'recovery'} -->
+     	<!-- {elseif $action eq 'qpsw'} -->
      		<!-- #BeginLibraryItem "/library/page_user_recovery.lbi.htm" --><!-- #EndLibraryItem -->
+     	<!-- {elseif $action eq 'reset_qpsw'} -->
+     		<!-- #BeginLibraryItem "/library/page_user_pswedit.lbi.htm" --><!-- #EndLibraryItem -->
+     	
      	<!-- {/if} -->
 		<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
 		

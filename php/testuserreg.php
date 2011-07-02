@@ -15,16 +15,76 @@ define('IN_DDT', true);
 require(dirname(__FILE__) . '/includes/init.php');
 /* 载入语言文件 */
 require_once(ROOT_PATH . 'languages/' .$_CFG['lang']. '/user.php');
-
-
-$action  = isset($_REQUEST['act']) ? trim($_REQUEST['act']) : 'reg';
 $user_id = $_SESSION['user_id'];
-if($user_id && ($action=='reg' || $action=='login')){
+
+
+// 不需要登录的操作或自己验证是否登录（如ajax处理）的act
+$not_login_arr =
+array('1','login','act_login','reg','act_reg','signin', 'add_tag', 'collect',  'logout', 'email_list', 
+'checkemail', 'checkcaptcha', 'is_registered',
+'get_passwd_question','qpsw', 'act_qpsw','reset_qpsw', 'check_answer');
+
+/* 显示页面的action列表 */
+$ui_arr = array('reg', 'login', 'profile', 'order_list', 'order_detail', 'address_list', 'collection_list',
+'message_list', 'tag_list', 'reset_password', 'booking_list', 'add_booking', 'account_raply',
+'account_deposit', 'account_log', 'account_detail', 'act_account', 'pay', 'default', 'bonus', 'group_buy', 
+'group_buy_detail', 'affiliate', 'comment_list','validate_email','track_packages', 'transform_points','favour_list',
+'group_list', 'get_passwd_question', 'check_answer');
+
+$action  = isset($_REQUEST['act']) ? trim($_REQUEST['act']) : 'profile';
+if(!in_array($action,$not_login_arr) && !in_array($action,$ui_arr)){
 	$action='profile';
 }
+/**/
+$login_reg=array('reg','act_reg','login','act_login');
+
+/* 未登录处理 */
+if (empty($_SESSION['user_id']))
+{
+	if (!in_array($action, $not_login_arr))
+	{
+		if (in_array($action, $ui_arr))
+		{
+			/* 如果需要登录,并是显示页面的操作，记录当前操作，用于登录后跳转到相应操作*/
+			 if ($action == 'login')
+			 {
+				 if (isset($_REQUEST['back_act']))
+				 {
+				 	$back_act = trim($_REQUEST['back_act']);
+				 }
+			 }
+			 else
+			 {
+			 	
+			 }
+			if (!empty($_SERVER['QUERY_STRING']))
+			{
+				$back_act = $thisfile."?" . $_SERVER['QUERY_STRING'];
+			}
+			$action = 'login';
+		}
+		else
+		{
+			//未登录提交数据。非正常途径提交数据！
+			die($_LANG['require_login']);
+		}
+	}
+}elseif (in_array($action,$login_reg)){
+	$action='profile';
+}
+
 $thisfile=basename(PHP_SELF);
 $smarty->assign('thisfile', $thisfile);
 $smarty->assign('action',   $action);	
+
+if (!isset($_SESSION['back_act']) && isset($GLOBALS['_SERVER']['HTTP_REFERER']))
+{
+	$back_act =  $GLOBALS['_SERVER']['HTTP_REFERER'];
+	$_SESSION['back_act']=$back_act;
+}
+$back_act=$back_act?$back_act:$_SESSION['back_act'];
+
+
 /* 显示会员注册界面 */
 if ($action == 'reg')
 {
@@ -82,12 +142,6 @@ elseif ($action == 'act_reg')
         $sel_question = empty($_POST['sel_question']) ? '' : $_POST['sel_question'];
         $passwd_answer = isset($_POST['passwd_answer']) ? trim($_POST['passwd_answer']) : '';
 
-    	if (!isset($_SESSION['back_act']) && isset($GLOBALS['_SERVER']['HTTP_REFERER']))
-	    {
-	        $back_act =  $GLOBALS['_SERVER']['HTTP_REFERER'];
-	        $_SESSION['back_act']=$back_act;
-	    }
-	    $back_act=$_SESSION['back_act'];
         if (strlen($password) < 6)
         {
             show_message($_LANG['passport_js']['password_shorter'],$_LANG['sign_up'],$thisfile, 'error');
@@ -183,7 +237,7 @@ elseif ($action=='checkcaptcha')
 
 elseif ($action == 'profile')
 {
-		$smarty->assign('action',     'profile');
+		$smarty->assign('action', 'profile');
 		if($user_id){
 			$userinfo['username']= $_SESSION['username'];
 			$smarty->assign('user_info',$userinfo );
@@ -191,10 +245,111 @@ elseif ($action == 'profile')
         $smarty->display('user.dwt');
 }
 
-
-elseif($action == 'check_email')
+/*取回密码*/
+elseif($action == 'qpsw')
 {
-}elseif($action == 'logout')
+	        $smarty->display('user.dwt');
+}
+/*send psw to user email*/
+elseif ($action=='act_qpsw'){
+	include_once(ROOT_PATH . 'includes/lib_passport.php');
+	if (isset($_GET['code']) && isset($_GET['uid'])) //从邮件处获得的act
+    {
+        $code = trim($_GET['code']);
+        $uid  = intval($_GET['uid']);
+
+        /* 判断链接的合法性 */
+        $user_info = $user->get_profile_by_id($uid);
+        if (empty($user_info) || ($user_info && md5($user_info['user_id'] . $_CFG['hash_code'] . $user_info['reg_time']) != $code))
+        {
+            show_message($_LANG['parm_error'], $_LANG['back_home_lnk'], './', 'info');
+        }
+
+        $smarty->assign('uid',    $uid);
+        $smarty->assign('code',   $code);
+        $smarty->assign('action', 'reset_qpsw');
+        $smarty->display('user.dwt');
+        exit;
+    }
+	
+    /* 初始化会员用户名和邮件地址 */
+    $email     = !empty($_POST['email'])     ? trim($_POST['email'])     : '';
+
+    //用户名和邮件地址是否匹配
+    $user_info = $user->get_user_info($email);
+    
+    if ($user_info && $user_info['email'] == $email)
+    {
+    	$user_name=$user_info['user_name'];
+        //生成code
+         //$code = md5($user_info[0] . $user_info[1]);
+
+        $code = md5($user_info['user_id'] . $_CFG['hash_code'] . $user_info['reg_time']);
+        //发送邮件的函数
+        if (send_pwd_email($user_info['user_id'], $user_name, $email, $code))
+        {
+        	show_message($_LANG['send_success'] . $email, $_LANG['back_home_lnk'], './', 'info');
+
+        }
+        else
+        {
+        	//发送邮件出错
+            show_message($_LANG['fail_send_password'], $_LANG['back_page_up'], $back_act, 'info');
+        }
+    }
+    else
+    {
+        //用户名与邮件地址不匹配
+        show_message($_LANG['username_no_email'], $_LANG['back_page_up'], '', 'info');
+    }
+	
+}
+elseif($action == 'reset_qpsw')
+{			
+    include_once(ROOT_PATH . 'includes/lib_passport.php');
+
+    $old_password = isset($_POST['old_password']) ? trim($_POST['old_password']) : null;
+    $new_2_password = isset($_POST['PasswdAgain']) ? trim($_POST['PasswdAgain']) : null;
+    $new_password = isset($_POST['Passwd']) ? trim($_POST['Passwd']) : '';
+    $user_id      = isset($_POST['uid'])  ? intval($_POST['uid']) : $user_id;
+    $code         = isset($_POST['code']) ? trim($_POST['code'])  : '';
+
+    if($new_password !==$new_2_password){
+    	   show_message($_LANG['passport_js']['confirm_password_invalid']);
+    }
+    if (strlen($new_password) < 6)
+    {
+        show_message($_LANG['passport_js']['password_shorter']);
+    }
+
+    $user_info = $user->get_profile_by_id($user_id); //论坛记录
+
+    if (($user_info && (!empty($code) && md5($user_info['user_id'] . $_CFG['hash_code'] . $user_info['reg_time']) == $code))
+    	 || ($_SESSION['user_id']>0 && $_SESSION['user_id'] == $user_id && $user->check_user($_SESSION['user_name'], $old_password)))
+    {
+        if ($user->edit_user(array('username'=> (empty($code) ? $_SESSION['user_name'] : $user_info['user_name']), 'old_password'=>$old_password, 'password'=>$new_password), empty($code) ? 0 : 1))
+        {
+            $user->logout();
+            show_message($_LANG['edit_password_success'], $_LANG['relogin_lnk'], 'user.php?act=login', 'info');
+        }
+        else
+        {
+            show_message($_LANG['edit_password_failure'], $_LANG['back_page_up'], '', 'info');
+        }
+    }
+    else
+    {
+        show_message($_LANG['edit_password_failure'], $_LANG['back_page_up'], '', 'info');
+    }
+    
+}
+/* 修改会员密码 */
+elseif ($action == 'act_edit_password')
+{
+    
+}
+
+elseif($action == 'logout')
 {    
 	if (!isset($back_act) && isset($GLOBALS['_SERVER']['HTTP_REFERER']))
     {
@@ -233,7 +388,7 @@ elseif($action=='act_login'){
 	
     $username = isset($_POST['Email']) ? trim($_POST['Email']) : '';
     $password = isset($_POST['Passwd']) ? trim($_POST['Passwd']) : '';
-    $back_act = isset($_POST['back_act']) ? trim($_POST['back_act']) : '';
+    //$back_act = isset($_POST['back_act']) ? trim($_POST['back_act']) : '';
 
 
     $captcha = intval($_CFG['captcha']);
@@ -267,8 +422,10 @@ elseif($action=='act_login'){
     else
     {
         $_SESSION['login_fail'] ++ ;
-        show_message($_LANG['login_failure'], $_LANG['relogin_lnk'], 'user.php', 'error');
+        show_message($_LANG['login_failure'], $_LANG['relogin_lnk'], $thisfile, 'error');
     }
+}elseif ($action=='1'){
+	$smarty->display('user.dwt');
 }
 
 ?>

@@ -861,7 +861,7 @@ function get_article_children ($cat = 0)
  */
 function get_mail_template($tpl_name)
 {
-    $sql = 'SELECT template_subject, is_html, template_content FROM ' . $GLOBALS['ecs']->table('mail_templates') . " WHERE template_code = '$tpl_name'";
+    $sql = 'SELECT template_subject, is_html, template_content FROM ' . $GLOBALS['ddt']->table('mail_templates') . " WHERE template_code = '$tpl_name'";
 
     return $GLOBALS['db']->GetRow($sql);
 
