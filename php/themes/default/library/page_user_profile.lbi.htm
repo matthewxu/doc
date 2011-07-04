@@ -15,12 +15,12 @@
 <table border="0" cellpadding="0" cellspacing="0" width="100%">
     <tbody>
         <tr>
-            <td>
+            <td bgcolor="#e5ecf9" width="1" >
             </td>
             <td bgcolor="#b0c3e6" width="1">
             </td>
             <td>
-                <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%">
                     <tbody>
                         <tr>
                             <td colspan="5" bgcolor="#3366cc" height="1">
@@ -41,10 +41,38 @@
             </td>
         </tr>
         <tr>
-            <td valign="top" width="1%">
+            <td valign="top" width="15%">
                 <form name="lm" action="./lookup">
-                    <table border="0" cellpadding="2" cellspacing="0" width="100%">
-                        <tbody>
+                    <table class="puser" border="0" cellpadding="2" cellspacing="0" width="100%"  >
+                    	<tbody> 
+
+                            <tr  class="pname">
+                                <td colspan="3" onclick="go('')">
+                                        <a href=""><img alt='userimg' src='{$themes}/images/usereg.jpg'/>
+										<br><span>{$user_info.username}</span></a>
+                                </td>
+                            </tr>
+                            <tr class="ptext">
+                            	<td  colspan="1" width="33%">
+                                   <a href="" >粉丝<br><span>1000</span></a>
+								</td>
+								<td colspan="1" width="33%" >   
+								   <a href="">关注<br><span>1000</span></a>
+								</td >
+								<td colspan="1">
+								   <a href="" >喜欢<br> <span>1000</span></a>
+                                </td>	
+                            </tr>
+   							<tr class="uact">
+								<td colspan="3" >
+	   								<div>
+   									<a href="" >&nbsp;关注她&nbsp;</a>
+									&nbsp;&nbsp;&nbsp;
+									<a href="">&nbsp发短信&nbsp</a>
+									</div>
+   								</td>   								
+   							</tr>	
+						       
                             <tr>
                                 <td colspan="2" valign="middle">
                                     <font size="-1">
@@ -62,9 +90,9 @@
                                     &nbsp;&nbsp;&nbsp;
                                 </td>
                                 <td onclick="go('')">
-                                    <nobr>
-                                        <a href="">图片</a>
-                                    </nobr>
+                                        <nobr>
+										<a href="">图片</a>
+										</nobr>
                                 </td>
                                 <td>
                                     &nbsp;
@@ -202,7 +230,9 @@
                             </tr>
                         </tbody>
                     </table>
-                    <input name="updateview" value="yes" type="hidden"><input name="q" value="" type="hidden"><input name="hl" value="zh-CN" type="hidden">
+                    <input name="updateview" value="yes" type="hidden">
+					<input name="q" value="" type="hidden">
+					<input name="hl" value="zh-CN" type="hidden">
                 </form>
             </td>
             <td bgcolor="#b0c3e6" width="1">
@@ -249,10 +279,13 @@
                                                                 <table>
                                                                     <tbody>
                                                                         <tr>
+                                                                        	<!--one collection start-->
+																			
                                                                             <td style="padding: 3px 2px;">
                                                                                 <div class="starsizer" style="cursor: pointer;">
                                                                                     Starred<img class="staron" src="{$themes}/images/sprite.png" id="" onclick="">
                                                                                 </div>
+																				
                                                                             </td>
                                                                             <td style="padding: 3px 0pt;">
                                                                                 <table id="bkmk_view_0">
@@ -298,6 +331,8 @@
                                                                                     </tbody>
                                                                                 </table>
                                                                             </td>
+																			<!--one collection end-->
+
                                                                             <td>
                                                                                 <div id="bkmk_edit_0" style="display: none;">
                                                                                     <form action="/bookmarks/mark?hl=zh-CN" method="POST" id="bkmk_form_0">
@@ -353,6 +388,7 @@
                                                                                     </form>
                                                                                 </div>
                                                                             </td>
+																			<!--one collection end2-->
                                                                         </tr>
                                                                     </tbody>
                                                                 </table>

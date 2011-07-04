@@ -15,9 +15,7 @@
 }
 #gbar a:hover{color:#fff !important}
 #gbar .gb_user {float:right; margin-right:50px;}
-.a, .a:link,
-
-a { color: #0000cc; }
+.a, .a:link,a { color: #666666; }
 a:hover {
     text-decoration:none;
 	color: green
@@ -267,3 +265,40 @@ img {
 .starsizer{width:15px;height:15px;position:relative;overflow:hidden;display:block}
 .staron{position:absolute;left:0;top:0}
 .staroff{position:absolute;left:-15px;top:0}
+
+
+ table .puser{
+	BACKGROUND-COLOR: #e5ecf9;
+	text-align:center; 
+}
+
+ table .puser .ptext td{
+	border-right:1px solid #7ca1d6;
+	
+}
+table .puser .ptext a{
+	border-right:hidden;
+	color: #666666;
+}
+ table .puser .ptext a span{
+	color: #ff6699;
+	font-size: 20px;
+	font-weight: bold;
+
+}
+ table.puser tr.pname td a{
+	color: #666666;
+	font-size: 20px;
+	font-weight: bold;
+	text-decoration:none;
+}
+
+table .puser .ptext a{
+	text-decoration:none !important;
+}
+table .puser .ptext a:hover{
+	text-decoration:underline  !important;
+}
+table .puser .uact a{
+	background-color:#ff6699;color: #ffffff;
+}
