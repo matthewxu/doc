@@ -74,9 +74,9 @@ function insert_query_info()
 function insert_history()
 {
     $str = '';
-    if (!empty($_COOKIE['ECS']['history']))
+    if (!empty($_COOKIE['ddt']['history']))
     {
-        $where = db_create_in($_COOKIE['ECS']['history'], 'goods_id');
+        $where = db_create_in($_COOKIE['ddt']['history'], 'goods_id');
         $sql   = 'SELECT goods_id, goods_name, goods_thumb, shop_price FROM ' . $GLOBALS['ecs']->table('goods') .
                 " WHERE $where AND is_on_sale = 1 AND is_alone_sale = 1 AND is_delete = 0";
         $query = $GLOBALS['db']->query($sql);

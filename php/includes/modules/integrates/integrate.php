@@ -200,9 +200,7 @@ class integrate
 
             return false;
         }
-
-        $post_username = $username;
-
+		$post_username=$username;
         if ($md5password)
         {
             $post_password = $this->compile_password(array('md5password'=>$md5password));
@@ -350,13 +348,13 @@ class integrate
         if ($this->need_sync || (isset($this->is_diandiantao) && $this->is_diandiantao))
         {
             /* 如果需要同步或是diandiantao插件执行这部分代码 */
-            $sql = "SELECT user_id FROM "  . $GLOBALS['ddt']->table('users') . " WHERE ";
-            $sql .= (is_array($post_id)) ? db_create_in($post_id, 'user_name') : "user_name='". $post_id . "' LIMIT 1";
+            $sql = "SELECT id as user_id FROM "  . $GLOBALS['ddt']->table('user') . " WHERE ";
+            $sql .= (is_array($post_id)) ? db_create_in($post_id, 'username') : "username='". $post_id . "' LIMIT 1";
             $col = $GLOBALS['db']->getCol($sql);
 
             if ($col)
             {
-                $sql = "UPDATE " . $GLOBALS['ddt']->table('users') . " SET parent_id = 0 WHERE " . db_create_in($col, 'parent_id'); //将删除用户的下级的parent_id 改为0
+                $sql = "UPDATE " . $GLOBALS['ddt']->table('user') . " SET parent_id = 0 WHERE " . db_create_in($col, 'parent_id'); //将删除用户的下级的parent_id 改为0
                 $GLOBALS['db']->query($sql);
                 $sql = "DELETE FROM " . $GLOBALS['ddt']->table('users') . " WHERE " . db_create_in($col, 'user_id'); //删除用户
                 $GLOBALS['db']->query($sql);

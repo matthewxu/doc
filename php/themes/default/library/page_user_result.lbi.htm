@@ -1,0 +1,177 @@
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<div>
+
+    <div class="list lhs" >
+    	<div style="height:30px; background-color:#e5ecf9;border-top:solid;border-top-color:#b0c3e6;margin-right:-10px;">
+		</div>
+        <div class="content-cont">
+            <div id="view-sort">
+                <div class="fr view-sort-cont">
+                    <form action="/products?q=%E6%9C%9B%E8%BF%9C%E9%95%9C&amp;output=nojs&amp;hl=zh-cn" name="scr">
+                        <input name="q" value="{$sekw}" type="hidden"><input name="output" value="nojs" type="hidden"><input name="hl" value="zh-cn" type="hidden">
+                        <nobr>
+                            {$osort.t_sortstyle}：
+                        </nobr>
+                        <select gtbfieldid="23" name="scoring" onchange="window.location='\x2Fproducts?q=%E6%9C%9B%E8%BF%9C%E9%95%9C\x26output=nojs\x26hl=zh-cn&amp;scoring='+this.options[this.selectedIndex].value;">
+                            <option value="r" selected="selected">{$osort.t_sortr}</option>
+                            <option value="p">{$osort.t_sortp}</option>
+                            <option value="pd">{$osort.t_sortpd}</option>
+                        </select>
+                        <input value="{$t_searchbutton}" type="submit">
+                    </form>
+                    <!--span class="display_options_icons"><span class="ps-sprite ps-sprite-list-view" title="{$osort.t_sorts}"></span>&nbsp;
+                    <a href="" title="{showlist}显示图库视图" id="toggletogrid"><span class="ps-sprite ps-sprite-show-grid-view" title="{showpic}显示图库视图"></span></a></span-->
+                </div>
+                <p class="clear_right">
+                </p>
+            </div>
+            
+            <ol id="results">
+            <!--{foreach from=$oproduct item=iproduct}-->
+                <li class="result" id="res0">
+                    <div class="result-cont">
+                        <p class="result-image">
+                            <a href="{$iproduct.link}"><img src="{$themes}/{$iproduct.imglink}" alt="{$iproduct.imgalt}" title="{$iproduct.imgtitle}"></a>
+                        </p>
+                        <div class="result-price-seller">
+                            <div class="result-price">
+                                <span id="price0"><span class="result-price-range">{$iproduct.pricerange}</span></span>
+                            </div>
+                            <div class="result-seller">
+                                {$iproduct.sellercount}
+                            </div>
+                            <div class="result-button">
+                                <form method="get" action="">
+                                    <input value="{$t_cmpprice}" id="price-but0" type="submit"><input name="q" value="{$sekw}" type="hidden"><input name="output" value="nojs" type="hidden"><input name="hl" value="zh-cn" type="hidden"><input name="cid" value="7241257218809552867" type="hidden">
+                                </form>
+                            </div>
+                        </div>
+                        <div class="result-title-description">
+                            <h3 class="result-title"><a href="{$iproduct.link}">{$iproduct.title}</a></h3>
+                            <p class="result-attributes">
+                            </p>
+                            <p class="result-pop">
+                            </p>
+                            <p class="result-desc">
+                                {$iproduct.desc}
+                            </p>
+                            <div class="result-rating">
+                                <a href="" class="nb"><span class="ps-sprite ps-sprite-son" title="4.5 星{ps-sprite-son}"></span><span class="ps-sprite ps-sprite-son" title="4.5 星{ps-sprite-son}"></span><span class="ps-sprite ps-sprite-son" title="4.5 星{ps-sprite-son}"></span><span class="ps-sprite ps-sprite-son" title="4.5 星{ps-sprite-son}"></span><span class="ps-sprite ps-sprite-shalf" title="4.5 星{ps-sprite-son}"></span></a>
+                                &nbsp;<a href="" class="fl" id="res0rev">{$iproduct.reviewsum}{$t_review}</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            <!--{/foreach}-->    
+            </ol>
+            <p class="clear">
+            </p>
+            <div id="query_suggestions">
+                <p>
+                    "<b>{$sekw}</b>
+                    "{$t_relate}
+                </p>
+                <table>
+                    <tbody>
+                        <tr>
+                        	<!--{foreach from=$orelatekw item=irelatekw}-->
+               				
+               		
+               					<!-- {if $count gt 6} -->
+               				    {acalc $count = 0 }
+        						</td> </tr><tr>
+        						<!-- {/if} -->
+                            <td>
+                                <nobr>
+                                    <a href="{$irelatekw.link}">{$irelatekw.keyword}</a>
+                                </nobr>
+                            </td>
+                            {acalc $count = $count plus 1}
+                            <!--{/foreach}-->
+                        </tr>
+                        <tr>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="buying_guides">
+                <h2 class="tool-header">{$sekw}{$t_guide}</h2>
+
+                <ul class="popular-ref">
+                <!--{foreach from=$onew item=inew}-->
+                    <li>
+                        <div class="ps-guide">
+                            <a href="{$inew.desc}">{$inew.title}</a>
+                            <p>
+                                {$inew.desc}
+                            </p>
+                            <p class="clear">
+                            </p>
+                        </div>
+                    </li>
+                <!--{/foreach}-->    
+                    <li>
+                        <p class="more-guides-link">
+                            <a href="" class="fl">{$t_moreinfo}</a>
+                        </p>
+                    </li>
+                </ul>
+
+            </div>
+            <div id="visual_tools">
+                <div class="v-ref-sixpack">
+                    <div class="v-ref-hdr">
+                        {$t_brandbuy}
+                    </div>
+                    {acalc $count = 0 }
+                    <!--{foreach from=$obrand item=ibrand}-->
+                    	<!-- {if $count gt 5} -->
+               			{acalc $count = 0 }
+        				</div> <p class="clear">
+        				<!-- {/if} -->
+                    <div class="v-ref">
+                        <div class="v-ref-img">
+                            <a href="{$ibrand.brandlink}"><img src="{$themes}/{$ibrand.brandimglink}" alt="{$ibrand.brand}" title="{$ibrand.brand}"></a>
+                        </div><a href="{$ibrand.brandlink}">{$ibrand.brand}</a>
+                    </div>
+                     {acalc $count = $count plus 1}
+                    <!--{/foreach}-->
+                     <p class="clear">
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="below-content">
+        <div id="ps-navbar" class="n">
+            <table width="1%">
+                <tbody>
+                    <tr>
+
+                        <td nowrap="nowrap" align="right">
+                            <div id="nf">
+                            </div>
+                        </td>
+                    	<!--{foreach from=$opage item=ipage}-->
+
+                        <td nowrap="nowrap">
+                            <a href="{$ipage.link}" data-num="2">
+                                <div class="nr">
+                                </div>
+                                <span>{$ipage.num}</span></a>
+                        </td>
+                       
+                    	<!--{/foreach}-->
+                        <td nowrap="nowrap" valign="bottom">
+                            <a href="{$onpage.link}" data-num="{$onpage.num}">
+                                <div id="nn">
+                                </div>
+                                <span class="b">{$onpage.next}</span></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

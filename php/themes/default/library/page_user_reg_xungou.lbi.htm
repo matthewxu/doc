@@ -103,6 +103,47 @@
                                                                 </tr>
                                                                 <tr>
                                                                     <td nowrap="nowrap" valign="top">
+                                                                        <span class="gaia sub el">{$lang.yourname}:</span>
+                                                                    </td>
+                                                                    <td>
+                                                                        <div>
+                                                                            <input name="username" id="username" size="30" onblur="ES_spellCheckName(this.value,1)" type="text">
+                                                                             <div class="errormsg" id="ES_nameErrorMessage" style="display: none;">
+                                                                            </div>
+                                                                            <script type="text/javascript"> <!--
+																																							
+																					    function  ES_spellCheckName(name,asname){																							
+																							if(name.length <5 ){
+																								ESe('用户长度过短，须大于4个字符','ES_nameErrorMessage');
+																							} else if(asname){
+																								var turl = "{$thisfile}?act=checkname&username="+name;
+																								Ajax.call( turl,'' ,GetUname, 'GET', 'TEXT', true, true );
+																							}else{
+																								return true;
+																							}	
+																						}
+																						
+																						function GetUname(resultText){
+																							//resultText=decodeURIComponent(resultText);
+																							if(resultText == 0){
+																								ESe('','ES_nameErrorMessage');
+																								return true;
+																							} else {
+																								ESe(resultText,'ES_nameErrorMessage');
+																								return false;
+																							}
+																							
+																						}
+																					                                                                              
+                                                                                --> 
+                                                                            </script>
+                                                                            
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td nowrap="nowrap" valign="top">
                                                                         <span class="gaia sub el">{$lang.youremail}:</span>
                                                                     </td>
                                                                     <td>
@@ -151,27 +192,30 @@
                                                                                 --> 
                                                                             </script>
                                                                             
+                                                                        </div>
+                                                                        <span class="gaia sub seex">{$lang.emaileg}</span>
+                                                                    </td>
+                                                                </tr>
+
 																		  <script type="text/javascript">
 																		  	function chkregsub(){
 																				var formKey = 'createaccount';	                                                                           
 																				var psw1=document.forms[formKey]['Passwd'].value;
 																				var psw2=document.forms[formKey]['PasswdAgain'].value;
 																				var email=document.forms[formKey]['Email'].value;
+																				var username=document.forms[formKey]['username'].value;
+																				
 																				var re1=check_password(psw1);
 																				var re2=check_conform_password(psw2);
 																				var re3=ES_spellCheckEmail(email);
-																				if(re1 && re2 && re3){
+																				var re4=ES_spellCheckName(username);
+																				if(re1 && re2 && re3 && re4){
 																					return true;
 																				}
 																				return false;
 																			}
-																			
-																		  
 																		  </script>
-                                                                        </div>
-                                                                        <span class="gaia sub seex">{$lang.emaileg}</span>
-                                                                    </td>
-                                                                </tr>
+
                                                                 <!-- 判断是否启用验证码{if $enabled_captcha} -->
                                                                 <tr>
                                                                     <td valign="top">

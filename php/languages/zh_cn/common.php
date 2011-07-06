@@ -56,6 +56,7 @@ $_LANG['ifhaveaccount']='如果您已拥有 Google 帐户，则可';
 $_LANG['loginhere']='在此登录';
 $_LANG['needinfo']='DianDianTAO 帐户的必须信息';
 $_LANG['youremail']='您当前的电子邮件地址';
+$_LANG['yourname']='您当前的用户名';
 $_LANG['youmean']='您是否指';
 
 $_LANG['donotforgetat']='请勿忘记加入“@”。';

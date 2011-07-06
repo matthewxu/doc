@@ -68,7 +68,7 @@
 	$smarty->assign('keywords', '望远镜 价格|望远镜 评价|望远镜');
 	$smarty->assign('description', '提供 望远镜 价格比较，评价测试，在线商店商家地址信息');
 	    
-    $smarty->display('user.dwt', '');
+    $smarty->display('userdata.dwt', '');
 
 
 ?>

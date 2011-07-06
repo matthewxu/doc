@@ -50,8 +50,7 @@ function register($username, $password, $email, $other = array())
     /* 检查username */
     if (empty($username))
     {
-    	$username=$email;
-        //$GLOBALS['err']->add($GLOBALS['_LANG']['username_empty']);
+        $GLOBALS['err']->add($GLOBALS['_LANG']['username_empty']);
     }
     else
     {

@@ -30,7 +30,8 @@
      		<!-- #BeginLibraryItem "/library/page_user_recovery.lbi.htm" --><!-- #EndLibraryItem -->
      	<!-- {elseif $action eq 'reset_qpsw'} -->
      		<!-- #BeginLibraryItem "/library/page_user_pswedit.lbi.htm" --><!-- #EndLibraryItem -->
-     	
+     	<!-- {elseif $action eq 'collection'} -->
+     		<!-- #BeginLibraryItem "/library/page_user_collection.lbi.htm" --><!-- #EndLibraryItem -->
      	<!-- {/if} -->
 		<!-- #BeginLibraryItem "/library/page_footer.lbi" --><!-- #EndLibraryItem -->
 		

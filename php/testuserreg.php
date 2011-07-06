@@ -21,7 +21,7 @@ $user_id = $_SESSION['user_id'];
 // 不需要登录的操作或自己验证是否登录（如ajax处理）的act
 $not_login_arr =
 array('1','login','act_login','reg','act_reg','signin', 'add_tag', 'collect',  'logout', 'email_list', 
-'checkemail', 'checkcaptcha', 'is_registered',
+'checkemail','checkname', 'checkcaptcha', 'is_registered',
 'get_passwd_question','qpsw', 'act_qpsw','reset_qpsw', 'check_answer');
 
 /* 显示页面的action列表 */
@@ -132,6 +132,7 @@ elseif ($action == 'act_reg')
     {
         include_once(ROOT_PATH . 'includes/lib_passport.php');
         $username = isset($_POST['username']) ? trim($_POST['username']) : '';
+        
         $password = isset($_POST['Passwd']) ? trim($_POST['Passwd']) : '';
         $email    = isset($_POST['Email']) ? trim($_POST['Email']) : '';
         $other['msn'] = isset($_POST['extend_field1']) ? $_POST['extend_field1'] : '';
@@ -170,9 +171,9 @@ elseif ($action == 'act_reg')
                 show_message($_LANG['invalid_captcha'], $_LANG['sign_up'], $thisfile, 'error');
             }
         }
+        
         if (register($username, $password, $email, $other) !== false)
         {
-        	
         	$userinfo['username']= $_SESSION['username'];
 			$smarty->assign('user_info',$userinfo );
             /* 写入密码提示问题和答案 */
@@ -192,7 +193,26 @@ elseif ($action == 'act_reg')
         }
     }
 }
+elseif ($action =='checkname'){
 
+    include_once(ROOT_PATH . 'includes/lib_passport.php');
+
+    $username = trim($_GET['username']);
+    
+    $username = json_str_iconv($username);
+	if (preg_match('/\'\/^\\s*$|^c:\\\\con\\\\con$|[%,\\*\\"\\s\\t\\<\\>\\&\'\\\\]/', $username))
+    {
+            echo sprintf($_LANG['username_invalid'],$username);
+    }elseif ($user->check_user($username) )
+    {
+        echo sprintf($GLOBALS['_LANG']['username_exist'],$username);
+    }
+    else
+    {
+        
+    }
+		
+}
 /* 验证用户注册邮件 */
 elseif ($action == 'checkemail')
 {
@@ -424,7 +444,9 @@ elseif($action=='act_login'){
         $_SESSION['login_fail'] ++ ;
         show_message($_LANG['login_failure'], $_LANG['relogin_lnk'], $thisfile, 'error');
     }
-}elseif ($action=='1'){
+}//
+elseif ($action=='collection'){
+	
 	$smarty->display('user.dwt');
 }
 

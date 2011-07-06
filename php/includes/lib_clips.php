@@ -30,7 +30,7 @@ function get_history($user_id, $num = 10, $start = 0)
 	
     $sql = 'SELECT g.id,  g.url, g.metacontent, '.
                 'g.viewdate ' .
-            ' FROM ' . $GLOBALS['ecs']->table('userhistory') . ' AS g' .
+            ' FROM ' . $GLOBALS['ddt']->table('userhistory') . ' AS g' .
             " WHERE g.user_id = '$user_id' ORDER BY g.id DESC";
     $res = $GLOBALS['db'] -> selectLimit($sql, $num, $start);
 

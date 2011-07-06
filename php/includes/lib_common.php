@@ -612,7 +612,7 @@ function load_config()
  */
 function get_brand_list()
 {
-    $sql = 'SELECT brand_id, brand_name FROM ' . $GLOBALS['ecs']->table('brand') . ' ORDER BY sort_order';
+    $sql = 'SELECT brand_id, brand_name FROM ' . $GLOBALS['ddt']->table('brand') . ' ORDER BY sort_order';
     $res = $GLOBALS['db']->getAll($sql);
 
     $brand_list = array();
