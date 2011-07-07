@@ -10,10 +10,7 @@
         <title>
             {$page_title}
         </title>
-        <link type="text/css" rel="stylesheet" href="{$themes}/style/ps-style.css">
         <link type="text/css" rel="stylesheet" href="{$themes}/style/ps-newstyle.css">
-        <link type="text/css" rel="stylesheet" href="{$themes}/style/ps-center.css">
-        <link type="text/css" rel="stylesheet" href="{$themes}/style/ps-product.css">
         <link type="text/css" rel="stylesheet" href="{$themes}/style/ps-pp-style.css">
     </head>
     

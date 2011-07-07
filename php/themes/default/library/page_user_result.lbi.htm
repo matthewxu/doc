@@ -29,10 +29,10 @@
             
             <ol id="results">
             <!--{foreach from=$oproduct item=iproduct}-->
-                <li class="result" id="res0">
+                <li class="result" id="res{$iproduct.index}">
                     <div class="result-cont">
-                        <p class="result-image">
-                            <a href="{$iproduct.link}"><img src="{$themes}/{$iproduct.imglink}" alt="{$iproduct.imgalt}" title="{$iproduct.imgtitle}"></a>
+                        <p class="result-image" >
+                            <a id='resultlink{$iproduct.index}' href="{$iproduct.link}"><img id='resultimg{$iproduct.index}' src="{$themes}/{$iproduct.imglink}" alt="{$iproduct.imgalt}" title="{$iproduct.imgtitle}"></a>
                         </p>
                         <div class="result-price-seller">
                             <div class="result-price">
@@ -58,13 +58,29 @@
                             </p>
                             <div class="result-rating">
                                 <a href="" class="nb"><span class="ps-sprite ps-sprite-son" title="4.5 星{ps-sprite-son}"></span><span class="ps-sprite ps-sprite-son" title="4.5 星{ps-sprite-son}"></span><span class="ps-sprite ps-sprite-son" title="4.5 星{ps-sprite-son}"></span><span class="ps-sprite ps-sprite-son" title="4.5 星{ps-sprite-son}"></span><span class="ps-sprite ps-sprite-shalf" title="4.5 星{ps-sprite-son}"></span></a>
-                                &nbsp;<a href="" class="fl" id="res0rev">{$iproduct.reviewsum}{$t_review}</a>
+                                &nbsp;<a href="" class="fl" id="res0rev">{$iproduct.reviewsum}{$t_review}</a>&nbsp;&nbsp;<a href="" id="share">分享</a>&nbsp;<a href="javascript:useraction('{$iproduct.index}','bookmark');" id="bookmark">喜欢</a>&nbsp;<a href="" id="bookmark">收藏</a>&nbsp;<a href="" id="bookmark">写评价</a>
                             </div>
                         </div>
                     </div>
                 </li>
             <!--{/foreach}-->    
             </ol>
+			<script language="JavaScript">
+				function ES(b){
+					if(document.getElementById)
+					return document.getElementById(b);if(document.all)return document.all(b)}
+				function useraction(ee,flag){
+					 var re=ES('res'+ee);
+					 var ddiv=re.getElementsByTagName('div')[0].getElementsByTagName('p')[0].getElementsByTagName('a')[0];
+					 var idiv=re.getElementsByTagName('div')[0].getElementsByTagName('p')[0].getElementsByTagName('img')[0];
+					 var baseurl=document.URL.substr(0, document.URL.lastIndexOf('/')+1);
+					 var imgurl=baseurl+idiv.getAttribute('src');
+					 var producturl=baseurl+ddiv.getAttribute('href');
+					 alert(imgurl+">>>>>"+producturl);
+
+				}
+			
+			</script>
             <p class="clear">
             </p>
             <div id="query_suggestions">

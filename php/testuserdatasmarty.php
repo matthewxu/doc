@@ -96,7 +96,7 @@
 	##### search result product list
 	$oproduct = array();
 	$i=0;
-	while($i++<8){
+	while($i++<3){
 		$oproduct[$i]['sellercount']='共 8 个卖家有售';
 		$oproduct[$i]['pricerange']='￥150到 ￥280';
 		$oproduct[$i]['imglink']='images/rhbWInmpZi00Q1jF8Ucty-vlX1qHLdDZzQGlDvJWDGx-gUOuZkem_wYDZYOm.jpg';
@@ -106,6 +106,7 @@
 		$oproduct[$i]['title']='博冠 1050ZCY 保罗';
 		$oproduct[$i]['desc']='工作原理:折射式 放大倍率:10 变焦类型:定焦 调焦方式:中央调焦 物镜口径:50mm';
 		$oproduct[$i]['reviewsum']='98';
+		$oproduct[$i]['index']=$i;
 		
 	}
 	
