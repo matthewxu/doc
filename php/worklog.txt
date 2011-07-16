@@ -1,0 +1,2 @@
+2011/7/16 home
+install mysql and init database
